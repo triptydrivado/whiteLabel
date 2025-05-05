@@ -1,0 +1,40 @@
+import { TSVG } from "@/lib/types/svg";
+import { cn } from "@/lib/utils";
+
+const YoutubeIcon: React.FC<TSVG> = ({
+  className,
+  color,
+  hoverColor,
+  ...props
+}) => {
+  return (
+    <svg
+      {...props}
+      className={cn(`${color} group-hover/edit:${hoverColor} `, className)}
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M22.6665 26.6673H9.33317C5.33317 26.6673 2.6665 24.0007 2.6665 20.0007V12.0007C2.6665 8.00065 5.33317 5.33398 9.33317 5.33398H22.6665C26.6665 5.33398 29.3332 8.00065 29.3332 12.0007V20.0007C29.3332 24.0007 26.6665 26.6673 22.6665 26.6673Z"
+        stroke="white"
+        stroke-width="2"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M15.2003 12.6664L18.5336 14.6664C19.7336 15.4664 19.7336 16.6664 18.5336 17.4664L15.2003 19.4664C13.867 20.2664 12.8003 19.5998 12.8003 18.1331V14.1331C12.8003 12.3998 13.867 11.8664 15.2003 12.6664Z"
+        stroke="white"
+        stroke-width="2"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+export default YoutubeIcon;
