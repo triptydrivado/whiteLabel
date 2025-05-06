@@ -87,7 +87,7 @@ export default function BookingTime({
           </Label>
           <div
             className={cn(
-              "mt-0 inline-flex h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-[#FFF2F3] focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]",
+              "mt-0 inline-flex h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-gray-100 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]",
               time && "opacity-0",
             )}
           >
@@ -121,9 +121,9 @@ export default function BookingTime({
         className={cn(
           "relative hidden items-center gap-[6px] hover:cursor-pointer xl:flex",
           baseStyle,
-          "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-[#FFB1BA] focus-visible:bg-[#FFF2F3] xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
+          "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-[#FFB1BA] focus-visible:bg-gray-100 xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
           desktopClickInside &&
-            "border-[#FFB1BA] bg-[#FFF2F3] [&_>_svg]:text-drivado-red",
+            "border-[#FFB1BA] bg-gray-100 [&_>_svg]:text-drivado-red",
           className,
         )}
       >
@@ -132,7 +132,7 @@ export default function BookingTime({
           <Label
             htmlFor={name}
             className={
-              "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-[#FFF2F3] peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem] xl:block xl:h-auto xl:pb-2 xl:text-[11px] xl:font-medium xl:leading-none 2xl:text-sm"
+              "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:h-auto xl:pb-2 xl:font-medium xl:leading-none"
             }
           >
             {label}

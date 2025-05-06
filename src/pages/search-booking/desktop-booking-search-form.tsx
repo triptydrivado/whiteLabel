@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 // );
 
 const baseStyle =
-  "relative rounded-2xl border border-[#EEE] bg-white px-4 py-6 focus-within:border-[#FFB1BA] focus-within:bg-[#FFF2F3] focus-within:outline-none md:border-2 md:px-8 md:h-[6.25rem] md:rounded-[2rem]";
+  "relative rounded-2xl border border-[#eeeeee] bg-white px-4 py-6 focus-within:border-[#d3d3d3] focus-within:bg-[#f3f3f3] focus-within:outline-none md:border md:px-8 md:h-[6.25rem] md:rounded-[2rem]";
 
 export default function DesktopBookingSearchForm() {
   const methods = useFormContext<TBookingSchema>();

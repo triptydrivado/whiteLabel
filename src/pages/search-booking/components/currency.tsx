@@ -296,13 +296,10 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
                   </Button>
                 </FormControl>
               </DialogTrigger>
-              <DialogContent className="z-50 w-[calc(100%_-_16px)] max-w-[21.5625rem] overflow-scroll rounded-[1.25rem] p-0 sm:rounded-[1.25rem] md:max-w-[32.1875rem] md:rounded-[2rem]">
+              <DialogContent className="z-50 w-[calc(100%_-_16px)] max-w-[21.5625rem] overflow-scroll rounded-lg p-0 sm:rounded-lg md:max-w-[32.1875rem] md:rounded-lg">
                 <DialogTitle className="sr-only">Currency</DialogTitle>
                 <DialogClose className="hidden" ref={dialogCloseRef} />
-                <Command
-                  className="rounded-[1.25rem] md:rounded-[2rem]"
-                  onKeyDown={handleDialogKeyDown}
-                >
+                <Command className="rounded-lg" onKeyDown={handleDialogKeyDown}>
                   <CommandInput
                     className="truncate border-0 focus-visible:outline-none focus-visible:ring-transparent"
                     placeholder="Search for a Country"
@@ -312,7 +309,7 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
                   />
                   <CommandList
                     ref={dialogListRef}
-                    className="m-0 rounded-b-[1.25rem] scrollbar-none md:rounded-b-[2rem]"
+                    className="m-0 scrollbar-none"
                   >
                     <CommandEmpty>No Country found.</CommandEmpty>
                     <CommandGroup>
@@ -326,11 +323,11 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
                           onSelect={() => handleDialogCountrySelect(COUNTRY)}
                           data-active={index === activeIndex}
                           className={cn(
-                            `w-full items-start justify-between rounded-[1.25rem] border border-transparent p-4 text-base hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-[#FFF2F3]`,
+                            `w-full items-start justify-between rounded-[1.25rem] border border-transparent p-4 text-base hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-gray-300 [&[aria-selected="true"]]:bg-gray-100`,
                             index === activeIndex &&
-                              "border-drivado-red bg-[#FFF2F3]",
+                              "border-gray-300 bg-gray-100",
                             field.value?.country === COUNTRY.country &&
-                              "border-drivado-red bg-[#FFF2F3]",
+                              "border-gray-300 bg-gray-100",
                           )}
                         >
                           <div className="flex w-full justify-between gap-x-4 focus-visible:border-0 focus-visible:ring-0">
@@ -363,9 +360,9 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
             className={cn(
               "relative hidden items-center gap-[6px] hover:cursor-pointer xl:flex",
               baseStyle,
-              "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-[#FFB1BA] focus-visible:bg-[#FFF2F3] xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
+              "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
               clickedInside &&
-                "border-[#FFB1BA] bg-[#FFF2F3] [&_>_svg]:text-drivado-red",
+                "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",
               className,
             )}
           >
@@ -375,7 +372,7 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
               <Label
                 htmlFor={name}
                 className={
-                  "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-[#FFF2F3] peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem] xl:block xl:h-auto xl:pb-2 xl:text-[11px] xl:font-medium xl:leading-none 2xl:text-sm"
+                  "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:h-auto xl:pb-2 xl:font-medium xl:leading-none"
                 }
               >
                 {label}
@@ -398,9 +395,9 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
             </div>
 
             {clickedInside && (
-              <div className="absolute -inset-x-px top-[calc(100%_+_1rem)] z-10 h-[21rem] min-w-[22rem] gap-[2px] overflow-scroll rounded-2xl border-0 border-[#EEE] bg-white text-sm text-black shadow-sm scrollbar-none">
+              <div className="absolute -inset-x-px top-[calc(100%_+_0.5rem)] z-10 h-64 w-auto gap-[2px] overflow-scroll rounded-lg border border-gray-300 bg-white text-sm text-black shadow-md scrollbar-none">
                 <Command
-                  className="rounded-[1.25rem] md:rounded-[2rem]"
+                  className="rounded-lg py-1"
                   onKeyDown={handleDropdownKeyDown}
                 >
                   <CommandInput
@@ -426,11 +423,11 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
                           onSelect={() => handleDropdownCountrySelect(COUNTRY)}
                           data-active={index === activeIndex}
                           className={cn(
-                            `w-full items-start justify-between rounded-xl border-b border-t border-transparent p-4 text-base hover:cursor-pointer md:rounded-none [&[aria-selected="true"]]:border-drivado-red/40 [&[aria-selected="true"]]:bg-[#FFF2F3]`,
+                            `w-full items-start justify-between rounded-xl border-b border-t border-transparent px-4 py-3 text-base hover:cursor-pointer md:rounded-none [&[aria-selected="true"]]:border-gray-300 [&[aria-selected="true"]]:bg-gray-100`,
                             index === activeIndex &&
-                              "border-drivado-red bg-[#FFF2F3]",
+                              "border-gray-300 bg-gray-100",
                             field.value?.country === COUNTRY.country &&
-                              "border-drivado-red bg-[#FFF2F3]",
+                              "border-gray-300 bg-gray-100",
                           )}
                         >
                           <div className="flex w-full justify-between gap-x-4 focus-visible:border-0 focus-visible:ring-0">

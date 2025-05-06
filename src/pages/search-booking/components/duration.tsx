@@ -152,7 +152,7 @@ export default function Duration({ name, label, baseStyle, className }: Props) {
                               methods.setValue("duration", DURATION.hours);
                             }}
                             className={cn(
-                              `w-full items-start justify-between rounded-[1.25rem] border border-transparent p-4 text-base hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-[#FFF2F3]`,
+                              `w-full items-start justify-between rounded-[1.25rem] border border-transparent p-4 text-base hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-gray-100`,
                             )}
                           >
                             <DialogClose className="flex w-full gap-2">
@@ -190,9 +190,9 @@ export default function Duration({ name, label, baseStyle, className }: Props) {
               className={cn(
                 "relative hidden items-center gap-[6px] hover:cursor-pointer xl:flex",
                 baseStyle,
-                "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-[#FFB1BA] focus-visible:bg-[#FFF2F3] xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
+                "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-[#FFB1BA] focus-visible:bg-gray-100 xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
                 desktopClickInside &&
-                  "border-[#FFB1BA] bg-[#FFF2F3] [&_svg]:text-drivado-red",
+                  "border-[#FFB1BA] bg-gray-100 [&_svg]:text-drivado-red",
                 className,
               )}
             >
@@ -201,7 +201,7 @@ export default function Duration({ name, label, baseStyle, className }: Props) {
                 <Label
                   htmlFor={name}
                   className={
-                    "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-[#FFF2F3] peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem] xl:block xl:h-auto xl:pb-2 xl:text-[11px] xl:font-medium xl:leading-none 2xl:text-sm"
+                    "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:h-auto xl:pb-2 xl:font-medium xl:leading-none"
                   }
                 >
                   Duration
@@ -235,8 +235,8 @@ export default function Duration({ name, label, baseStyle, className }: Props) {
               </div>
 
               {desktopClickInside && (
-                <div className="absolute -inset-x-px top-[calc(100%_+_1rem)] z-10 h-64 min-w-96 gap-[2px] overflow-scroll rounded-2xl border-0 border-[#EEE] bg-white text-sm text-black shadow-sm scrollbar-none">
-                  <div className="sticky left-0 top-0 mb-4 border-b border-[#E2E2E2] bg-white p-4 font-semibold leading-5 text-black">
+                <div className="border-gra-300 absolute -inset-x-px top-[calc(100%_+_0.5rem)] z-10 h-64 w-auto gap-[2px] overflow-scroll rounded-lg border bg-white text-sm text-black shadow-md scrollbar-none">
+                  <div className="sticky left-0 top-0 mb-2 border-b border-[#E2E2E2] bg-white px-4 py-2.5 font-semibold leading-5 text-black">
                     Select Duration
                   </div>
                   <div>
@@ -252,7 +252,7 @@ export default function Duration({ name, label, baseStyle, className }: Props) {
                           setDesktopClickInside(false);
                         }}
                         className={cn(
-                          `w-full items-start justify-between rounded-[1.25rem] border border-transparent p-4 text-base hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-[#FFF2F3]`,
+                          `w-full items-start justify-between rounded-[1.25rem] border border-transparent px-4 py-1.5 text-sm hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-gray-100`,
                         )}
                       >
                         <div className="flex w-full gap-2">

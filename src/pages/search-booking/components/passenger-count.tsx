@@ -80,7 +80,7 @@ export default function PassengerCount({
               {label}
             </FormLabel>
             <FormControl>
-              <div className="flex w-20 items-center justify-center gap-px overflow-hidden rounded-full border border-[#FFB1BA] bg-[#FFF2F3] p-[2px] md:w-[9.375rem]">
+              <div className="flex w-20 items-center justify-start gap-px overflow-hidden rounded-full border border-[#FFB1BA] bg-gray-100 p-[2px] md:w-[9.375rem]">
                 <Button
                   type="button"
                   disabled={value <= 1}
@@ -88,7 +88,7 @@ export default function PassengerCount({
                     e.stopPropagation();
                     methods.setValue("pax", +value - 1);
                   }}
-                  className="m-0 flex shrink-0 items-center justify-center rounded-full bg-drivado-red p-[5px] leading-none disabled:bg-[#FFB1BA] md:p-[0.625rem]"
+                  className="m-0 flex shrink-0 items-center justify-start rounded-full bg-drivado-red p-[5px] leading-none disabled:bg-[#FFB1BA] md:p-[0.625rem]"
                 >
                   <Minus className="size-[0.625rem] text-white md:size-5" />
                 </Button>
@@ -113,7 +113,7 @@ export default function PassengerCount({
                     e.stopPropagation();
                     methods.setValue("pax", +value + 1);
                   }}
-                  className="m-0 flex shrink-0 items-center justify-center rounded-full bg-drivado-red p-[5px] leading-none disabled:bg-[#FFB1BA] md:p-[0.625rem]"
+                  className="m-0 flex shrink-0 items-center justify-start rounded-full bg-drivado-red p-[5px] leading-none disabled:bg-[#FFB1BA] md:p-[0.625rem]"
                 >
                   <Plus className="size-[0.625rem] text-white md:size-5" />
                 </Button>
@@ -126,12 +126,12 @@ export default function PassengerCount({
         tabIndex={0}
         ref={divRef}
         className={cn(
-          "relative hidden items-center justify-center gap-[6px] hover:cursor-pointer xl:flex",
+          "relative hidden items-center justify-start gap-[6px] hover:cursor-pointer xl:flex",
           baseStyle,
-          "border border-transparent focus-within:min-w-[9rem] focus-visible:border-[#FFB1BA] focus-visible:bg-[#FFF2F3] xl:h-auto xl:min-w-[9rem] xl:p-[0.625rem] [&_>_svg]:focus-visible:text-drivado-red",
+          "border border-transparent focus-within:min-w-[9rem] focus-visible:border-gray-100 focus-visible:bg-gray-100 xl:h-auto xl:min-w-[9rem] xl:p-[0.625rem] [&_>_svg]:focus-visible:text-drivado-red",
           className,
           clickedInside &&
-            "border-[#FFB1BA] bg-[#FFF2F3] [&_>_svg]:text-drivado-red",
+            "border-gray-100 bg-gray-100 [&_>_svg]:text-drivado-red",
         )}
         onClick={() => setClickedInside(true)}
         onKeyDown={(e) => {
@@ -143,23 +143,23 @@ export default function PassengerCount({
       >
         {!clickedInside && <UsersIcon className="size-6 text-[#999999]" />}
 
-        <div className="max-w-[120px] gap-y-[5px] pl-2 text-center xl:flex xl:flex-1 xl:flex-col">
+        <div className="max-w-[120px] gap-y-[5px] pl-0 text-center xl:flex xl:flex-1 xl:flex-col">
           <Label
             htmlFor={name}
             className={
-              "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 pl-2.5 text-right text-sm font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-[#FFF2F3] peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem] xl:-mt-1 xl:block xl:pb-0.5 xl:text-[11px] xl:font-medium xl:leading-none 2xl:text-sm"
+              "mt-1 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:pb-0.5 xl:font-medium xl:leading-none"
             }
           >
             {!clickedInside ? label : "Passengers"}
           </Label>
 
           {!clickedInside && (
-            <span className="pl-4 text-left text-xs text-[#999] xl:text-base">
+            <span className="text-left text-xs text-[#999] xl:text-base">
               {value ? value : "No. of Pax"}
             </span>
           )}
           {clickedInside && (
-            <div className="flex h-[30px] w-[100px] items-center justify-center gap-px overflow-hidden rounded-full border border-[#FFB1BA] bg-[#FFF2F3] bg-[rgba(251,65,86,0.15)] p-[2.2px]">
+            <div className="flex h-[30px] w-[100px] items-center justify-start gap-px overflow-hidden rounded-full border border-[#FFB1BA] bg-[rgba(251,65,86,0.15)] bg-gray-100 p-[2.2px]">
               <Button
                 type="button"
                 disabled={value <= 1}
@@ -167,7 +167,7 @@ export default function PassengerCount({
                   e.stopPropagation();
                   methods.setValue("pax", +value - 1);
                 }}
-                className="m-0 flex size-6 shrink-0 items-center justify-center rounded-full bg-drivado-red p-[5px] leading-none"
+                className="m-0 flex size-6 shrink-0 items-center justify-start rounded-full bg-drivado-red p-[5px] leading-none"
               >
                 <Minus className="text-white" />
               </Button>
@@ -191,7 +191,7 @@ export default function PassengerCount({
                   e.stopPropagation();
                   methods.setValue("pax", +value + 1);
                 }}
-                className="m-0 flex size-6 shrink-0 items-center justify-center rounded-full bg-drivado-red p-[5px] leading-none"
+                className="m-0 flex size-6 shrink-0 items-center justify-start rounded-full bg-drivado-red p-[5px] leading-none"
               >
                 <Plus className="text-white" />
               </Button>

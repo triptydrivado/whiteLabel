@@ -363,7 +363,7 @@ const CitySearch = React.forwardRef<
       className={cn(
         "w-full border border-transparent p-[0.625rem] text-left",
         index === state.activeLocationsIndex &&
-          "rounded-2xl border md:border-[#FFB1BA] md:bg-[#FFF2F3]",
+          "rounded-2xl border md:border-[#FFB1BA] md:bg-gray-100",
       )}
       onClick={() => {
         methods.setValue(name, location);
@@ -391,7 +391,7 @@ const CitySearch = React.forwardRef<
           <Button
             type="button"
             className={cn(
-              "relative w-full items-center justify-between gap-8 shadow-none hover:cursor-pointer focus-visible:border-drivado-red focus-visible:bg-[#FFF2F3] focus-visible:outline-none focus-visible:ring-0",
+              "relative w-full items-center justify-between gap-8 shadow-none hover:cursor-pointer focus-visible:border-drivado-red focus-visible:bg-gray-100 focus-visible:outline-none focus-visible:ring-0",
               baseStyle,
               className,
               "flex xl:hidden",
@@ -405,7 +405,7 @@ const CitySearch = React.forwardRef<
               {value.structured_formatting.main_text || label}
             </div>
 
-            <div className="mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-[#FFF2F3] peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]">
+            <div className="mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]">
               {!value.structured_formatting.main_text &&
                 "Enter airport, city or address"}
             </div>
@@ -466,7 +466,7 @@ const CitySearch = React.forwardRef<
               <Label
                 htmlFor={name}
                 className={
-                  "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-[#FFF2F3] peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]"
+                  "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]"
                 }
               >
                 Enter airport, city or address
@@ -515,7 +515,7 @@ const CitySearch = React.forwardRef<
           <Label
             htmlFor={name}
             className={
-              "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-[#FFF2F3] peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem] xl:block xl:h-auto xl:pb-1 xl:text-[11px] xl:font-medium xl:leading-none 2xl:text-sm"
+              "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:h-auto xl:pb-1 xl:font-medium xl:leading-none"
             }
           >
             {label}
@@ -542,7 +542,7 @@ const CitySearch = React.forwardRef<
         </div>
 
         {state.isDropDownVisible && (
-          <div className="absolute -inset-x-px top-[calc(100%_+_1rem)] z-10 h-64 min-w-96 gap-[2px] rounded-2xl border-2 border-[#EEE] bg-white text-sm text-black">
+          <div className="absolute -inset-x-px top-[calc(100%_+_0.5rem)] z-10 h-64 w-auto gap-[2px] rounded-lg border-2 border-[#EEE] bg-white text-sm text-black">
             <ul
               className="absolute inset-3 overflow-scroll rounded-2xl scrollbar-none"
               id="combobox-list"
