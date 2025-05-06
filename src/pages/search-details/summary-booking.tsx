@@ -1,19 +1,20 @@
-import Container from "@/components/container";
 import React from "react";
-import NavOptions from "@/components/nav-option";
-import BookingDetails from "./components/BookingDetails";
-import PassengerDetails from "./components/PassengerDetails";
 
-import { useNavigate } from "react-router-dom";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Container from "@/components/container";
+// import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   PASSENGER_DEFAULT_VALUES,
   passengerDetailsSchema,
   TPassengerDetails,
 } from "./passenger-details-form-schema";
-import { FormProvider, useForm } from "react-hook-form";
+import BookingDetails from "./components/BookingDetails";
+import BookingSummary from "./components/BookingSummary";
+import NavOptions from "@/components/nav-option";
 
-export default function SearchDetails() {
+export default function SummaryBooking() {
   const methods = useForm<TPassengerDetails>({
     defaultValues: PASSENGER_DEFAULT_VALUES,
     resolver: zodResolver(passengerDetailsSchema),
@@ -22,8 +23,8 @@ export default function SearchDetails() {
 
   const navigate = useNavigate();
 
-  const goToBookingDetails = React.useCallback(() => {
-    navigate("/booking-summary");
+  const goToPassengerDetails = React.useCallback(() => {
+    navigate("/b2b/booking-summary");
   }, [navigate]);
 
   return (
@@ -33,7 +34,7 @@ export default function SearchDetails() {
           <NavOptions />
           <div className="py-4 sm:flex sm:space-x-4 sm:py-6 xl:space-x-[30px]">
             <BookingDetails />
-            <PassengerDetails onConfirm={goToBookingDetails} />
+            <BookingSummary onEdit={goToPassengerDetails} />
           </div>
         </Container>
       </section>

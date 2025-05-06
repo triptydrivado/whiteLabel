@@ -11,7 +11,20 @@ export default {
         "custom-conic-border":
           "conic-gradient(from 0deg, transparent 0deg, #ff0052 60deg, transparent 120deg)",
       },
-      screens: {},
+      screens: {
+        mobS: { min: "375px", max: "639px" },
+        mobM: { min: "393px", max: "639px" },
+        mobL: { min: "425px", max: "639px" },
+        xs: { min: "480px", max: "639px" },
+        // sm: "640px",
+        // md: "768px",
+        // lg: "1024px",
+        // xl: "1280px",
+        "2md": { min: "900px", max: "1023px" },
+        // "2xl": "1536px",
+        "3xl": "120rem", // 1920px
+        "4xl": "160rem", // 2560px
+      },
       fontSize: {
         "text-8": "8px",
         "text-10": "10px",
