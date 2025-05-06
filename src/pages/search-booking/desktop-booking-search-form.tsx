@@ -1,5 +1,5 @@
 import { SubmitHandler, useFormContext } from "react-hook-form";
-import { Search } from "lucide-react";
+// import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Custom Components
@@ -15,9 +15,9 @@ import PassengerCount from "./components/passenger-count";
 import { type TBookingSchema } from "./schemas/booking-form";
 import { Button } from "@/components/ui/button";
 
-const Separator = () => (
-  <div className="separator mx-4 h-10 w-px bg-[#D3D3D3]" />
-);
+// const Separator = () => (
+//   <div className="separator mx-4 h-10 w-px bg-[#D3D3D3]" />
+// );
 
 const baseStyle =
   "relative rounded-2xl border border-[#EEE] bg-white px-4 py-6 focus-within:border-[#FFB1BA] focus-within:bg-[#FFF2F3] focus-within:outline-none md:border-2 md:px-8 md:h-[6.25rem] md:rounded-[2rem]";
