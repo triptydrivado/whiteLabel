@@ -30,20 +30,24 @@ export default function JourneyDetails() {
           <BookingCard />
         </div>
       ) : (
-        <div className="relative mt-[25px] w-full cursor-pointer rounded-lg bg-[var(--brand-card-bg)] shadow-md sm:px-3 sm:py-[18px] xl:px-[18px] xl:py-5">
-          <div className="flex w-full cursor-pointer space-x-[15px] lg:items-center">
+        <div className="relative mt-[25px] w-full rounded-lg bg-[var(--brand-card-bg)] shadow-md sm:px-3 sm:py-[18px] xl:px-[18px] xl:py-5">
+          <h6 className="3xl:text-sm mb-3 text-[10px] font-medium text-[#0D0D0D]">
+            Booking Details
+          </h6>
+
+          <div className="flex w-full space-x-[15px] lg:items-center">
             {/* LocationDropdown - 70% width */}
-            <div className="flex-[7] cursor-pointer">
+            <div className="flex-[7]">
               <LocationDropdown />
             </div>
 
             {/* DateDropdown - 15% width */}
-            <div className="flex-[1.5] cursor-pointer">
+            <div className="flex-[1.5]">
               <DateDropdown />
             </div>
 
             {/* TimeDropdown - 15% width */}
-            <div className="flex-[1.5] cursor-pointer">
+            <div className="flex-[1.5]">
               <BookingTime />
             </div>
           </div>
