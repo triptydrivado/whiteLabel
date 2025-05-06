@@ -361,9 +361,9 @@ const CitySearch = React.forwardRef<
         }
       }}
       className={cn(
-        "w-full border-2 border-transparent p-[0.625rem] text-left",
+        "w-full border border-transparent p-[0.625rem] text-left",
         index === state.activeLocationsIndex &&
-          "rounded-2xl border-2 md:border-[#FFB1BA] md:bg-[#FFF2F3]",
+          "rounded-2xl border md:border-[#FFB1BA] md:bg-[#FFF2F3]",
       )}
       onClick={() => {
         methods.setValue(name, location);
