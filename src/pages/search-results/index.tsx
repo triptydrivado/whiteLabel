@@ -1,23 +1,18 @@
 import NavOptions from "@/components/nav-option";
+import Container from "@/components/container";
+import JourneyDetails from "./components/journey-details";
+import VehicleOption from "./components/vehicle-option";
+
 // import { ArrowLeftCircle } from "lucide-react";
 // import { Link } from "react-router-dom";
 
 const SearchResult = () => {
   return (
-    <div>
-      <div className="3xl:px-[15.625rem] 4xl:px-[400px] w-full px-5 py-6 sm:px-5 md:px-10 lg:px-16 xl:px-32 2xl:px-48">
-        <div className="">
-          {/* <div>
-            <Link to="/">
-              <ArrowLeftCircle className="mt-3 w-8 text-gray-600" />
-            </Link>
-          </div> */}
-          <div>
-            <NavOptions />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container className="relative z-20 h-auto bg-[#F6F7F9] pb-8 font-plus-jakarta-sans">
+      <NavOptions />
+      <JourneyDetails />
+      <VehicleOption />
+    </Container>
   );
 };
 
