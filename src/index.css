@@ -6,7 +6,12 @@
 
 @layer base {
   :root {
-    --brand: #fb4156;
+    --brand: #280baa;
+    --brand-button-bg: #FB4156;
+    --brand-button-bg-hover: #2c11b4;
+    --brand-button-text: #ffffff;
+    --brand-card-bg: #ffffff;
+  
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
