@@ -12,7 +12,7 @@ const Container = forwardRef<HTMLDivElement, Props>(
       ref={ref}
       className={cn(
         // "w-full px-5 sm:px-10 md:px-10 lg:px-16 xl:px-36 2xl:px-52 3xl:px-[15.625rem] 4xl:px-[400px]",
-        "w-full px-5 sm:px-10 md:px-10 lg:px-16 xl:px-32 2xl:px-48 3xl:px-[15.625rem] 4xl:px-[400px]",
+        "3xl:px-[15.625rem] 4xl:px-[400px] w-full px-5 sm:px-10 md:px-10 lg:px-16 xl:px-32 2xl:px-48",
         className,
       )}
       {...props}
