@@ -395,9 +395,9 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
             </div>
 
             {clickedInside && (
-              <div className="absolute -inset-x-px top-[calc(100%_+_0.5rem)] z-10 h-64 w-auto gap-[2px] overflow-scroll rounded-lg border border-gray-300 bg-white text-sm text-black shadow-md scrollbar-none">
+              <div className="absolute -inset-x-px -top-[calc(100%_+_0.645rem)] z-10 h-64 w-auto gap-[2px] overflow-scroll rounded-lg border border-gray-300 bg-white text-sm text-black shadow-md scrollbar-none">
                 <Command
-                  className="rounded-lg py-1"
+                  className="-py-2 rounded-lg"
                   onKeyDown={handleDropdownKeyDown}
                 >
                   <CommandInput
