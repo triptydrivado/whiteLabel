@@ -63,7 +63,7 @@ export default function VehicleOption() {
     <div className="mt-[15px] font-plus-jakarta-sans">
       <JourneyInclusions />
 
-      <div className="mt-[15px] block w-full items-start rounded-lg bg-[var(--brand-card-bg)] p-3 xl:hidden">
+      <div className="mt-[15px] block w-full items-start rounded-lg bg-white p-3 xl:hidden">
         <div className="ml-3 flex gap-1 font-semibold text-[#A0A0A0]">
           <h2 className="text-base font-semibold">Available Vehicles</h2>
         </div>

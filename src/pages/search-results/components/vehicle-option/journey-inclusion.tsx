@@ -66,7 +66,7 @@ export default function JourneyInclusions() {
   return (
     <div>
       {/* Mobile View Button */}
-      <div className="block h-[3.125rem] w-full rounded-lg bg-[var(--brand-card-bg)] xl:hidden">
+      <div className="block h-[3.125rem] w-full rounded-lg bg-white xl:hidden">
         <div className="flex cursor-pointer gap-2 p-4" onClick={openModal}>
           <div className="flex items-center gap-1">
             <WarningIcon className="h-[18px] w-[18px] text-[#FB4156]" />

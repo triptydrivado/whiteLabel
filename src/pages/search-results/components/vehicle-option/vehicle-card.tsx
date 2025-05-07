@@ -23,26 +23,26 @@ interface VehicleCardProps {
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
   const navigate = useNavigate();
   return (
-    <div className="mobS:w-full mobM:w-full mobL:w-full 4xl:w-full 4xl:p-6 flex w-full flex-col items-center rounded-2xl bg-[var(--brand-card-bg)] p-4 shadow-none transition-shadow duration-300 hover:shadow-md sm:w-full sm:flex-row sm:p-5 md:w-full md:p-5 lg:w-full lg:p-5 xl:w-full xl:p-5 2xl:w-full 2xl:p-6">
+    <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-none transition-shadow duration-300 hover:shadow-md sm:w-full sm:flex-row sm:p-5 md:w-full md:p-5 lg:w-full lg:p-5 xl:w-full xl:p-5 2xl:w-full 2xl:p-6 mobS:w-full mobM:w-full mobL:w-full 4xl:w-full 4xl:p-6">
       <div className="w-full sm:flex">
         {/* Vehicle Image */}
         <img
           src={vehicle.image}
           alt={vehicle.name}
-          className="mobS:w-full mobM:h-[8.5rem] mobM:w-full mobL:w-full 3xl:h-full 3xl:w-[325px] 4xl:h-full 4xl:w-[421px] h-[8.75rem] w-full rounded-lg bg-[#0000000A] sm:h-[7.625rem] sm:w-[12.25rem] md:h-[147px] md:w-[235px] lg:h-[12.25rem] lg:w-[313px] xl:h-[147px] xl:w-[258px] 2xl:h-[10rem]"
+          className="h-[8.75rem] w-full rounded-lg bg-[#0000000A] sm:h-[7.625rem] sm:w-[12.25rem] md:h-[147px] md:w-[235px] lg:h-[12.25rem] lg:w-[313px] xl:h-[147px] xl:w-[258px] 2xl:h-[10rem] mobS:w-full mobM:h-[8.5rem] mobM:w-full mobL:w-full 3xl:h-full 3xl:w-[325px] 4xl:h-full 4xl:w-[421px]"
         />
 
         {/* Vehicle Details */}
-        <div className="mobS:w-full mobM:h-[8.125rem] mobM:w-full mobL:w-full 3xl:h-[10.125rem] 3xl:w-[30.625rem] 4xl:h-[13.125rem] mt-4 flex h-[7.5rem] w-full flex-1 justify-between sm:ml-8 sm:mt-0 md:mt-0 md:h-[9rem] md:w-[20.625rem] lg:h-[12.25rem] lg:w-[519px] xl:h-[147px] xl:w-[26.875rem] 2xl:h-[10rem]">
+        <div className="mt-4 flex h-[7.5rem] w-full flex-1 justify-between sm:ml-8 sm:mt-0 md:mt-0 md:h-[9rem] md:w-[20.625rem] lg:h-[12.25rem] lg:w-[519px] xl:h-[147px] xl:w-[26.875rem] 2xl:h-[10rem] mobS:w-full mobM:h-[8.125rem] mobM:w-full mobL:w-full 3xl:h-[10.125rem] 3xl:w-[30.625rem] 4xl:h-[13.125rem]">
           {/* Description */}
-          <div className="mobM:w-[11.875rem] 3xl:w-[243px] 4xl:h-full 4xl:w-[20.25rem] relative flex h-full w-60 flex-col items-start text-left sm:w-[8.75rem] md:w-[13.75rem] lg:w-[243px] xl:w-[11.125rem] 2xl:w-[10.125rem]">
+          <div className="relative flex h-full w-60 flex-col items-start text-left sm:w-[8.75rem] md:w-[13.75rem] lg:w-[243px] xl:w-[11.125rem] 2xl:w-[10.125rem] mobM:w-[11.875rem] 3xl:w-[243px] 4xl:h-full 4xl:w-[20.25rem]">
             {/* Vehicle Name */}
-            <h2 className="mobM:text-xl 3xl:text-2xl 4xl:text-[26px] text-sm font-semibold sm:text-base md:text-xl lg:text-xl xl:text-xl 2xl:text-xl">
+            <h2 className="text-sm font-semibold sm:text-base md:text-xl lg:text-xl xl:text-xl 2xl:text-xl mobM:text-xl 3xl:text-2xl 4xl:text-[26px]">
               {vehicle.name}
             </h2>
 
             {/* Vehicle Description */}
-            <p className="mobM:w-[13.625rem] mobM:text-xs 3xl:text-xs 4xl:text-base text-[10px] font-medium text-[#6D6D6D] sm:w-[8.75rem] sm:whitespace-normal sm:text-[10px] md:w-[13.5rem] md:text-xs lg:text-base xl:w-[11rem] xl:text-xs 2xl:w-[13.75rem] 2xl:text-xs">
+            <p className="text-[10px] font-medium text-[#6D6D6D] sm:w-[8.75rem] sm:whitespace-normal sm:text-[10px] md:w-[13.5rem] md:text-xs lg:text-base xl:w-[11rem] xl:text-xs 2xl:w-[13.75rem] 2xl:text-xs mobM:w-[13.625rem] mobM:text-xs 3xl:text-xs 4xl:text-base">
               {vehicle.description}
             </p>
 
@@ -51,15 +51,15 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
               {/* Passengers */}
               <span className="flex items-center gap-2">
                 <CapacityIcon className="h-[10.36px] w-[10.36px] text-[#fb4156] sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-4 lg:w-4 2xl:h-3.5 2xl:w-3.5" />
-                <p className="mobM:text-xs 3xl:text-base 4xl:text-[18px] text-[10px] font-medium text-[#6D6D6D] sm:text-[13px] md:text-base lg:text-base 2xl:text-base">
+                <p className="text-[10px] font-medium text-[#6D6D6D] sm:text-[13px] md:text-base lg:text-base 2xl:text-base mobM:text-xs 3xl:text-base 4xl:text-[18px]">
                   {vehicle.pax} Pax
                 </p>
               </span>
 
               {/* Luggage */}
               <span className="flex items-center gap-2">
-                <BriefCaseIcon className="3xl:h-4 3xl:w-4 h-[10.36px] w-[10.36px] text-[#fb4156] sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-4 lg:w-4 2xl:w-3.5" />
-                <p className="mobM:text-xs 3xl:text-base 4xl:text-[18px] text-[10px] font-medium text-[#6D6D6D] sm:text-[13px] md:text-base lg:text-base xl:text-base 2xl:text-base">
+                <BriefCaseIcon className="h-[10.36px] w-[10.36px] text-[#fb4156] sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-4 lg:w-4 2xl:w-3.5 3xl:h-4 3xl:w-4" />
+                <p className="text-[10px] font-medium text-[#6D6D6D] sm:text-[13px] md:text-base lg:text-base xl:text-base 2xl:text-base mobM:text-xs 3xl:text-base 4xl:text-[18px]">
                   {vehicle.luggage} Luggage
                 </p>
               </span>
@@ -67,16 +67,16 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
           </div>
 
           {/* Price and Book Now Button */}
-          <div className="mobS:w-[18.75rem] mobM:w-[8.75rem] 3xl:h-full 3xl:w-[11.375rem] 4xl:h-full 4xl:w-[20.5rem] relative flex w-full flex-col items-end text-right lg:w-[267px] xl:h-[147px] xl:w-[8.75rem] 2xl:h-[10rem] 2xl:w-[7.625rem]">
-            <h2 className="mobM:text-xl 3xl:text-2xl 4xl:text-[26px] text-sm font-semibold md:text-xl md:font-semibold">
+          <div className="relative flex w-full flex-col items-end text-right lg:w-[267px] xl:h-[147px] xl:w-[8.75rem] 2xl:h-[10rem] 2xl:w-[7.625rem] mobS:w-[18.75rem] mobM:w-[8.75rem] 3xl:h-full 3xl:w-[11.375rem] 4xl:h-full 4xl:w-[20.5rem]">
+            <h2 className="text-sm font-semibold md:text-xl md:font-semibold mobM:text-xl 3xl:text-2xl 4xl:text-[26px]">
               ${vehicle.price.toFixed(2)}
             </h2>
-            <p className="mobM:text-[10px] 3xl:w-[8.125rem] 3xl:text-xs 4xl:w-[11.25rem] 4xl:text-base w-[6.25rem] whitespace-normal text-[10px] text-[#6D6D6D] md:text-[11px] lg:w-[7.25rem] lg:text-sm xl:text-[11px] 2xl:w-[7rem] 2xl:text-[11px]">
+            <p className="w-[6.25rem] whitespace-normal text-[10px] text-[#6D6D6D] md:text-[11px] lg:w-[7.25rem] lg:text-sm xl:text-[11px] 2xl:w-[7rem] 2xl:text-[11px] mobM:text-[10px] 3xl:w-[8.125rem] 3xl:text-xs 4xl:w-[11.25rem] 4xl:text-base">
               Includes VAT, Gratuities, Meet & Greet services
             </p>
             <Button
               onClick={() => navigate("/passenger-details")}
-              className="mobM:h-[35px] mobM:w-[8.375rem] mobM:text-xs 3xl:h-[45px] 3xl:w-[11.375rem] 3xl:text-base 4xl:h-[3.75rem] 4xl:w-[16.25rem] 4xl:text-[18px] absolute bottom-0 right-0 h-[35px] w-[6.25rem] items-center rounded-[7px] bg-[var(--brand-button-bg)] text-xs text-[var(--brand-button-text)] shadow-md transition-all duration-300 hover:bg-[#EB0012] hover:shadow-lg sm:h-[37px] sm:w-[9.5rem] sm:text-sm md:rounded-[10px] lg:h-[45px] lg:w-[13.5rem] lg:text-base xl:h-[45px] xl:w-[11.375rem] xl:rounded-xl 2xl:h-[45px] 2xl:w-[11.375rem] 2xl:text-sm"
+              className="absolute bottom-0 right-0 h-[35px] w-[6.25rem] items-center rounded-[7px] bg-[var(--brand-btn-bg)] text-xs text-[var(--brand-btn-text)] shadow-md transition-all duration-300 hover:bg-[#EB0012] hover:shadow-lg sm:h-[37px] sm:w-[9.5rem] sm:text-sm md:rounded-[10px] lg:h-[45px] lg:w-[13.5rem] lg:text-base xl:h-[45px] xl:w-[11.375rem] xl:rounded-xl 2xl:h-[45px] 2xl:w-[11.375rem] 2xl:text-sm mobM:h-[35px] mobM:w-[8.375rem] mobM:text-xs 3xl:h-[45px] 3xl:w-[11.375rem] 3xl:text-base 4xl:h-[3.75rem] 4xl:w-[16.25rem] 4xl:text-[18px]"
             >
               Book Now
             </Button>
