@@ -1,31 +1,13 @@
 import React from "react";
-import { ChevronDown } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
 // Shadcn Primitives
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import {
-  FormControl,
+  // FormControl,
   FormField,
-  FormItem,
-  FormLabel,
 } from "@/components/ui/form";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 import { Timer } from "lucide-react";
 
@@ -42,7 +24,7 @@ type Props = {
   className?: string;
 };
 
-export default function Duration({ name, label, baseStyle, className }: Props) {
+export default function Duration({ name, baseStyle, className }: Props) {
   const [show, setShow] = React.useState(false);
   const methods = useFormContext<TBookingSchema>();
 
@@ -86,94 +68,6 @@ export default function Duration({ name, label, baseStyle, className }: Props) {
 
         return (
           <>
-            <FormItem
-              onClick={handleClick}
-              className={cn(
-                "flex w-full items-center justify-between space-y-0 md:py-12",
-                baseStyle,
-                "xl:hidden",
-                className,
-              )}
-            >
-              <FormLabel
-                onClick={(e) => e.preventDefault()}
-                className="text-xs font-normal capitalize leading-[1.25rem] text-[#757575] md:text-2xl md:leading-[2.375rem]"
-              >
-                {label}
-              </FormLabel>
-              <Dialog open={show} onOpenChange={setShow}>
-                <DialogTrigger asChild>
-                  <FormControl className="w-full">
-                    <Button
-                      type="button"
-                      ref={buttonRef}
-                      role="combobox"
-                      variant="outline"
-                      className="mt-0 inline-flex h-auto max-w-fit items-center justify-end gap-2 truncate border-none bg-transparent p-0 px-0 pl-2 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none placeholder:text-sm hover:bg-transparent focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]"
-                    >
-                      {selectedDuration && (
-                        <span>
-                          {selectedDuration}
-                          &nbsp;
-                          {selectedDuration > 1 ? `hours` : `hour`}
-                        </span>
-                      )}
-                      {!selectedDuration && (
-                        <span className="text-[#757575]">
-                          Select a Duration
-                        </span>
-                      )}
-
-                      <ChevronDown className="h-4 w-4 shrink-0 translate-y-[2px] self-center opacity-50" />
-                    </Button>
-                  </FormControl>
-                </DialogTrigger>
-                <DialogContent
-                  className={cn(
-                    "z-50 w-[calc(100%_-_16px)] max-w-[21.5625rem] overflow-scroll rounded-[1.25rem] p-0 scrollbar-none sm:w-full sm:rounded-[1.25rem] md:max-w-[32.1875rem] md:rounded-[2rem]",
-                  )}
-                >
-                  <DialogTitle className="sr-only">Currency</DialogTitle>
-                  <Command className="rounded-[6px] md:rounded-[2rem]">
-                    <CommandInput
-                      className="truncate border-0 focus-visible:outline-none focus-visible:ring-transparent"
-                      placeholder="Search for duration"
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                    <CommandList className="my-2 scrollbar-none">
-                      <CommandEmpty>No Duration found.</CommandEmpty>
-                      <CommandGroup>
-                        {DURATIONS.map((DURATION) => (
-                          <CommandItem
-                            value={DURATION.hours.toString()}
-                            key={DURATION.hours}
-                            onSelect={() => {
-                              setShow(false);
-                              methods.setValue("duration", DURATION.hours);
-                            }}
-                            className={cn(
-                              `w-full items-start justify-between rounded-[1.25rem] border border-transparent p-4 text-base hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-gray-100`,
-                            )}
-                          >
-                            <DialogClose className="flex w-full gap-2">
-                              <span className="font-semibold leading-[normal] text-[#303030]">
-                                {DURATION.hours > 1
-                                  ? `${DURATION.hours} hours`
-                                  : `${DURATION.hours} hour`}
-                              </span>
-                              <span>/</span>
-                              <span className="font-normal leading-[normal] text-[#535353]">
-                                {`${DURATION.equivalentKm} Kms`}
-                              </span>
-                            </DialogClose>
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </DialogContent>
-              </Dialog>
-            </FormItem>
             <div
               tabIndex={0}
               ref={desktopButtonRef}
@@ -188,20 +82,20 @@ export default function Duration({ name, label, baseStyle, className }: Props) {
                 }
               }}
               className={cn(
-                "relative hidden items-center gap-[6px] hover:cursor-pointer xl:flex",
+                "relative flex items-center gap-[6px] hover:cursor-pointer",
                 baseStyle,
-                "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-[#FFB1BA] focus-visible:bg-gray-100 xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
+                "border border-transparent px-2.5 py-1 focus-within:min-w-[11.5rem] focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-2 [&_svg]:focus-visible:text-drivado-red",
                 desktopClickInside &&
                   "border-[#FFB1BA] bg-gray-100 [&_svg]:text-drivado-red",
                 className,
               )}
             >
-              <Timer className="text-[#999999]" />
-              <div className="xl:flex xl:flex-1 xl:flex-col">
+              <Timer className="size-5 text-[#999999]" />
+              <div className="flex flex-1 flex-col">
                 <Label
                   htmlFor={name}
                   className={
-                    "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:h-auto xl:pb-2 xl:font-medium xl:leading-none"
+                    "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:h-auto xl:pb-1 xl:font-medium xl:leading-none"
                   }
                 >
                   Duration
@@ -218,7 +112,7 @@ export default function Duration({ name, label, baseStyle, className }: Props) {
                   aria-haspopup="listbox"
                   aria-controls="combobox-list"
                   className={cn(
-                    "peer w-full truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize leading-[1.25rem] text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:leading-[2.375rem] md:placeholder:text-2xl md:placeholder:leading-[2.375rem] xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
+                    "peer w-full truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:placeholder:text-2xl xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
                   )}
                 >
                   {value && (

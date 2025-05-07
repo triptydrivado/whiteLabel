@@ -7,12 +7,6 @@ import { useFormContext } from "react-hook-form";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
 
 // Type and Zod Schemas
 import { type TBookingSchema } from "../schemas/booking-form";
@@ -36,10 +30,10 @@ export default function PassengerCount({
   const divRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleClick = React.useCallback(() => {
-    if (!inputRef.current) return;
-    inputRef.current.focus();
-  }, [inputRef.current]);
+  // const handleClick = React.useCallback(() => {
+  //   if (!inputRef.current) return;
+  //   inputRef.current.focus();
+  // }, [inputRef.current]);
 
   const [clickedInside, setClickedInside] = React.useState(false);
 
@@ -63,72 +57,13 @@ export default function PassengerCount({
 
   return (
     <>
-      <FormField
-        name={name}
-        control={methods.control}
-        render={({ field: { value, ...field } }) => (
-          <FormItem
-            ref={divRef}
-            onClick={handleClick}
-            className={cn(
-              "relative flex items-center justify-between gap-8 space-y-0 xl:hidden",
-              baseStyle,
-              className,
-            )}
-          >
-            <FormLabel className="text-xs font-normal capitalize leading-[1.25rem] text-[#757575] md:text-2xl md:leading-10">
-              {label}
-            </FormLabel>
-            <FormControl>
-              <div className="flex w-20 items-center justify-start gap-px overflow-hidden rounded-full border border-[#FFB1BA] bg-gray-100 p-[2px] md:w-[9.375rem]">
-                <Button
-                  type="button"
-                  disabled={value <= 1}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    methods.setValue("pax", +value - 1);
-                  }}
-                  className="m-0 flex shrink-0 items-center justify-start rounded-full bg-drivado-red p-[5px] leading-none disabled:bg-[#FFB1BA] md:p-[0.625rem]"
-                >
-                  <Minus className="size-[0.625rem] text-white md:size-5" />
-                </Button>
-                <Input
-                  {...field}
-                  value={value}
-                  ref={inputRef}
-                  maxLength={2}
-                  max={99}
-                  min={1}
-                  minLength={1}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") e.preventDefault();
-                  }}
-                  type="number"
-                  className="inline-block h-5 flex-grow appearance-none border-0 p-0 text-center text-base font-medium leading-[normal] text-[#1E1E1E] shadow-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:h-9 md:text-[2rem]"
-                />
-                <Button
-                  type="button"
-                  disabled={value >= 99}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    methods.setValue("pax", +value + 1);
-                  }}
-                  className="m-0 flex shrink-0 items-center justify-start rounded-full bg-drivado-red p-[5px] leading-none disabled:bg-[#FFB1BA] md:p-[0.625rem]"
-                >
-                  <Plus className="size-[0.625rem] text-white md:size-5" />
-                </Button>
-              </div>
-            </FormControl>
-          </FormItem>
-        )}
-      />
       <div
         tabIndex={0}
         ref={divRef}
         className={cn(
-          "relative hidden items-center justify-start gap-[6px] hover:cursor-pointer xl:flex",
+          "relative flex items-center justify-start gap-[6px] hover:cursor-pointer",
           baseStyle,
-          "border border-transparent focus-within:min-w-[9rem] focus-visible:border-gray-100 focus-visible:bg-gray-100 xl:h-auto xl:min-w-[9rem] xl:p-[0.625rem] [&_>_svg]:focus-visible:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-visible:border-gray-100 focus-visible:bg-gray-100 xl:h-auto xl:py-2 [&_>_svg]:focus-visible:text-drivado-red",
           className,
           clickedInside &&
             "border-gray-100 bg-gray-100 [&_>_svg]:text-drivado-red",
@@ -141,22 +76,22 @@ export default function PassengerCount({
           }
         }}
       >
-        {!clickedInside && <UsersIcon className="size-6 text-[#999999]" />}
+        <UsersIcon className="size-5 text-[#999999]" />
 
-        <div className="max-w-[120px] gap-y-[5px] pl-0 text-center xl:flex xl:flex-1 xl:flex-col">
+        <div className="xl:flex xl:flex-1 xl:flex-col">
           <Label
             htmlFor={name}
             className={
-              "mt-1 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:pb-0.5 xl:font-medium xl:leading-none"
+              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:pb-1 xl:font-medium"
             }
           >
             {!clickedInside ? label : "Passengers"}
           </Label>
 
           {!clickedInside && (
-            <span className="text-left text-xs text-[#999] xl:text-base">
+            <div className="text-left text-xs text-[#999] xl:text-base">
               {value ? value : "No. of Pax"}
-            </span>
+            </div>
           )}
           {clickedInside && (
             <div className="flex h-[30px] w-[100px] items-center justify-start gap-px overflow-hidden rounded-full border border-[#FFB1BA] bg-[rgba(251,65,86,0.15)] bg-gray-100 p-[2.2px]">

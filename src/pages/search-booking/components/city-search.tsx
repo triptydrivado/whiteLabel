@@ -13,17 +13,17 @@ import {
   searchLocationApiSchema,
   type TSearchLocationApi,
 } from "../schemas/search-location";
-import { Button } from "@/components/ui/button";
-import { X, MapPin } from "lucide-react";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+// import { Button } from "@/components/ui/button";
+import { MapPin } from "lucide-react";
+// import {
+//   Sheet,
+//   SheetClose,
+//   SheetContent,
+//   SheetDescription,
+//   SheetHeader,
+//   SheetTitle,
+//   SheetTrigger,
+// } from "@/components/ui/sheet";
 
 // import for Apis
 const CITY_SEARCH_API = import.meta.env.VITE_LOCATION_SEARCH_API;
@@ -382,140 +382,27 @@ const CitySearch = React.forwardRef<
     </li>
   ));
 
-  const value = methods.watch(name);
+  // const value = methods.watch(name);
 
   return (
     <>
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button
-            type="button"
-            className={cn(
-              "relative w-full items-center justify-between gap-8 shadow-none hover:cursor-pointer focus-visible:border-drivado-red focus-visible:bg-gray-100 focus-visible:outline-none focus-visible:ring-0",
-              baseStyle,
-              className,
-              "flex xl:hidden",
-            )}
-          >
-            <div
-              className={cn(
-                "peer relative h-auto flex-1 truncate rounded-none border-0 bg-transparent p-0 text-left text-xs font-normal capitalize leading-[1.25rem] text-[#757575] shadow-none hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:leading-[2.375rem]",
-              )}
-            >
-              {value.structured_formatting.main_text || label}
-            </div>
-
-            <div className="mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]">
-              {!value.structured_formatting.main_text &&
-                "Enter airport, city or address"}
-            </div>
-          </Button>
-        </SheetTrigger>
-        <SheetContent
-          side={"bottom"}
-          tabIndex={undefined}
-          className={cn(
-            "fixed inset-0 inset-y-0 z-50 mt-0 grid min-h-svh grid-rows-[auto_1fr] gap-y-[0.625rem] overflow-scroll rounded-t-[20px] border border-transparent bg-[#F9F9F9] p-0 px-6 pt-[1.625rem] scrollbar-none md:px-10 xl:hidden",
-          )}
-        >
-          {/* Sheet Header for Semantic Purpose */}
-          <SheetHeader className="sr-only">
-            <SheetTitle>Booking Search Form</SheetTitle>
-            <SheetDescription>
-              Booking Search Form for Mobile and Tablet Screen
-            </SheetDescription>
-          </SheetHeader>
-
-          <div className="space-y-2">
-            <SheetClose asChild>
-              <Button className="flex size-8 items-center justify-center rounded-full border bg-white p-px hover:cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-drivado-red md:size-[3.890625rem]">
-                <X className="size-3 text-black md:size-6" />
-                <span className="sr-only">Close</span>
-              </Button>
-            </SheetClose>
-
-            <div
-              ref={divRef}
-              onClick={handleDivClick}
-              className={cn(
-                "relative flex items-center justify-between gap-8 transition-all duration-300 ease-in-out hover:cursor-pointer",
-                baseStyle,
-                className,
-              )}
-              {...props}
-            >
-              <Input
-                id={name}
-                name={name}
-                ref={inputRef}
-                placeholder={label}
-                value={state.input}
-                autoComplete="off"
-                autoCorrect="off"
-                aria-haspopup="listbox"
-                aria-controls="combobox-list"
-                aria-expanded={state.isDropDownVisible}
-                onBlur={handleOnBlurEvent}
-                onKeyDown={handleOnKeyDownEvent}
-                onChange={handleOnChangeEvent}
-                className={cn(
-                  "peer relative h-auto flex-1 truncate rounded-none border-0 bg-transparent p-0 text-left text-xs font-normal capitalize leading-[1.25rem] text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:leading-[2.375rem] md:placeholder:text-2xl md:placeholder:leading-[2.375rem]",
-                )}
-              />
-
-              <Label
-                htmlFor={name}
-                className={
-                  "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]"
-                }
-              >
-                Enter airport, city or address
-              </Label>
-            </div>
-          </div>
-
-          <ul
-            className="overflow-scroll scrollbar-none"
-            id="combobox-list"
-            role="list"
-            ref={listRef}
-          >
-            {dropdownListLength > 0 && dropdownList}
-            {dropdownListLength === 0 && (
-              <li
-                role="option"
-                className="h-[78px] border-2 border-transparent p-[0.625rem]"
-              >
-                <p className="truncate text-center text-sm font-normal leading-normal text-black">
-                  {state.isFetching
-                    ? "Loading..."
-                    : state.input.length
-                      ? "No Such Locations Found"
-                      : "Type to Search"}
-                </p>
-              </li>
-            )}
-          </ul>
-        </SheetContent>
-      </Sheet>
-
       <div
         ref={divRef}
         onClick={handleDivClick}
         className={cn(
-          "relative hidden items-center gap-[6px] hover:cursor-pointer xl:flex",
+          "relative flex items-center gap-[6px] hover:cursor-pointer",
           baseStyle,
-          "border border-transparent focus-within:min-w-[20.5rem] focus-visible:border-drivado-red xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-within:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-within:min-w-[20.5rem] focus-visible:border-drivado-red xl:h-auto xl:py-2 [&_svg]:focus-within:text-drivado-red",
           className,
         )}
         {...props}
       >
-        <MapPin className="text-[#999999]" />
+        <MapPin className="size-5 text-[#999999]" />
         <div className="xl:flex xl:flex-1 xl:flex-col">
           <Label
             htmlFor={name}
             className={
-              "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:h-auto xl:pb-1 xl:font-medium xl:leading-none"
+              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:h-auto xl:pb-1 xl:font-medium xl:leading-none"
             }
           >
             {label}
@@ -536,7 +423,7 @@ const CitySearch = React.forwardRef<
             onKeyDown={handleOnKeyDownEvent}
             onChange={handleOnChangeEvent}
             className={cn(
-              "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize leading-[1.25rem] text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:leading-[2.375rem] md:placeholder:text-2xl md:placeholder:leading-[2.375rem] xl:h-auto xl:text-xs xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-xs 2xl:text-base 2xl:placeholder:text-base",
+              "peer h-auto truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize leading-[1.25rem] text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:leading-[2.375rem] md:placeholder:text-2xl md:placeholder:leading-[2.375rem] xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-xs 2xl:placeholder:text-base",
             )}
           />
         </div>
