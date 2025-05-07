@@ -112,7 +112,7 @@ export default function Duration({ name, baseStyle, className }: Props) {
                   aria-haspopup="listbox"
                   aria-controls="combobox-list"
                   className={cn(
-                    "peer w-full truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:placeholder:text-2xl xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
+                    "peer w-full truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
                   )}
                 >
                   {value && (
@@ -146,7 +146,7 @@ export default function Duration({ name, baseStyle, className }: Props) {
                           setDesktopClickInside(false);
                         }}
                         className={cn(
-                          `w-full items-start justify-between rounded-[1.25rem] border border-transparent px-4 py-1.5 text-sm hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-gray-100`,
+                          `w-full items-start justify-between rounded-[1.25rem] border border-transparent px-4 py-1.5 text-sm hover:cursor-pointer [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-gray-100`,
                         )}
                       >
                         <div className="flex w-full gap-2">

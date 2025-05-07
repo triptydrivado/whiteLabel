@@ -285,7 +285,7 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
                 aria-haspopup="listbox"
                 aria-controls="combobox-list"
                 className={cn(
-                  "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:placeholder:text-2xl xl:h-auto xl:text-base xl:placeholder:truncate xl:placeholder:text-base",
+                  "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-base xl:placeholder:truncate xl:placeholder:text-base",
                 )}
               >
                 {field.value?.currency ? (
@@ -325,7 +325,7 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
                           onSelect={() => handleDropdownCountrySelect(COUNTRY)}
                           data-active={index === activeIndex}
                           className={cn(
-                            `w-full items-start justify-between rounded-xl border-b border-t border-transparent px-4 py-3 text-base hover:cursor-pointer md:rounded-none [&[aria-selected="true"]]:border-gray-300 [&[aria-selected="true"]]:bg-gray-100`,
+                            `w-full items-start justify-between rounded-xl border-b border-t border-transparent px-4 py-3 text-base hover:cursor-pointer [&[aria-selected="true"]]:border-gray-300 [&[aria-selected="true"]]:bg-gray-100`,
                             index === activeIndex &&
                               "border-gray-300 bg-gray-100",
                             field.value?.country === COUNTRY.country &&

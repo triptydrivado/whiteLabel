@@ -105,7 +105,7 @@ export default function BookingTime({
             aria-haspopup="listbox"
             aria-controls="combobox-list"
             className={cn(
-              "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:placeholder:text-2xl xl:h-auto xl:text-base xl:placeholder:truncate xl:placeholder:text-xs",
+              "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-base xl:placeholder:truncate xl:placeholder:text-xs",
             )}
           >
             {time || "00:00"}
