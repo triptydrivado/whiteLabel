@@ -1,12 +1,7 @@
 "use client";
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  CalendarDays,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, CalendarDays } from "lucide-react";
 import {
   format,
   eachDayOfInterval,
@@ -26,12 +21,6 @@ import {
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
 
 // Type and Zod Schemas
 import { type TBookingSchema } from "../schemas/booking-form";
@@ -58,13 +47,12 @@ export default function BookingDate({
   name,
   baseStyle,
   className,
-  ...props
 }: Props) {
-  const [showDialog, setShowDialog] = React.useState<boolean>(false);
+  // const [showDialog, setShowDialog] = React.useState<boolean>(false);
   const [openMobileDialog, setOpenMobileDialog] =
     React.useState<boolean>(false);
 
-  const divRef = React.useRef<HTMLDivElement>(null);
+  // const divRef = React.useRef<HTMLDivElement>(null);
   const methods = useFormContext<TBookingSchema>();
 
   const date = methods.watch("date");
@@ -94,52 +82,6 @@ export default function BookingDate({
 
   return (
     <>
-      {/* MOBILE VIEW */}
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogTrigger asChild>
-          <div
-            ref={divRef}
-            className={cn(
-              "relative flex items-center justify-between gap-8 xl:hidden",
-              baseStyle,
-              className,
-            )}
-          >
-            <Label
-              htmlFor={name}
-              className="text-xs font-normal capitalize leading-[1.25rem] text-[#757575] md:text-2xl md:leading-[2.375rem]"
-            >
-              {date ? format(date, "dd / MM / yyyy") : "Date"}
-            </Label>
-
-            <Button
-              className={cn(
-                "mt-0 inline-flex h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-gray-100 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]",
-                date && "opacity-0",
-              )}
-            >
-              <span>DD - MM - YYYY</span>
-              <ChevronDown className="h-4 w-4 shrink-0 translate-y-[2px] self-center opacity-50" />
-            </Button>
-          </div>
-        </DialogTrigger>
-        <DialogContent
-          className={cn(
-            "max-w-[20rem] gap-0 rounded-2xl bg-white p-0 xl:hidden",
-          )}
-          {...props}
-        >
-          <DialogTitle className="sr-only">Calendar</DialogTitle>
-          <CalendarPick
-            name="date"
-            open={showDialog}
-            setOpen={() => {
-              setShowDialog((p) => !p);
-            }}
-          />
-        </DialogContent>
-      </Dialog>
-
       {/* DESKTOP VIEW */}
       <div
         tabIndex={0}
@@ -152,20 +94,20 @@ export default function BookingDate({
           }
         }}
         className={cn(
-          "relative hidden items-center gap-[6px] hover:cursor-pointer xl:flex",
+          "relative flex items-center gap-[6px] hover:cursor-pointer",
           baseStyle,
-          "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-[#FFB1BA] focus-visible:bg-gray-100 xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-within:min-w-[11.5rem] focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-2 [&_svg]:focus-visible:text-drivado-red",
           desktopClickInside &&
-            "border-[#FFB1BA] bg-gray-100 [&_>_svg]:text-drivado-red",
+            "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",
           className,
         )}
       >
-        <CalendarDays className="text-[#999999]" />
+        <CalendarDays className="size-5 text-[#999999]" />
         <div className="xl:flex xl:flex-1 xl:flex-col">
           <Label
             htmlFor={name}
             className={
-              "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-xs xl:block xl:h-auto xl:pb-2 xl:text-xs xl:font-medium xl:leading-none 2xl:text-xs"
+              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-xs xl:h-auto xl:pb-1 xl:text-xs xl:font-medium xl:leading-none"
             }
           >
             {label}

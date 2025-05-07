@@ -5,18 +5,13 @@ import { useFormContext } from "react-hook-form";
 // Shadcn Primitives
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
 // Type and Zod Schemas
 import { type TBookingSchema } from "../schemas/booking-form";
-import { ChevronDown } from "lucide-react";
+
 import { format, parse } from "date-fns";
 import ClockArrowDownIcon from "@/assets/svgs/clock-arrow-down";
 
@@ -33,7 +28,7 @@ export default function BookingTime({
   baseStyle,
   className,
 }: Props) {
-  const [show, setShow] = React.useState<boolean>(false);
+  // const [show, setShow] = React.useState<boolean>(false);
 
   const methods = useFormContext<TBookingSchema>();
 
@@ -70,43 +65,10 @@ export default function BookingTime({
   const parsedDate = parse(calcTime, "H:m", new Date());
 
   // Format the date in a readable format
-  // const formattedTime = format(parsedDate, "hh:mm a"); // e.g., "02:30 PM"
+  const formattedTime = format(parsedDate, "hh:mm a"); // e.g., "02:30 PM"
 
   return (
     <>
-      <Dialog open={show} onOpenChange={setShow}>
-        <DialogTrigger
-          className={cn(
-            "relative flex w-full items-center justify-between gap-8 space-y-0 xl:hidden",
-            baseStyle,
-            className,
-          )}
-        >
-          <Label className="text-xs font-normal capitalize leading-[1.25rem] text-[#757575] md:text-2xl md:leading-[2.375rem]">
-            {time ? format(parsedDate, "HH : mm") : label}
-          </Label>
-          <div
-            className={cn(
-              "mt-0 inline-flex h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-sm font-normal leading-[1.25rem] text-black shadow-none focus-within:bg-gray-100 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-2xl md:leading-[2.375rem]",
-              time && "opacity-0",
-            )}
-          >
-            <span>Select Time</span>
-
-            <ChevronDown className="h-4 w-4 shrink-0 translate-y-[2px] self-center opacity-50" />
-          </div>
-        </DialogTrigger>
-        <DialogContent className="z-50 m-0 max-w-72 rounded-2xl p-0">
-          <DialogTitle className="sr-only">Calendar</DialogTitle>
-
-          <TimePicker
-            onClose={() => {
-              setShow(false);
-            }}
-          />
-        </DialogContent>
-      </Dialog>
-
       {/* Desktop */}
       <div
         tabIndex={0}
@@ -119,20 +81,20 @@ export default function BookingTime({
           }
         }}
         className={cn(
-          "relative hidden items-center gap-[6px] hover:cursor-pointer xl:flex",
+          "relative flex items-center gap-[6px] hover:cursor-pointer",
           baseStyle,
-          "border border-transparent focus-within:min-w-[11.5rem] focus-visible:border-[#FFB1BA] focus-visible:bg-gray-100 xl:h-auto xl:px-[0.625rem] xl:py-[0.8rem] [&_svg]:focus-visible:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-within:min-w-[11.5rem] focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-2 [&_svg]:focus-visible:text-drivado-red",
           desktopClickInside &&
-            "border-[#FFB1BA] bg-gray-100 [&_>_svg]:text-drivado-red",
+            "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",
           className,
         )}
       >
-        <Clock3 className="text-[#999999]" />
+        <Clock3 className="size-5 text-[#999999]" />
         <div className="xl:flex xl:flex-1 xl:flex-col">
           <Label
             htmlFor={name}
             className={
-              "mt-0 hidden h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[2.375rem] xl:block xl:h-auto xl:pb-2 xl:font-medium xl:leading-none"
+              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:h-auto xl:pb-1 xl:font-medium xl:leading-none"
             }
           >
             {label}
@@ -143,7 +105,7 @@ export default function BookingTime({
             aria-haspopup="listbox"
             aria-controls="combobox-list"
             className={cn(
-              "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize leading-[1.25rem] text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:leading-[2.375rem] md:placeholder:text-2xl md:placeholder:leading-[2.375rem] xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-xs",
+              "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:placeholder:text-2xl xl:h-auto xl:text-base xl:placeholder:truncate xl:placeholder:text-xs",
             )}
           >
             {time || "00:00"}
@@ -151,7 +113,7 @@ export default function BookingTime({
         </div>
 
         {openMobileDialog && (
-          <div className="border=gray-200 absolute left-4 top-8 z-10 -translate-y-1/2 gap-[2px] overflow-scroll rounded-2xl border bg-white text-sm text-black shadow-lg scrollbar-none">
+          <div className="absolute left-4 top-8 z-10 -translate-y-1/2 gap-[2px] overflow-scroll rounded-2xl border border-gray-200 bg-white text-sm text-black shadow-lg scrollbar-none">
             <TimePicker
               onClose={() => {
                 setOpenMobileDialog(false);

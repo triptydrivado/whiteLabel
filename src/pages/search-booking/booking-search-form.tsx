@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 // );
 
 const baseStyle =
-  "relative rounded-2xl border border-[#eeeeee] bg-white px-4 py-6 focus-within:border-[#d3d3d3] focus-within:bg-[#f3f3f3] focus-within:outline-none md:border md:px-8 md:h-[6.25rem] md:rounded-[2rem]";
+  "relative rounded-2xl border border-[#eeeeee] bg-white focus-within:border-[#d3d3d3] focus-within:bg-[#f3f3f3] focus-within:outline-none md:border md:h-[6.25rem] md:rounded-[2rem]";
 
 export default function DesktopBookingSearchForm() {
   const methods = useFormContext<TBookingSchema>();
@@ -48,7 +48,7 @@ export default function DesktopBookingSearchForm() {
             label="from"
             name="from"
             baseStyle={baseStyle}
-            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg [&_+_.separator]:focus-within:hidden"
+            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
         </>
 
@@ -59,7 +59,7 @@ export default function DesktopBookingSearchForm() {
               label="to"
               name="to"
               baseStyle={baseStyle}
-              className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg [&_+_.separator]:focus-within:hidden"
+              className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
             />
           </>
         )}
@@ -71,7 +71,7 @@ export default function DesktopBookingSearchForm() {
               label="Duration"
               name="duration"
               baseStyle={baseStyle}
-              className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg [&_+_.separator]:focus-within:hidden"
+              className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
             />
           </>
         )}
@@ -82,7 +82,7 @@ export default function DesktopBookingSearchForm() {
             label="date"
             name="date"
             baseStyle={baseStyle}
-            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg [&_+_.separator]:focus-within:hidden"
+            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
         </>
 
@@ -92,7 +92,7 @@ export default function DesktopBookingSearchForm() {
             label="time"
             name="time"
             baseStyle={baseStyle}
-            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg [&_+_.separator]:focus-within:hidden"
+            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
         </>
 
@@ -102,7 +102,7 @@ export default function DesktopBookingSearchForm() {
             label="currency"
             name="currency"
             baseStyle={baseStyle}
-            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg [&_+_.separator]:focus-within:hidden"
+            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
         </>
 
@@ -112,7 +112,7 @@ export default function DesktopBookingSearchForm() {
             label="pax"
             name="pax"
             baseStyle={baseStyle}
-            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg [&_+_.separator]:focus-within:hidden"
+            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
         </>
 
