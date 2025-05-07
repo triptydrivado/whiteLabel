@@ -9,7 +9,9 @@ import VehicleOption from "./components/vehicle-option";
 const SearchResult = () => {
   return (
     <Container className="relative z-20 h-auto bg-[#F6F7F9] pb-8 font-plus-jakarta-sans">
-      <NavOptions />
+      <div className="pt-6">
+        <NavOptions />
+      </div>
       <JourneyDetails />
       <VehicleOption />
     </Container>

@@ -12,7 +12,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
     window.location.href = "/booking-confirmation"; // Navigates to /search-form
   };
   const handleEdit = () => {
-    window.location.href = "/b2c/search-details"; // Navigates to /search-form
+    window.location.href = "/search-details"; // Navigates to /search-form
   };
   // const [isOpen, setIsOpen] = useState(false);
   // const [selectedTitle, setSelectedTitle] = useState("Select your salutation");
@@ -101,7 +101,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
           <button
             type="button"
             onClick={handleClick}
-            className="w-full items-center justify-center rounded-[11px] border border-[#fb4156] bg-[#fb4156] px-4 py-[15px] text-xs font-medium text-white hover:bg-[#EB0012] xl:text-base"
+            className="w-full items-center justify-center rounded-[11px] bg-[var(--brand-btn-bg)] px-4 py-[15px] text-xs font-medium text-white hover:bg-[#EB0012] xl:text-base"
           >
             Confirm & Pay
           </button>

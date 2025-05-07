@@ -22,6 +22,7 @@ interface VehicleCardProps {
 
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
   const navigate = useNavigate();
+
   return (
     <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-none transition-shadow duration-300 hover:shadow-md sm:w-full sm:flex-row sm:p-5 md:w-full md:p-5 lg:w-full lg:p-5 xl:w-full xl:p-5 2xl:w-full 2xl:p-6 mobS:w-full mobM:w-full mobL:w-full 4xl:w-full 4xl:p-6">
       <div className="w-full sm:flex">

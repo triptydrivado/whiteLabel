@@ -16,6 +16,7 @@ export default function LocationDropdown() {
         <LocationIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
         <span className="truncate whitespace-nowrap text-[10px] text-gray-900 sm:max-w-[9.375rem] md:max-w-[10.625rem] lg:max-w-[15rem] lg:text-sm xl:max-w-[17.5rem] 2xl:max-w-[20rem] 2xl:text-base 3xl:w-[26.25rem] 4xl:w-[480px]">
+          {" "}
           {pickupLocation ||
             "London Heathrow Airport (LHR), TW6 1QG, United Kingdom"}
         </span>

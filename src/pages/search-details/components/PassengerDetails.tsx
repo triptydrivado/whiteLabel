@@ -240,9 +240,9 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
                 to="BookingConditions"
                 className="font-semibold hover:text-[#fb4156]"
               >
-                &nbsp;Booking Conditions
+                Booking Conditions
               </Link>
-              &nbsp;and&nbsp;
+              and
               <Link
                 to="PrivacyPolicy"
                 className="font-semibold hover:text-[#fb4156]"
@@ -253,7 +253,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
           </div>
           <button
             disabled={!methods.watch("consent")}
-            className="mt-4 w-full items-center justify-center rounded-[11px] bg-[#fb4156] px-4 py-3 text-sm font-semibold text-white hover:bg-[#dc3545] disabled:bg-gray-500 disabled:hover:cursor-not-allowed md:text-xs lg:text-base 2xl:rounded-xl"
+            className="mt-4 w-full items-center justify-center rounded-[11px] bg-[var(--brand-btn-bg)] px-4 py-3 text-sm font-semibold text-white hover:bg-[#dc3545] disabled:bg-gray-500 disabled:hover:cursor-not-allowed md:text-xs lg:text-base 2xl:rounded-xl"
           >
             Confirm Booking
           </button>
