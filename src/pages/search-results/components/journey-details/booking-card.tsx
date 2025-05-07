@@ -29,7 +29,7 @@ const BookingCard = () => {
   // const iconColor = bookingData.tripType === "Hourly" ? "#FB4156" : "#282828";
 
   return (
-    <div className="flex w-full max-w-[42.5rem] flex-col justify-center rounded-2xl bg-[var(--brand-card-bg)] p-[15px] sm:p-[15px] lg:p-[25px]">
+    <div className="flex w-full max-w-[42.5rem] flex-col justify-center rounded-2xl bg-white p-[15px] sm:p-[15px] lg:p-[25px]">
       <div className="flex justify-between">
         <div className="flex items-center gap-2">
           {bookingData.tripType === "hourly" ? (
@@ -59,7 +59,7 @@ const BookingCard = () => {
                   <span className="text-[10px] font-normal text-gray-500 sm:text-xs">
                     {label}
                   </span>
-                  <span className="mobM:min-w-48 mobL:min-w-56 line-clamp-1 text-[10px] font-semibold sm:min-w-80 sm:text-xs">
+                  <span className="line-clamp-1 text-[10px] font-semibold sm:min-w-80 sm:text-xs mobM:min-w-48 mobL:min-w-56">
                     {label === "From" ? bookingData.from : bookingData.to}
                   </span>
                 </div>
@@ -67,7 +67,7 @@ const BookingCard = () => {
             ))}
           </div>
 
-          <div className="mobM:ml-32 mobL:ml-44 ml-5 flex w-full min-w-0 flex-1 flex-col border-l-[0.5px] border-[#A2A2A2] pl-[16px] sm:ml-64">
+          <div className="ml-5 flex w-full min-w-0 flex-1 flex-col border-l-[0.5px] border-[#A2A2A2] pl-[16px] sm:ml-64 mobM:ml-32 mobL:ml-44">
             {[
               { icon: Distance2Icon, text: bookingData.distance },
               { icon: ClockIcon, text: bookingData.duration },
@@ -101,9 +101,9 @@ const BookingCard = () => {
           <div className="mt-4 flex justify-between gap-4">
             <div className="flex items-center gap-2">
               <Duration1Icon className="h-4 w-4 text-[#FB4156]" />
-              <span className="mobM:text-[10px] mobL:text-[10px] text-[9px] sm:text-xs">
+              <span className="text-[9px] sm:text-xs mobM:text-[10px] mobL:text-[10px]">
                 Duration:
-                <p className="mobM:text-[11px] mobL:text-[11px] text-[9px] font-semibold sm:text-[11px]">
+                <p className="text-[9px] font-semibold sm:text-[11px] mobM:text-[11px] mobL:text-[11px]">
                   {bookingData.duration}
                 </p>{" "}
               </span>
@@ -111,9 +111,9 @@ const BookingCard = () => {
 
             <div className="flex items-center gap-2">
               <Users className="h-4 w-4 text-[#FB4156]" />
-              <span className="mobM:text-[10px] mobL:text-[10px] text-[9px] sm:text-xs">
+              <span className="text-[9px] sm:text-xs mobM:text-[10px] mobL:text-[10px]">
                 Passengers:{" "}
-                <p className="mobM:text-[11px] mobL:text-[11px] text-[9px] font-semibold sm:text-[11px]">
+                <p className="text-[9px] font-semibold sm:text-[11px] mobM:text-[11px] mobL:text-[11px]">
                   {bookingData.passengers}
                 </p>{" "}
               </span>
@@ -121,9 +121,9 @@ const BookingCard = () => {
 
             <div className="flex items-center gap-2">
               <MapDeskIcon className="h-4 w-4 text-[#FB4156]" />
-              <span className="mobM:text-[10px] mobL:text-[10px] text-[9px] sm:text-xs">
+              <span className="text-[9px] sm:text-xs mobM:text-[10px] mobL:text-[10px]">
                 Distance:
-                <p className="mobM:text-[11px] mobL:text-[11px] text-[9px] font-semibold sm:text-[11px]">
+                <p className="text-[9px] font-semibold sm:text-[11px] mobM:text-[11px] mobL:text-[11px]">
                   {" "}
                   {bookingData.distance}{" "}
                 </p>
@@ -139,12 +139,12 @@ const BookingCard = () => {
           detail.label.toLowerCase().includes("pax") ? null : (
             <div
               key={index}
-              className={`mobM:justify-normal mobM:pl-1.5 flex h-[30px] items-center justify-center gap-1 rounded-lg border border-[#9F9F9F99] sm:justify-normal sm:p-2 sm:pl-1.5 ${
+              className={`flex h-[30px] items-center justify-center gap-1 rounded-lg border border-[#9F9F9F99] sm:justify-normal sm:p-2 sm:pl-1.5 mobM:justify-normal mobM:pl-1.5 ${
                 detail.wide ? "flex-[1.6]" : "flex-1"
               } min-w-0`}
             >
               <detail.icon className="h-[15px] w-[15px] text-[#FB4156]" />
-              <span className="mobM:ml-2 mobL:ml-2 text-[10px] font-normal sm:ml-2 sm:text-xs">
+              <span className="text-[10px] font-normal sm:ml-2 sm:text-xs mobM:ml-2 mobL:ml-2">
                 {detail.label}
               </span>
             </div>

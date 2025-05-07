@@ -52,9 +52,9 @@ const journeyInclusionsData = [
 
 const InclusionCard = () => {
   return (
-    <div className="4xl:max-w-[37.5rem] relative flex w-full max-w-[23.5rem] flex-col items-center rounded-2xl bg-[var(--brand-card-bg)] px-[15px] py-5 shadow-md transition-all duration-300 hover:shadow-md xl:max-w-[25rem] 2xl:max-w-[31.25rem]">
+    <div className="relative flex w-full max-w-[23.5rem] flex-col items-center rounded-2xl bg-white px-[15px] py-5 shadow-md transition-all duration-300 hover:shadow-md xl:max-w-[25rem] 2xl:max-w-[31.25rem] 4xl:max-w-[37.5rem]">
       <div className="flex items-center gap-2">
-        <h2 className="4xl:text-3xl text-sm font-semibold xl:text-xl">
+        <h2 className="text-sm font-semibold xl:text-xl 4xl:text-3xl">
           Your Journey Inclusions
         </h2>
       </div>
@@ -72,10 +72,10 @@ const InclusionCard = () => {
               </div>
 
               <div className="flex-1">
-                <h3 className="4xl:text-xl text-xs font-semibold text-gray-800 xl:text-sm">
+                <h3 className="text-xs font-semibold text-gray-800 xl:text-sm 4xl:text-xl">
                   {item.title}
                 </h3>
-                <p className="4xl:text-[18px] text-[10px] text-gray-600 xl:text-xs">
+                <p className="text-[10px] text-gray-600 xl:text-xs 4xl:text-[18px]">
                   {item.description}
                 </p>
               </div>

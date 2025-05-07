@@ -30,8 +30,8 @@ export default function JourneyDetails() {
           <BookingCard />
         </div>
       ) : (
-        <div className="relative mt-[25px] w-full rounded-lg bg-[var(--brand-card-bg)] shadow-md sm:px-3 sm:py-[18px] xl:px-[18px] xl:py-5">
-          <h6 className="3xl:text-sm mb-3 text-[10px] font-medium text-[#0D0D0D]">
+        <div className="relative mt-[25px] w-full rounded-lg bg-white shadow-md sm:px-3 sm:py-[18px] xl:px-[18px] xl:py-5">
+          <h6 className="mb-3 text-[10px] font-medium text-[#0D0D0D] 3xl:text-sm">
             Booking Details
           </h6>
 
