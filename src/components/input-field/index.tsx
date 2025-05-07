@@ -5,7 +5,7 @@ import { useFormContext } from "react-hook-form";
 import {
   PassengerDetailsKey,
   TPassengerDetails,
-} from "@/pages/b2c/search-details/passenger-details-form-schema";
+} from "@/pages/search-details/passenger-details-form-schema";
 import { CircleAlert } from "lucide-react";
 
 type AllowedKeys = Exclude<PassengerDetailsKey, "isPassenger" | "consent">;

@@ -1,18 +1,17 @@
 import Duration1Icon from "@/assets/svgs/duration1";
+import HourlyManageIcon from "@/assets/svgs/hourly-manage-icon";
 import OneWayIcon from "@/assets/svgs/oneway-icon";
+import OnewayTwoIcon from "@/assets/svgs/oneway-two-icon";
 import RoutingIcon from "@/assets/svgs/routing-icon";
-import React from "react";
 
-export interface JourneyData {
-  // Add 'export' here
-  tripType: "oneway" | "hourly";
-  distance?: string;
-  duration?: string;
-}
+// export interface JourneyData {
+//   // Add 'export' here
+//   tripType: "oneway" | "hourly";
+//   distance?: string;
+//   duration?: string;
+// }
 
-interface TripDetailsProps {
-  journeyData: JourneyData;
-}
+const tripType = "oneway";
 
 export default function OnewayHourly() {
   return (
@@ -34,16 +33,14 @@ export default function OnewayHourly() {
         </div>
       </>
 
-      <div className="flex items-center gap-x-3 p-2 lg:h-[42px]">
-        {/* {journeyData.tripType === "oneway" ? (
-          <OneWayIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
+      <div className="flex items-center gap-1 rounded-[28px] bg-[#FB4156] px-2 py-1 text-white 3xl:px-3 3xl:py-[6px]">
+        {tripType === "oneway" ? (
+          <OnewayTwoIcon className="size-3 flex-shrink-0 text-white lg:size-5 2xl:size-[22px]" />
         ) : (
-          <HourlyIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
-        )} */}
-        <OneWayIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
-
+          <HourlyManageIcon className="size-3 flex-shrink-0 text-white lg:size-5 2xl:size-[22px]" />
+        )}
         <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
-          Oneway
+          {tripType}
         </span>
       </div>
     </div>

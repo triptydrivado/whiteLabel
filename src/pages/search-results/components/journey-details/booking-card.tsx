@@ -6,7 +6,7 @@ import Distance2Icon from "@/assets/svgs/deskmap-icon";
 import CalendarIcon from "@/assets/svgs/calendar-icon";
 import LocationMobSvg from "@/assets/svgs/location-mob";
 import CurrencyMoney from "@/assets/svgs/currency-mob";
-import EditIcon from "@/assets/svgs/edit";
+
 import MapDeskIcon from "@/assets/svgs/mapdesk-icon";
 import Duration1Icon from "@/assets/svgs/duration1";
 
@@ -41,9 +41,6 @@ const BookingCard = () => {
             {bookingData.tripType}
           </span>
         </div>
-        <a href="/b2c">
-          <EditIcon />
-        </a>
       </div>
 
       {bookingData.tripType === "oneway" ? (

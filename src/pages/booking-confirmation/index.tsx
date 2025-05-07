@@ -175,7 +175,9 @@ export default function BookingConfirmation() {
 
   return (
     <Container className="relative z-20 h-auto overflow-hidden bg-[#F6F7F9] pb-7">
-      <NavOptions />
+      <div className="mt-5">
+        <NavOptions />
+      </div>
       <div className="flex items-center justify-center">
         <div className="w-full">
           {isMobile ? (
@@ -268,7 +270,7 @@ export default function BookingConfirmation() {
                   <h3 className="mb-4 text-[10px] font-semibold text-[#FB4156]">
                     Passenger Details
                   </h3>
-                  <div className="mobM:grid-cols-[130px,1fr] grid grid-cols-[75px,1fr] gap-y-4 text-xs">
+                  <div className="grid grid-cols-[75px,1fr] gap-y-4 text-xs mobM:grid-cols-[130px,1fr]">
                     <span className="text-xs text-[#6A6A6A]">Name</span>
                     <p className="font-medium">{bookingData.name}</p>
                     <span className="text-xs text-[#6A6A6A]">Email</span>
@@ -312,7 +314,7 @@ export default function BookingConfirmation() {
                       <h3 className="text-sm font-semibold text-red-500">
                         Total Price
                       </h3>
-                      <p className="mobM:w-max mt-[3px] w-[120px] text-[9px] font-medium text-[#282828]">
+                      <p className="mt-[3px] w-[120px] text-[9px] font-medium text-[#282828] mobM:w-max">
                         Includes VAT, Gratuities, Meet & Greet services
                       </p>
                     </span>
@@ -524,7 +526,7 @@ export default function BookingConfirmation() {
                       <h3 className="text-sm font-bold text-red-500 xl:text-[20px]">
                         Total Price
                       </h3>
-                      <p className="mobM:w-max mt-[6px] text-[10px] font-medium text-[#282828] xl:text-xs">
+                      <p className="mt-[6px] text-[10px] font-medium text-[#282828] xl:text-xs mobM:w-max">
                         Includes VAT, Gratuities, Meet & Greet services
                       </p>
                     </span>
