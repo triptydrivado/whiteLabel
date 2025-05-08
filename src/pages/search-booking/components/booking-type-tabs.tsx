@@ -21,7 +21,7 @@ export default function BookingTypeTabs({ className }: Props) {
   return (
     <div
       className={cn(
-        "flex w-full flex-1 items-center justify-center rounded-full border border-[#E2E2E2] bg-white/55 px-[0.375rem] py-1 shadow-lg md:max-w-lg md:border-2 md:px-1 md:py-1 xl:border-0 xl:border-transparent xl:px-[3px] xl:shadow-xl 2xl:bg-white",
+        "flex w-full flex-1 items-center justify-center rounded-full border border-[#E2E2E2] bg-white/55 px-[0.375rem] py-1 shadow-lg xl:border-0 xl:border-transparent xl:px-[3px] xl:shadow-xl 2xl:bg-white",
         className,
         // "xl:shadow-[16px_23px_0px_7px_black]",
       )}
@@ -31,7 +31,7 @@ export default function BookingTypeTabs({ className }: Props) {
           type="button"
           key={BOOKING_TYPE}
           className={cn(
-            "relative flex w-full flex-1 overflow-hidden rounded-full py-[0.375rem] text-xs leading-[normal] text-[#939393] focus-visible:ring-1 md:px-20 md:py-[14px] md:text-2xl xl:h-[34px] xl:px-[9px] xl:py-[6px] xl:text-sm xl:font-semibold",
+            "relative flex w-full flex-1 overflow-hidden rounded-full py-[0.375rem] text-xs leading-[normal] text-[#939393] focus-visible:ring-1 xl:h-[34px] xl:px-[9px] xl:py-[6px] xl:text-sm xl:font-semibold",
             bookingType === BOOKING_TYPE &&
               "text-white focus-visible:ring-black",
             bookingType !== BOOKING_TYPE && "focus-visible:ring-drivado-red",
