@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ClockIconProps extends React.SVGProps<SVGSVGElement> {}
 
@@ -36,7 +36,12 @@ const ClockIcon: React.FC<ClockIconProps> = (props) => (
     </g>
     <defs>
       <clipPath id="clip0_1787_10992">
-        <rect width="16" height="16" fill="white" transform="translate(0 0.18399)" />
+        <rect
+          width="16"
+          height="16"
+          fill="white"
+          transform="translate(0 0.18399)"
+        />
       </clipPath>
     </defs>
   </svg>

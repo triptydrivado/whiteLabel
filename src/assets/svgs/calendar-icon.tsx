@@ -1,7 +1,12 @@
 import { TSVG } from "@/lib/types/svg";
 import { cn } from "@/lib/utils";
 
-const CalendarIcon: React.FC<TSVG> = ({ className, color = "stroke-current", hoverColor, ...props }) => {
+const CalendarIcon: React.FC<TSVG> = ({
+  className,
+  color = "stroke-current",
+  hoverColor,
+  ...props
+}) => {
   return (
     <svg
       {...props}

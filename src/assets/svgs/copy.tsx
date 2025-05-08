@@ -1,5 +1,3 @@
-
-
 type CopyIconProps = {
   className?: string;
   width?: number;

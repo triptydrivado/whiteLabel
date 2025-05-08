@@ -1,6 +1,12 @@
 import React from "react";
 
-const InvoiceSvg = ({ style, className }: { style?: React.CSSProperties; className?: string }) => {
+const InvoiceSvg = ({
+  style,
+  className,
+}: {
+  style?: React.CSSProperties;
+  className?: string;
+}) => {
   return (
     <svg
       width="16"

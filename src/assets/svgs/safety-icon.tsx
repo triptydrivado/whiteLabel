@@ -1,5 +1,3 @@
-
-
 interface SafetyIconProps {
   className?: string;
 }

@@ -17,25 +17,25 @@ const DocumentIcon = forwardRef<SVGSVGElement, React.SVGProps<SVGSVGElement>>(
         height="11.6667"
         rx="2.33333"
         stroke="#606060"
-        stroke-width="0.875"
+        strokeWidth="0.875"
       />
       <path
         d="M4.66797 4.58301H9.33464"
         stroke="#606060"
-        stroke-width="0.875"
-        stroke-linecap="round"
+        strokeWidth="0.875"
+        strokeLinecap="round"
       />
       <path
         d="M4.66797 7.5H9.33464"
         stroke="#606060"
-        stroke-width="0.875"
-        stroke-linecap="round"
+        strokeWidth="0.875"
+        strokeLinecap="round"
       />
       <path
         d="M4.66797 10.4165H7.0013"
         stroke="#606060"
-        stroke-width="0.875"
-        stroke-linecap="round"
+        strokeWidth="0.875"
+        strokeLinecap="round"
       />
     </svg>
   ),

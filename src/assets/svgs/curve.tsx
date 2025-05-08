@@ -21,7 +21,7 @@ const Curve: React.FC<TSVG> = ({ className, color, hoverColor, ...props }) => {
           transition={{ duration: 3, delay: 0.9 }}
           d="M25 55C141.583 -15 258.167 -15 374.75 55C491.333 125 607.917 125 724.5 55C841.083 -15 957.667 -15 1074.25 55C1190.83 125 1307.42 125 1424 55"
           stroke="#FB4156"
-          stroke-width="5"
+          strokeWidth="5"
         />
       </g>
       <defs>

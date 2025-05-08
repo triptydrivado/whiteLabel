@@ -17,23 +17,23 @@ const ProgressIcon: React.FC<IconProps> = ({ className }) => {
       <path
         d="M14.6666 6.66683V10.0002C14.6666 13.3335 13.3333 14.6668 9.99992 14.6668H5.99992C2.66659 14.6668 1.33325 13.3335 1.33325 10.0002V6.00016C1.33325 2.66683 2.66659 1.3335 5.99992 1.3335H9.33325"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <circle
         cx="7.33325"
         cy="9.3335"
         r="2"
         stroke="currentColor"
-        stroke-width="1.33333"
-        stroke-linejoin="round"
+        strokeWidth="1.33333"
+        strokeLinejoin="round"
         stroke-dasharray="2.67 2.67"
       />
       <path
         d="M14.6666 6.66683H11.9999C9.99992 6.66683 9.33325 6.00016 9.33325 4.00016V1.3335L14.6666 6.66683Z"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

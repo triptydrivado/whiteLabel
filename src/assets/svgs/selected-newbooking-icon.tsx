@@ -26,18 +26,18 @@ const SelectedNewBookingIcon: React.FC<CustomIconProps> = ({ className }) => {
       <path
         d="M10.0601 17V12"
         stroke="white"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M12.5 14.5H7.5"
         stroke="white"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
