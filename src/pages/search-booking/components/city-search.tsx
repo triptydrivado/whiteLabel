@@ -392,7 +392,7 @@ const CitySearch = React.forwardRef<
         className={cn(
           "relative flex items-center gap-[6px] hover:cursor-pointer",
           baseStyle,
-          "border border-transparent px-2.5 py-1 focus-visible:border-drivado-red xl:h-auto xl:py-2 [&_svg]:focus-within:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1.5 [&_svg]:focus-visible:text-drivado-red",
           className,
         )}
         {...props}
@@ -402,7 +402,7 @@ const CitySearch = React.forwardRef<
           <Label
             htmlFor={name}
             className={
-              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:h-auto xl:pb-1 xl:font-medium xl:leading-none"
+              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:leading-[1.25rem] xl:h-auto xl:text-xs xl:font-medium xl:leading-[1.75rem]"
             }
           >
             {label}
