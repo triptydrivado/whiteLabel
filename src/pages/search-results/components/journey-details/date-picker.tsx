@@ -1,5 +1,6 @@
 import DateIcon from "@/assets/svgs/date-icon";
 
+// TODO: use prop ans send dynamic data
 export default function DateDropdown() {
   return (
     <div className="relative">

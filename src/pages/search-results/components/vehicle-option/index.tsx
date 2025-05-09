@@ -59,6 +59,7 @@ const vehicles = [
 ];
 
 export default function VehicleOption() {
+  //TODO: API- call vehicle list data from local storage
   return (
     <div className="mt-[15px] font-plus-jakarta-sans">
       <JourneyInclusions />

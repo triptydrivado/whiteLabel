@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 // zod Schemas and constants
-import { DURATIONS } from "@/utils/DURATION";
-import { countrySchema } from "@/utils/CURRENCIES";
+import { DURATIONS } from "@/lib/DURATION";
+import { countrySchema } from "@/lib/CURRENCIES";
 import { DEFAULT_BOOKING, BOOKING_TYPE_VALUES } from "./booking-tabs";
 import {
   searchLocationSchema as citySearch,
@@ -17,7 +17,7 @@ const commonSchema = z.object({
   pax: z
     .number()
     .positive()
-    .refine((data) => data !== 0),
+    .refine((data) => data !== 0), //TODO: limit pax count
 });
 
 const onewaySchema = z.object({
@@ -30,7 +30,7 @@ const hourlySchema = z.object({
   duration: z.number().refine((data) => {
     const idx = DURATIONS.findIndex((DURATION) => DURATION.hours === data);
     return idx !== -1;
-  }),
+  }), //TODO: Add limitation
 });
 
 const discriminatedSchema = z.discriminatedUnion("bookingType", [

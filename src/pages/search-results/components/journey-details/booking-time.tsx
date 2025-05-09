@@ -1,5 +1,6 @@
 import { Clock3 } from "lucide-react";
 
+// TODO: use prop ans send dynamic data
 export default function BookingTime() {
   return (
     <>

@@ -1,5 +1,6 @@
 import CurrencyDropIcon from "@/assets/svgs/currency-drop-icon";
 
+// TODO: use prop ans send dynamic data
 export default function CurrencyDropdown() {
   return (
     <div className="relative">
