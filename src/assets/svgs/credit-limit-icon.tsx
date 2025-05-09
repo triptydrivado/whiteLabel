@@ -21,33 +21,33 @@ const TotalCreditLimitIcon: React.FC<TSVG> = ({
         <path
           d="M4 17.5098H44"
           stroke="white"
-          stroke-width="3"
+          strokeWidth="3"
           stroke-miterlimit="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M12 33.5098H16"
           stroke="white"
-          stroke-width="3"
+          strokeWidth="3"
           stroke-miterlimit="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M21 33.5098H29"
           stroke="white"
-          stroke-width="3"
+          strokeWidth="3"
           stroke-miterlimit="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M12.88 7.50977H35.1C42.22 7.50977 44 9.26977 44 16.2898V32.7098C44 39.7298 42.22 41.4898 35.12 41.4898H12.88C5.78 41.5098 4 39.7498 4 32.7298V16.2898C4 9.26977 5.78 7.50977 12.88 7.50977Z"
           stroke="white"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
     </svg>

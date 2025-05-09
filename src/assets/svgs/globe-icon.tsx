@@ -1,4 +1,3 @@
-
 interface GlobeIconProps {
   className?: string;
 }
@@ -11,7 +10,7 @@ const GlobeIcon: React.FC<GlobeIconProps> = ({ className }) => {
       viewBox="0 0 81 80"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className} 
+      className={className}
     >
       <path
         d="M40.5 43.3337V6.66699L67.1667 20.0003L40.5 33.3337"

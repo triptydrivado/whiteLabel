@@ -84,7 +84,7 @@ export default function Duration({ name, baseStyle, className }: Props) {
               className={cn(
                 "relative flex items-center gap-[6px] hover:cursor-pointer",
                 baseStyle,
-                "border border-transparent px-2.5 py-1 focus-within:min-w-[11.5rem] focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-2 [&_svg]:focus-visible:text-drivado-red",
+                "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1.5 [&_svg]:focus-visible:text-drivado-red",
                 desktopClickInside &&
                   "border-[#FFB1BA] bg-gray-100 [&_svg]:text-drivado-red",
                 className,
@@ -95,7 +95,7 @@ export default function Duration({ name, baseStyle, className }: Props) {
                 <Label
                   htmlFor={name}
                   className={
-                    "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:h-auto xl:pb-1 xl:font-medium xl:leading-none"
+                    "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:h-auto xl:text-xs xl:font-medium xl:leading-[1.6875rem]"
                   }
                 >
                   Duration
@@ -112,7 +112,7 @@ export default function Duration({ name, baseStyle, className }: Props) {
                   aria-haspopup="listbox"
                   aria-controls="combobox-list"
                   className={cn(
-                    "peer w-full truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:placeholder:text-2xl xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
+                    "peer w-full truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
                   )}
                 >
                   {value && (
@@ -146,7 +146,7 @@ export default function Duration({ name, baseStyle, className }: Props) {
                           setDesktopClickInside(false);
                         }}
                         className={cn(
-                          `w-full items-start justify-between rounded-[1.25rem] border border-transparent px-4 py-1.5 text-sm hover:cursor-pointer md:rounded-[2rem] [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-gray-100`,
+                          `w-full items-start justify-between rounded-[1.25rem] border border-transparent px-4 py-1.5 text-sm hover:cursor-pointer [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-gray-100`,
                         )}
                       >
                         <div className="flex w-full gap-2">

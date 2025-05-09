@@ -17,18 +17,18 @@ const CancelIcon: React.FC<CustomIconProps> = ({ className }) => {
       <path
         d="M10.0001 18.3337C14.6001 18.3337 18.3334 14.6003 18.3334 10.0003C18.3334 5.40033 14.6001 1.66699 10.0001 1.66699C5.40008 1.66699 1.66675 5.40033 1.66675 10.0003C1.66675 14.6003 5.40008 18.3337 10.0001 18.3337Z"
         stroke="#FB4156"
-        stroke-width="1.25"
+        strokeWidth="1.25"
         stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M15.7504 4.16699L4.08374 15.8337"
         stroke="#FB4156"
-        stroke-width="1.25"
+        strokeWidth="1.25"
         stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

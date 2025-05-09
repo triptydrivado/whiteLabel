@@ -1,6 +1,12 @@
 import React from "react";
 
-const LocationMobSvg = ({ style, className }: { style?: React.CSSProperties; className?: string }) => {
+const LocationMobSvg = ({
+  style,
+  className,
+}: {
+  style?: React.CSSProperties;
+  className?: string;
+}) => {
   return (
     <svg
       width="20"

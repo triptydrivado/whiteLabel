@@ -96,7 +96,7 @@ export default function BookingDate({
         className={cn(
           "relative flex items-center gap-[6px] hover:cursor-pointer",
           baseStyle,
-          "border border-transparent px-2.5 py-1 focus-within:min-w-[11.5rem] focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-2 [&_svg]:focus-visible:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-drivado-red",
           desktopClickInside &&
             "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",
           className,
@@ -107,7 +107,7 @@ export default function BookingDate({
           <Label
             htmlFor={name}
             className={
-              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.25rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 md:text-xs xl:h-auto xl:pb-1 xl:text-xs xl:font-medium xl:leading-none"
+              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:h-auto xl:text-xs xl:font-medium xl:leading-[1.75rem]"
             }
           >
             {label}
@@ -118,7 +118,7 @@ export default function BookingDate({
             aria-haspopup="listbox"
             aria-controls="combobox-list"
             className={cn(
-              "peer w-max truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize leading-[1.25rem] text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 md:text-2xl md:leading-[2.375rem] md:placeholder:text-2xl md:placeholder:leading-[2.375rem] xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
+              "peer w-max truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-base xl:placeholder:truncate xl:placeholder:text-base",
             )}
           >
             {!date && "DD-MM-YYYY"}

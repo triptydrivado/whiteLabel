@@ -17,13 +17,7 @@ const PickupDropoffIcon: React.FC<TSVG> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle
-        cx="8"
-        cy="8"
-        r="7.37255"
-        stroke="#FB4156"
-        stroke-width="1.2549"
-      />
+      <circle cx="8" cy="8" r="7.37255" stroke="#FB4156" strokeWidth="1.2549" />
       <circle cx="8" cy="8" r="4" fill="#FB4156" />
     </svg>
   );

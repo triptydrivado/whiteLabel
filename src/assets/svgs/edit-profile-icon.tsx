@@ -20,8 +20,8 @@ const EditProfileIcon: React.FC<CustomIconProps> = ({ className }) => {
         fill="#FB4156"
         stroke="white"
         stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M9.94531 6.52344C10.1603 7.90344 11.2803 8.95844 12.6703 9.09844L9.94531 6.52344Z"
@@ -31,15 +31,15 @@ const EditProfileIcon: React.FC<CustomIconProps> = ({ className }) => {
         d="M9.94531 6.52344C10.1603 7.90344 11.2803 8.95844 12.6703 9.09844"
         stroke="white"
         stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M5.5 15H14.5"
         stroke="white"
         stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
