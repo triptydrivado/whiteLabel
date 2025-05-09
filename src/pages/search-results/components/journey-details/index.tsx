@@ -24,6 +24,7 @@ export default function JourneyDetails() {
   }, []);
 
   return (
+    // TODO: Remove font name
     <div className="font-plus-jakarta-sans">
       {isMobile ? (
         <div className="pt-[25px]">

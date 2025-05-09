@@ -1,6 +1,5 @@
 import Duration1Icon from "@/assets/svgs/duration1";
 import HourlyManageIcon from "@/assets/svgs/hourly-manage-icon";
-import OneWayIcon from "@/assets/svgs/oneway-icon";
 import OnewayTwoIcon from "@/assets/svgs/oneway-two-icon";
 import RoutingIcon from "@/assets/svgs/routing-icon";
 

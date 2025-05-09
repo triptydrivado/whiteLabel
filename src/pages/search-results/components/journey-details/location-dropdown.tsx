@@ -1,6 +1,7 @@
 import LocationIcon from "@/assets/svgs/location-icon";
 
 export default function LocationDropdown() {
+  // TODO: call this from parent component
   const pickupLocation = [
     "London Heathrow Airport (LHR), TW6 1QG, United Kingdom",
   ];

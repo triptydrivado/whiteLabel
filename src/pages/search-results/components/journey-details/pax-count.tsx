@@ -1,5 +1,6 @@
 import CapacityIcon from "@/assets/svgs/capacity-icon";
 
+// TODO: use prop ans send dynamic data
 export default function PaxCounter() {
   return (
     <div className="relative">

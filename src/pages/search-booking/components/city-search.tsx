@@ -50,6 +50,8 @@ type State = {
   fetchLock: boolean;
 };
 
+//TODO: move to another section
+
 enum ActionType {
   SET_INPUT = "CHANGE_INPUT",
   SET_DEBOUNCE = "CHANGE_DEBOUNCED_INPUT",
@@ -202,6 +204,7 @@ const CitySearch = React.forwardRef<
   const methods = useFormContext<TBookingSchema>();
 
   // Case if not selected dropdown option and blur
+  //TODO: Remove this
   const handleOnBlurEvent = React.useCallback(() => {
     if (
       -1 ===
@@ -214,6 +217,7 @@ const CitySearch = React.forwardRef<
     }
   }, [state.input, state.locations, methods, name]);
 
+  // TODO: if it works keep it else remove
   const handleOnKeyDownEvent = React.useCallback(
     (e: React.KeyboardEvent) => {
       switch (e.key) {
@@ -302,6 +306,7 @@ const CitySearch = React.forwardRef<
   }, [state.input]);
 
   // Fetching Logic
+  // TODO: add timer and separate function  and clear timeout when unmount
   React.useEffect(() => {
     if (state.fetchLock) return () => {};
 
@@ -412,6 +417,7 @@ const CitySearch = React.forwardRef<
             id={name}
             name={name}
             ref={inputRef}
+            // TODO: change placeholder title
             placeholder={"Search Destinations"}
             value={state.input}
             autoComplete="off"

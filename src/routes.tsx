@@ -11,9 +11,8 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <RoutePath>
-        <Route path="search-results" element={<SearchResult />} />
         <Route path="search-booking" element={<SearchBooking />} />
-        <Route path="search-details" element={<SearchDetails />} />
+        <Route path="search-results" element={<SearchResult />} />
         <Route path="passenger-details" element={<SearchDetails />} />
         <Route path="booking-summary" element={<SummaryBooking />} />
         <Route path="booking-confirmation" element={<BookingConfirmation />} />
@@ -21,4 +20,4 @@ const Routes = () => {
     </BrowserRouter>
   );
 };
-export default React.memo(Routes);
+export default React.memo(Routes); // TODO: remove memo from here

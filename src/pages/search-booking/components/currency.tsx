@@ -17,7 +17,7 @@ import {
 // Type and Zod Schemas
 import { type TBookingSchema } from "../schemas/booking-form";
 
-import { COUNTRY_CODES } from "@/utils/CURRENCIES";
+import { COUNTRY_CODES } from "@/lib/CURRENCIES";
 import { Label } from "@/components/ui/label";
 import CashIcon from "@/assets/svgs/cash-icon";
 
@@ -29,7 +29,7 @@ type Props = {
 };
 
 export default function Currency({ label, name, baseStyle, className }: Props) {
-  const [show, setShow] = useState<boolean>(false);
+  // const [show, setShow] = useState<boolean>(false);
   const methods = useFormContext<TBookingSchema>();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState<number>(-1);
@@ -104,16 +104,16 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
   }, []);
 
   // Handle dialog country selection
-  const handleDialogCountrySelect = useCallback(
-    (country: (typeof COUNTRY_CODES)[number]) => {
-      // Update the form value
-      methods.setValue(name, country, { shouldValidate: true });
+  // const handleDialogCountrySelect = useCallback(
+  //   (country: (typeof COUNTRY_CODES)[number]) => {
+  //     // Update the form value
+  //     methods.setValue(name, country, { shouldValidate: true });
 
-      // Explicitly close the dialog
-      setShow(false);
-    },
-    [methods, name],
-  );
+  //     // Explicitly close the dialog
+  //     setShow(false);
+  //   },
+  //   [methods, name],
+  // );
 
   // Handle dropdown country selection
   const handleDropdownCountrySelect = useCallback(
@@ -182,35 +182,35 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
   };
 
   // Dialog keyboard navigation handler
-  const handleDialogKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setActiveIndex((prev) =>
-        prev < filteredCountries.length - 1 ? prev + 1 : prev,
-      );
-      setShouldScrollToActive(true);
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActiveIndex((prev) => (prev > 0 ? prev - 1 : prev));
-      setShouldScrollToActive(true);
-    } else if (
-      e.key === "Enter" &&
-      activeIndex >= 0 &&
-      activeIndex < filteredCountries.length
-    ) {
-      e.preventDefault();
-      const selectedCountry = filteredCountries[activeIndex];
+  // const handleDialogKeyDown = (e: React.KeyboardEvent) => {
+  //   if (e.key === "ArrowDown") {
+  //     e.preventDefault();
+  //     setActiveIndex((prev) =>
+  //       prev < filteredCountries.length - 1 ? prev + 1 : prev,
+  //     );
+  //     setShouldScrollToActive(true);
+  //   } else if (e.key === "ArrowUp") {
+  //     e.preventDefault();
+  //     setActiveIndex((prev) => (prev > 0 ? prev - 1 : prev));
+  //     setShouldScrollToActive(true);
+  //   } else if (
+  //     e.key === "Enter" &&
+  //     activeIndex >= 0 &&
+  //     activeIndex < filteredCountries.length
+  //   ) {
+  //     e.preventDefault();
+  //     const selectedCountry = filteredCountries[activeIndex];
 
-      // Update the value in the form
-      methods.setValue(name, selectedCountry, { shouldValidate: true });
+  //     // Update the value in the form
+  //     methods.setValue(name, selectedCountry, { shouldValidate: true });
 
-      // Close the dialog
-      setShow(false);
-    } else if (e.key === "Escape") {
-      e.preventDefault();
-      setShow(false);
-    }
-  };
+  //     // Close the dialog
+  //     setShow(false);
+  //   } else if (e.key === "Escape") {
+  //     e.preventDefault();
+  //     setShow(false);
+  //   }
+  // };
 
   // Dropdown keyboard navigation handler
   const handleDropdownKeyDown = (e: React.KeyboardEvent) => {
