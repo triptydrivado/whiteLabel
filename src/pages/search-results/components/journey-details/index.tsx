@@ -23,6 +23,21 @@ export default function JourneyDetails() {
     };
   }, []);
 
+  const pickupLocation = [
+    "London Heathrow Airport (LHR), TW6 1QG, United Kingdom",
+  ];
+
+  const dropoffLocation = [
+    "Los Angeles International Airport (LAX), Los Angeles, CA, USA",
+  ];
+  const selectedDate = ["09-05-2025"];
+  const selectedTime = ["02:00  AM"];
+  const selectedCurrency = ["USD"];
+  const paxCount = ["2 pax"];
+  const distance = ["12 Km"];
+  const duration = ["3 hrs 20 mins"];
+  const tripType = ["oneway"];
+
   return (
     // TODO: Remove font name
     <div className="font-plus-jakarta-sans">
@@ -39,30 +54,33 @@ export default function JourneyDetails() {
           <div className="flex w-full space-x-[15px] lg:items-center">
             {/* LocationDropdown - 70% width */}
             <div className="flex-[7]">
-              <LocationDropdown />
+              <LocationDropdown
+                pickupLocation={pickupLocation}
+                dropoffLocation={dropoffLocation}
+              />
             </div>
 
             {/* DateDropdown - 15% width */}
             <div className="flex-[1.5]">
-              <DateDropdown />
+              <DateDropdown selectedDate={selectedDate} />
             </div>
 
             {/* TimeDropdown - 15% width */}
             <div className="flex-[1.5]">
-              <BookingTime />
+              <BookingTime selectedTime={selectedTime} />
             </div>
           </div>
 
           <div className="mt-3 flex flex-wrap items-center justify-start gap-x-[15px]">
             {/* Currency */}
 
-            <CurrencyDropdown />
+            <CurrencyDropdown selectedCurrency={selectedCurrency} />
 
             {/* Passengers */}
-            <PaxCounter />
+            <PaxCounter paxCount={paxCount} />
 
             {/* Distance */}
-            <OnewayHourly />
+            <OnewayHourly distance={distance} duration={duration} />
           </div>
         </div>
       )}

@@ -14,7 +14,7 @@ import { Timer } from "lucide-react";
 // Types and Zod Validation
 import type { TBookingSchema } from "../schemas/booking-form";
 
-import { DURATIONS } from "@/utils/DURATION";
+import { DURATIONS } from "@/lib/DURATION";
 import { Label } from "@/components/ui/label";
 
 type Props = {

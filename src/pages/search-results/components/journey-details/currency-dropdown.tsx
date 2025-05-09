@@ -1,7 +1,12 @@
 import CurrencyDropIcon from "@/assets/svgs/currency-drop-icon";
 
-// TODO: use prop ans send dynamic data
-export default function CurrencyDropdown() {
+type CurrenyDropdownProps = {
+  selectedCurrency: string[];
+};
+
+export default function BookingTime({
+  selectedCurrency,
+}: CurrenyDropdownProps) {
   return (
     <div className="relative">
       {/* Dropdown Trigger */}
@@ -9,7 +14,7 @@ export default function CurrencyDropdown() {
         <CurrencyDropIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] transition-colors duration-300 lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
         <span className="flex items-center truncate text-[10px] font-medium lg:text-sm 2xl:text-base">
-          USD
+          {selectedCurrency}
         </span>
       </div>
     </div>

@@ -1,7 +1,10 @@
 import CapacityIcon from "@/assets/svgs/capacity-icon";
 
-// TODO: use prop ans send dynamic data
-export default function PaxCounter() {
+type PaxCounterProps = {
+  paxCount: string[];
+};
+
+export default function PaxCounter({ paxCount }: PaxCounterProps) {
   return (
     <div className="relative">
       {/* Trigger Section */}
@@ -10,7 +13,7 @@ export default function PaxCounter() {
           <CapacityIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] transition-colors duration-300 lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
           <span className="items-center truncate text-[10px] font-medium lg:text-sm 2xl:text-base">
-            2 pax
+            {paxCount}
           </span>
         </>
       </div>
