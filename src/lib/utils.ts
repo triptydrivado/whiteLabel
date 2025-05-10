@@ -20,6 +20,7 @@ export const checkDate = (dateString: string) => {
   try {
     const formattedDate = DateFormatter.format(new Date(dateString));
     return formattedDate === dateString;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return false;
   }
@@ -43,6 +44,7 @@ export const checkTime = (timeString: string) => {
     const dateTimeString = `1970-01-01T${timeString}`;
     const formattedTime = TimeFormatter.format(new Date(dateTimeString));
     return formattedTime === timeString;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return false;
   }

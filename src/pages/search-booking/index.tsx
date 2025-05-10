@@ -27,8 +27,7 @@ export default function SearchBooking() {
   return (
     <Form {...methods}>
       <section className="sm:bg-bottom-right min-h-[calc(100svh_-_2rem)] bg-black bg-cover bg-[bottom_right_10%] bg-no-repeat pt-56 md:pt-[8.5rem] xl:pt-[9.8125rem]">
-        {/* TODO:Remove flex flex-col */}
-        <Container className="flex flex-col text-white md:flex-col-reverse xl:flex-col">
+        <Container className="text-white">
           <BookingSearchForm />
         </Container>
       </section>

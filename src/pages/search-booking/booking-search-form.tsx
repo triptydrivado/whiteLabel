@@ -19,14 +19,11 @@ import { Button } from "@/components/ui/button";
 //   <div className="separator mx-4 h-10 w-px bg-[#D3D3D3]" />
 // );
 
-//TODO: configure this in index.css and use it as component
-const baseStyle =
-  "relative rounded-2xl border border-[#eeeeee] bg-white focus-within:border-[#d3d3d3] focus-within:bg-[#f3f3f3] focus-within:outline-none";
-
+const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
   const methods = useFormContext<TBookingSchema>();
 
-  // TODO:Add comment what it does
+  // Booking type tab: 'Oneway' | 'Hourly'
   const bookingType = methods.watch("bookingType");
 
   const handleSubmit: SubmitHandler<TBookingSchema> = (data) => {

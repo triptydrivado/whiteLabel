@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.input-base-style {
+  position: relative;
+  border-radius: 1rem; /* rounded-2xl */
+  border: 1px solid #eeeeee;
+  background-color: white;
+}
+
+.input-base-style:focus-within {
+  border-color: #d3d3d3;
+  background-color: #f3f3f3;
+  outline: none;
+}
+
 @layer base {
   :root {
     --brand-btn-bg: #2941fb;

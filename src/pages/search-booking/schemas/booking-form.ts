@@ -17,7 +17,7 @@ const commonSchema = z.object({
   pax: z
     .number()
     .positive()
-    .refine((data) => data !== 0), //TODO: limit pax count
+    .refine((data) => data !== 0),
 });
 
 const onewaySchema = z.object({
@@ -27,10 +27,13 @@ const onewaySchema = z.object({
 
 const hourlySchema = z.object({
   bookingType: z.literal(BOOKING_TYPE_VALUES[1]),
-  duration: z.number().refine((data) => {
-    const idx = DURATIONS.findIndex((DURATION) => DURATION.hours === data);
-    return idx !== -1;
-  }), //TODO: Add limitation
+  duration: z
+    .number()
+    // .max(24, { message: "Duration cannot exceed 24 hours" })
+    .refine((data) => {
+      const idx = DURATIONS.findIndex((DURATION) => DURATION.hours === data);
+      return idx !== -1;
+    }),
 });
 
 const discriminatedSchema = z.discriminatedUnion("bookingType", [
