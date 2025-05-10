@@ -39,8 +39,7 @@ export default function JourneyDetails() {
   const tripType = ["oneway"];
 
   return (
-    // TODO: Remove font name
-    <div className="font-plus-jakarta-sans">
+    <div>
       {isMobile ? (
         <div className="pt-[25px]">
           <BookingCard />
