@@ -110,7 +110,7 @@ export default function PassengerCount({
                 value={value}
                 ref={inputRef}
                 maxLength={2}
-                max={99}
+                max={5}
                 min={1}
                 minLength={1}
                 onKeyDown={(e) => {
@@ -121,7 +121,7 @@ export default function PassengerCount({
               />
               <Button
                 type="button"
-                disabled={value >= 99}
+                disabled={value >= 5}
                 onClick={(e) => {
                   e.stopPropagation();
                   methods.setValue("pax", +value + 1);

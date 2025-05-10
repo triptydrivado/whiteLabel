@@ -205,17 +205,17 @@ const CitySearch = React.forwardRef<
 
   // Case if not selected dropdown option and blur
   //TODO: Remove this
-  const handleOnBlurEvent = React.useCallback(() => {
-    if (
-      -1 ===
-      state.locations.findIndex(
-        (location) => location.structured_formatting.main_text === state.input,
-      )
-    ) {
-      stateDispatch({ type: ActionType.SET_INPUT, payload: "" });
-      methods.setValue(name, DEFAULT_SEARCH_LOCATION);
-    }
-  }, [state.input, state.locations, methods, name]);
+  // const handleOnBlurEvent = React.useCallback(() => {
+  //   if (
+  //     -1 ===
+  //     state.locations.findIndex(
+  //       (location) => location.structured_formatting.main_text === state.input,
+  //     )
+  //   ) {
+  //     stateDispatch({ type: ActionType.SET_INPUT, payload: "" });
+  //     methods.setValue(name, DEFAULT_SEARCH_LOCATION);
+  //   }
+  // }, [state.input, state.locations, methods, name]);
 
   // TODO: if it works keep it else remove
   const handleOnKeyDownEvent = React.useCallback(
@@ -308,35 +308,41 @@ const CitySearch = React.forwardRef<
   // Fetching Logic
   // TODO: add timer and separate function  and clear timeout when unmount
   React.useEffect(() => {
-    if (state.fetchLock) return () => {};
+    if (state.fetchLock) return;
 
-    async function fetchLocations() {
-      stateDispatch({ type: ActionType.START_FETCHING });
+    const timer = setTimeout(() => {
+      async function fetchLocations() {
+        stateDispatch({ type: ActionType.START_FETCHING });
 
-      try {
-        const response = await fetch(
-          `${CITY_SEARCH_API}?input=${state.debouncedInput}`,
-        );
-        const data = await response.json();
-        const validatedData = searchLocationApiSchema.safeParse(data);
+        try {
+          const response = await fetch(
+            `${CITY_SEARCH_API}?input=${state.debouncedInput}`,
+          );
+          const data = await response.json();
+          const validatedData = searchLocationApiSchema.safeParse(data);
 
-        if (!validatedData.success) {
-          throw new Error();
+          if (!validatedData.success) {
+            throw new Error();
+          }
+
+          stateDispatch({
+            type: ActionType.SET_FETCHED_LOCATIONS,
+            payload: validatedData.data,
+          });
+        } catch (e) {
+          // Error Handling to be done
+          console.log(e);
+        } finally {
+          stateDispatch({ type: ActionType.END_FETCHING });
         }
-
-        stateDispatch({
-          type: ActionType.SET_FETCHED_LOCATIONS,
-          payload: validatedData.data,
-        });
-      } catch (e) {
-        // Error Handling to be done
-        console.log(e);
-      } finally {
-        stateDispatch({ type: ActionType.END_FETCHING });
       }
-    }
 
-    fetchLocations();
+      fetchLocations();
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [state.debouncedInput, state.fetchLock]);
 
   // Dropdown auto scroll logic
@@ -418,14 +424,14 @@ const CitySearch = React.forwardRef<
             name={name}
             ref={inputRef}
             // TODO: change placeholder title
-            placeholder={"Search Destinations"}
+            placeholder={name}
             value={state.input}
             autoComplete="off"
             autoCorrect="off"
             aria-haspopup="listbox"
             aria-controls="combobox-list"
             aria-expanded={state.isDropDownVisible}
-            onBlur={handleOnBlurEvent}
+            // onBlur={handleOnBlurEvent}
             onKeyDown={handleOnKeyDownEvent}
             onChange={handleOnChangeEvent}
             className={cn(
