@@ -1,7 +1,7 @@
-import React from "react";
 import VehicleCard from "./vehicle-card";
+import { FC } from "react";
 
-// Define the vehicle type
+// Reuse Vehicle type
 interface Vehicle {
   id: number;
   name: string;
@@ -10,16 +10,30 @@ interface Vehicle {
   luggage: number;
   price: number;
   image: string;
+  unit: string;
+  vehicleType: string;
 }
 
 interface VehicleCardListProps {
-  vehicles: Vehicle[];
+  vehicles: any[]; // raw API response, ideally typed
 }
 
-const VehicleCardList: React.FC<VehicleCardListProps> = ({ vehicles }) => {
+const VehicleCardList: FC<VehicleCardListProps> = ({ vehicles }) => {
+  const mappedVehicles: Vehicle[] = vehicles.map((v) => ({
+    id: v.id,
+    name: v.vehicleName,
+    description: v.description,
+    pax: v.passengeCount,
+    luggage: v.luggageCount,
+    price: v.price,
+    image: v.image,
+    unit: v.unit,
+    vehicleType: v.vehicleType,
+  }));
+
   return (
-    <div className="space-y-4">
-      {vehicles.map((vehicle) => (
+    <div className="flex flex-col gap-4">
+      {mappedVehicles.map((vehicle) => (
         <VehicleCard key={vehicle.id} vehicle={vehicle} />
       ))}
     </div>

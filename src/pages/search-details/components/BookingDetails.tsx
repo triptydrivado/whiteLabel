@@ -1,5 +1,5 @@
+import { useEffect } from "react";
 import StandardSedan from "@/assets/image/standard-sedan.png";
-
 import OnewayLocation from "./OnewayLocation";
 import OnewaySettings from "./OnewaySettings";
 import HourlyLocation from "./HourlyLocation";
@@ -9,7 +9,28 @@ import OnewayTwoIcon from "@/assets/svgs/oneway-two-icon";
 import HourlyManageIcon from "@/assets/svgs/hourly-manage-icon";
 
 const BookingDetails = () => {
-  const [bookingType] = useState<"oneway" | "hourly">("oneway");
+  const [tripType, setTripType] = useState<"oneway" | "hourly" | null>(null);
+  const [vehicle, setVehicle] = useState<any>(null);
+
+  useEffect(() => {
+    const storedType = localStorage.getItem("tripType");
+    const storedVehicle = localStorage.getItem("selectedVehicle");
+
+    if (storedType === "oneway" || storedType === "hourly") {
+      setTripType(storedType);
+    }
+
+    if (storedVehicle) {
+      try {
+        setVehicle(JSON.parse(storedVehicle));
+      } catch {
+        setVehicle(null);
+      }
+    }
+  }, []);
+
+  if (!tripType || !vehicle) return null;
+
   return (
     <div className="flex w-full flex-col justify-between rounded-xl bg-white p-3 shadow-md sm:w-1/2 md:w-1/2 lg:w-1/2 lg:p-6 2xl:rounded-2xl">
       <div className="flex justify-center rounded-lg bg-[#F5F6FA] px-20 py-3 sm:px-16 sm:py-3 md:px-12 md:py-4 xl:px-20 xl:py-8 2xl:rounded-xl 2xl:px-32">
@@ -19,18 +40,17 @@ const BookingDetails = () => {
         <div className="w-full">
           <div className="flex w-full justify-between">
             <h2 className="text-sm font-semibold text-[#1a202c] md:text-xl 2xl:text-2xl">
-              Standard Sedan
+              {vehicle.vehicleType}
             </h2>
             <div className="flex items-center justify-end space-x-1">
-              <div className="3xl:ml-8 3xl:px-3 3xl:py-[6px] ml-4 flex items-center gap-1 rounded-[28px] bg-[#FB4156] px-2 py-1 text-white xl:ml-6">
-                {bookingType === "oneway" ? (
-                  <OnewayTwoIcon className="3xl:size-[14px] size-[14px] flex-shrink-0 xl:size-3" />
-                ) : bookingType === "hourly" ? (
-                  <HourlyManageIcon className="3xl:size-[14px] size-[14px] flex-shrink-0 xl:size-3" />
-                ) : null}
-
+              <div className="ml-4 flex items-center gap-1 rounded-[28px] bg-[#FB4156] px-2 py-1 text-white xl:ml-6 3xl:ml-8 3xl:px-3 3xl:py-[6px]">
+                {tripType === "oneway" ? (
+                  <OnewayTwoIcon className="size-[14px] flex-shrink-0 xl:size-3 3xl:size-[14px]" />
+                ) : (
+                  <HourlyManageIcon className="size-[14px] flex-shrink-0 xl:size-3 3xl:size-[14px]" />
+                )}
                 <span className="text-xs font-medium 2xl:text-sm">
-                  {bookingType.charAt(0).toUpperCase() + bookingType.slice(1)}
+                  {tripType.charAt(0).toUpperCase() + tripType.slice(1)}
                 </span>
               </div>
 
@@ -40,13 +60,13 @@ const BookingDetails = () => {
             </div>
           </div>
           <h3 className="mt-2 text-[10px] font-medium leading-5 text-[#282828] md:text-xs xl:leading-8 2xl:mt-3 2xl:text-base">
-            Corolla, Toyota Prius, Camry, Ford Taurus or similar
+            {vehicle.description}
           </h3>
         </div>
       </div>
 
       {/* ONEWAY SECTION */}
-      {bookingType === "oneway" && (
+      {tripType === "oneway" && (
         <div>
           <OnewaySettings />
           <OnewayLocation />
@@ -54,7 +74,7 @@ const BookingDetails = () => {
       )}
 
       {/* HOURLY SECTION */}
-      {bookingType === "hourly" && (
+      {tripType === "hourly" && (
         <div>
           <HourlyLocation />
           <HourlySettings />
@@ -71,7 +91,7 @@ const BookingDetails = () => {
           </span>
         </div>
         <h3 className="text-lg font-bold text-black md:text-base md:font-semibold lg:text-2xl xl:text-[32px]">
-          $239.74
+          {vehicle.unit} {vehicle.price}
         </h3>
       </div>
     </div>
