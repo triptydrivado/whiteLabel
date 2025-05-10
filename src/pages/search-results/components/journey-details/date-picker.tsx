@@ -1,7 +1,10 @@
 import DateIcon from "@/assets/svgs/date-icon";
 
-// TODO: use prop ans send dynamic data
-export default function DateDropdown() {
+type DateDropdownProps = {
+  selectedDate: string[];
+};
+
+export default function DateDropdown({ selectedDate }: DateDropdownProps) {
   return (
     <div className="relative">
       {/* Date Display Button */}
@@ -9,7 +12,7 @@ export default function DateDropdown() {
         <DateIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
         <span className="ml-2 text-[10px] font-medium lg:text-sm 2xl:text-base">
-          05/05/2025
+          {selectedDate}
         </span>
       </div>
     </div>

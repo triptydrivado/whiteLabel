@@ -12,7 +12,12 @@ import RoutingIcon from "@/assets/svgs/routing-icon";
 
 const tripType = "oneway";
 
-export default function OnewayHourly() {
+type DefaultProps = {
+  distance: string[];
+  duration: string[];
+};
+
+export default function OnewayHourly({ distance, duration }: DefaultProps) {
   return (
     <div className="flex flex-wrap items-center justify-start gap-x-[15px]">
       <>
@@ -20,14 +25,14 @@ export default function OnewayHourly() {
           <RoutingIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
           <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
-            Distance: 12 km
+            Distance: {distance}
           </span>
         </div>
         <div className="flex items-center gap-x-3 p-2 lg:h-[42px]">
           <Duration1Icon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
           <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
-            Duration: 3 hrs 20 mins
+            Duration: {duration}
           </span>
         </div>
       </>
