@@ -25,7 +25,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
 
   const titles = PASSENGER_SALUTATIONS;
 
-  console.log(methods.formState.errors);
+  // console.log(methods.formState.errors);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -48,7 +48,15 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
   };
 
   const handleSubmit: SubmitHandler<TPassengerDetails> = (data) => {
-    console.log(data);
+    console.log("formdata", data);
+    localStorage.setItem("salutation", data.salutation);
+    localStorage.setItem("firstName", data.firstName);
+    localStorage.setItem("lastName", data.lastName);
+    localStorage.setItem("contactNumber", data.contactNumber);
+    localStorage.setItem("email", data.email);
+    localStorage.setItem("flightNumber", data.flightNumber);
+    localStorage.setItem("splRequest", data.splRequest);
+
     onConfirm();
   };
 
@@ -197,6 +205,16 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
           className="px-2.5 py-[19px] placeholder:text-[#0D0D0D]/50"
           isRequired
         />
+
+        <InputField
+          type="number"
+          label="Reference Number"
+          field="referenceNumber"
+          placeholder="Enter your Reference Number*"
+          className="px-2.5 py-[19px] placeholder:text-[#0D0D0D]/50"
+          isRequired
+        />
+
         <InputField
           type="text"
           label="Flight No."

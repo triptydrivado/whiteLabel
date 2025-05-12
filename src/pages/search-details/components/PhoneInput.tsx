@@ -122,7 +122,7 @@ const PhoneInput = () => {
             <label
               className={cn(
                 "absolute left-4 text-[8px] font-medium text-[#0D0D0D]/50 transition-all duration-200 hover:cursor-text xl:text-[10px]",
-                isActive ? "top-2 opacity-100" : "-top-4 opacity-0",
+                isActive ? "top-1 opacity-100" : "-top-4 opacity-0",
               )}
             >
               Phone Number <span className="text-drivado-red">*</span>
@@ -143,7 +143,7 @@ const PhoneInput = () => {
                 methods.trigger("contactNumber");
               }}
               className={cn(
-                "h-12 w-full border border-transparent bg-[#F5F6FA] px-4 text-xs font-normal text-[#0D0D0D] transition-all duration-200 focus:outline-none focus:ring-0 lg:h-14 2xl:text-sm",
+                "h-12 w-full border border-transparent bg-[#F5F6FA] px-4 text-xs font-normal text-[#0D0D0D] transition-all duration-200 group-hover:bg-[#EBECF0] focus:outline-none focus:ring-0 lg:h-14 2xl:text-sm",
                 isActive ? "pt-[10px]" : "pt-0",
                 hasError && "pr-10",
               )}
