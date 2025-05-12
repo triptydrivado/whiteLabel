@@ -14,6 +14,8 @@ interface Vehicle {
   luggage: number;
   price: number;
   image: string;
+  unit: string;
+  vehicleType: string;
 }
 
 interface VehicleCardProps {
@@ -27,19 +29,21 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
     <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-none transition-shadow duration-300 hover:shadow-md sm:w-full sm:flex-row sm:p-5 md:w-full md:p-5 lg:w-full lg:p-5 xl:w-full xl:p-5 2xl:w-full 2xl:p-6 mobS:w-full mobM:w-full mobL:w-full 4xl:w-full 4xl:p-6">
       <div className="w-full sm:flex">
         {/* Vehicle Image */}
-        <img
-          src={vehicle.image}
-          alt={vehicle.name}
-          className="h-[8.75rem] w-full rounded-lg bg-[#0000000A] sm:h-[7.625rem] sm:w-[12.25rem] md:h-[147px] md:w-[235px] lg:h-[12.25rem] lg:w-[313px] xl:h-[147px] xl:w-[258px] 2xl:h-[10rem] mobS:w-full mobM:h-[8.5rem] mobM:w-full mobL:w-full 3xl:h-full 3xl:w-[325px] 4xl:h-full 4xl:w-[421px]"
-        />
+        <div className="flex justify-center sm:block">
+          <img
+            src={vehicle.image}
+            alt={vehicle.name}
+            className="h-[10rem] w-[300px] rounded-lg bg-[#0000000A] sm:h-[7.625rem] sm:w-[12.25rem] md:h-[147px] md:w-[235px] lg:h-[12.25rem] lg:w-[313px] xl:h-[147px] xl:w-[258px] 2xl:h-[10rem] 3xl:h-[10.1rem] 3xl:w-[300px] 4xl:h-full 4xl:w-[421px]"
+          />
+        </div>
 
         {/* Vehicle Details */}
         <div className="mt-4 flex h-[7.5rem] w-full flex-1 justify-between sm:ml-8 sm:mt-0 md:mt-0 md:h-[9rem] md:w-[20.625rem] lg:h-[12.25rem] lg:w-[519px] xl:h-[147px] xl:w-[26.875rem] 2xl:h-[10rem] mobS:w-full mobM:h-[8.125rem] mobM:w-full mobL:w-full 3xl:h-[10.125rem] 3xl:w-[30.625rem] 4xl:h-[13.125rem]">
           {/* Description */}
-          <div className="relative flex h-full w-60 flex-col items-start text-left sm:w-[8.75rem] md:w-[13.75rem] lg:w-[243px] xl:w-[11.125rem] 2xl:w-[10.125rem] mobM:w-[11.875rem] 3xl:w-[243px] 4xl:h-full 4xl:w-[20.25rem]">
+          <div className="relative flex h-full w-60 flex-col items-start text-left sm:w-[8.75rem] md:w-[13.75rem] lg:w-[243px] xl:w-[12rem] 2xl:w-[10.125rem] mobM:w-[11.875rem] 3xl:w-[243px] 4xl:h-full 4xl:w-[20.25rem]">
             {/* Vehicle Name */}
             <h2 className="text-sm font-semibold sm:text-base md:text-xl lg:text-xl xl:text-xl 2xl:text-xl mobM:text-xl 3xl:text-2xl 4xl:text-[26px]">
-              {vehicle.name}
+              {vehicle.vehicleType}
             </h2>
 
             {/* Vehicle Description */}
@@ -70,13 +74,19 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
           {/* Price and Book Now Button */}
           <div className="relative flex w-full flex-col items-end text-right lg:w-[267px] xl:h-[147px] xl:w-[8.75rem] 2xl:h-[10rem] 2xl:w-[7.625rem] mobS:w-[18.75rem] mobM:w-[8.75rem] 3xl:h-full 3xl:w-[11.375rem] 4xl:h-full 4xl:w-[20.5rem]">
             <h2 className="text-sm font-semibold md:text-xl md:font-semibold mobM:text-xl 3xl:text-2xl 4xl:text-[26px]">
-              ${vehicle.price.toFixed(2)}
+              {vehicle.unit} {vehicle.price.toFixed(2)}
             </h2>
             <p className="w-[6.25rem] whitespace-normal text-[10px] text-[#6D6D6D] md:text-[11px] lg:w-[7.25rem] lg:text-sm xl:text-[11px] 2xl:w-[7rem] 2xl:text-[11px] mobM:text-[10px] 3xl:w-[8.125rem] 3xl:text-xs 4xl:w-[11.25rem] 4xl:text-base">
               Includes VAT, Gratuities, Meet & Greet services
             </p>
             <Button
-              onClick={() => navigate("/passenger-details")}
+              onClick={() => {
+                localStorage.setItem(
+                  "selectedVehicle",
+                  JSON.stringify(vehicle),
+                );
+                navigate("/passenger-details");
+              }}
               className="absolute bottom-0 right-0 h-[35px] w-[6.25rem] items-center rounded-[7px] bg-[var(--brand-btn-bg)] text-xs text-[var(--brand-btn-text)] shadow-md transition-all duration-300 hover:bg-[#EB0012] hover:shadow-lg sm:h-[37px] sm:w-[9.5rem] sm:text-sm md:rounded-[10px] lg:h-[45px] lg:w-[13.5rem] lg:text-base xl:h-[45px] xl:w-[11.375rem] xl:rounded-xl 2xl:h-[45px] 2xl:w-[11.375rem] 2xl:text-sm mobM:h-[35px] mobM:w-[8.375rem] mobM:text-xs 3xl:h-[45px] 3xl:w-[11.375rem] 3xl:text-base 4xl:h-[3.75rem] 4xl:w-[16.25rem] 4xl:text-[18px]"
             >
               Book Now

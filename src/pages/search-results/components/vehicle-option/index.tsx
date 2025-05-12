@@ -1,65 +1,26 @@
-import cr1 from "@/assets/svgs/cr1.svg";
-import cr2 from "@/assets/svgs/cr2.svg";
-import cr3 from "@/assets/svgs/cr3.svg";
-import cr4 from "@/assets/svgs/cr4.svg";
-import cr5 from "@/assets/svgs/cr5.svg";
+import { useEffect, useState } from "react";
+
 import JourneyInclusions from "./journey-inclusion";
 import VehicleCardList from "./vehicle-list";
 import InclusionCard from "./inclusion-card";
 
-const vehicles = [
-  {
-    id: 1,
-    name: "Standard Sedan",
-    description: "Corolla, Toyota Prius, Camry, Ford Taurus or similar",
-    pax: 2,
-    luggage: 3,
-    price: 234.79,
-    image: cr1,
-  },
-  {
-    id: 2,
-    name: "Premium Sedan",
-    description:
-      "Mercedes E Class, BMW 5 Series, Audi A6, VW Passat, Lexus or similar",
-    pax: 2,
-    luggage: 3,
-    price: 284.54,
-    image: cr2,
-  },
-  {
-    id: 3,
-    name: "Economy Van",
-    description:
-      "Opel Vivaro, Ford, Volkswagen Caravelle, Honda Odyssey or similar",
-    pax: 5,
-    luggage: 5,
-    price: 344.74,
-    image: cr3,
-  },
-  {
-    id: 4,
-    name: "Premium Van",
-    description:
-      "Mercedes Viano/V Class, Cadillac Escalade, Toyota Alphard, GMC or similar",
-    pax: 5,
-    luggage: 5,
-    price: 518.9,
-    image: cr4,
-  },
-  {
-    id: 5,
-    name: "Luxury Sedan",
-    description: "Mercedes S Class, BMW 7 Series, Audi A8 or similar",
-    pax: 2,
-    luggage: 3,
-    price: 476.79,
-    image: cr5,
-  },
-];
-
 export default function VehicleOption() {
-  //TODO: API- call vehicle list data from local storage
+  const [vehicles, setVehicles] = useState([]);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("vehicleList");
+    if (storedData) {
+      try {
+        const parsed = JSON.parse(storedData);
+        if (parsed?.vehicleWithPriceArray) {
+          setVehicles(parsed.vehicleWithPriceArray);
+        }
+      } catch (err) {
+        console.error("Error parsing vehicleList from localStorage", err);
+      }
+    }
+  }, []);
+
   return (
     <div className="mt-[15px] font-plus-jakarta-sans">
       <JourneyInclusions />
