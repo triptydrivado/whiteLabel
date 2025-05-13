@@ -26,9 +26,13 @@ export default function DesktopBookingSearchForm() {
   // Booking type tab: 'Oneway' | 'Hourly'
   const bookingType = methods.watch("bookingType");
 
-  const handleSubmit: SubmitHandler<TBookingSchema> = (data) => {
-    console.log(data);
+  const handleSubmit: SubmitHandler<TBookingSchema> = async (data) => {
     // TODO: add api
+    try {
+      console.log("Submitting data:", data);
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
 
   return (

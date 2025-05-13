@@ -203,6 +203,8 @@ const CitySearch = React.forwardRef<
   const [state, stateDispatch] = React.useReducer(stateReducer, initialState);
   const methods = useFormContext<TBookingSchema>();
 
+  // const [data, setData] = React.useState<Location[]>([]);
+
   // Case if not selected dropdown option and blur
   //TODO: Remove this
   // const handleOnBlurEvent = React.useCallback(() => {
@@ -308,6 +310,10 @@ const CitySearch = React.forwardRef<
   // Fetching Logic
   // TODO: add timer and separate function  and clear timeout when unmount
   React.useEffect(() => {
+    // const stored = localStorage.getItem("savedLocations");
+    // if (stored) {
+    //   setData(JSON.parse(stored));
+    // }
     if (state.fetchLock) return;
 
     const timer = setTimeout(() => {
@@ -320,6 +326,13 @@ const CitySearch = React.forwardRef<
           );
           const data = await response.json();
           const validatedData = searchLocationApiSchema.safeParse(data);
+
+          if (validatedData.success) {
+            localStorage.setItem(
+              "validatedData",
+              JSON.stringify(validatedData.data),
+            );
+          }
 
           if (!validatedData.success) {
             throw new Error();

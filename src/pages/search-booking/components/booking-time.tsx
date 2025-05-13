@@ -159,29 +159,55 @@ function TimePicker({ onClose }: TimeProps) {
 
   // Handlers for manual input changes
   const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value, 10);
-    if (!isNaN(val)) {
-      if (val < 0) {
-        setHours(0);
-      } else if (val > 23) {
-        setHours(23);
-      } else {
-        setHours(val);
-      }
+    // const val = parseInt(e.target.value, 10);
+    let val = e.target.value;
+
+    // Remove non-digit characters
+    val = val.replace(/\D/g, "");
+
+    // Remove leading zeros, but allow '00'
+    if (val.length > 1) val = val.replace(/^0+/, "");
+
+    // Limit to 2 digits
+    if (val.length > 2) val = val.slice(0, 2);
+
+    const num = parseInt(val || "0", 10);
+    if (!isNaN(num)) {
+      setHours(Math.min(num, 23));
     }
+
+    // if (!isNaN(val)) {
+    //   if (val < 0) {
+    //     setHours(0);
+    //   } else if (val > 23) {
+    //     setHours(23);
+    //   } else {
+    //     setHours(val);
+    //   }
+    // }
   };
 
   const handleMinuteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value, 10);
-    if (!isNaN(val)) {
-      if (val < 0) {
-        setMinutes(0);
-      } else if (val > 59) {
-        setMinutes(59);
-      } else {
-        setMinutes(val);
-      }
+    let val = e.target.value;
+
+    val = val.replace(/\D/g, "");
+    if (val.length > 1) val = val.replace(/^0+/, "");
+    if (val.length > 2) val = val.slice(0, 2);
+
+    const num = parseInt(val || "0", 10);
+    if (!isNaN(num)) {
+      setMinutes(Math.min(num, 59));
     }
+    // const val = parseInt(e.target.value, 10);
+    // if (!isNaN(val)) {
+    //   if (val < 0) {
+    //     setMinutes(0);
+    //   } else if (val > 59) {
+    //     setMinutes(59);
+    //   } else {
+    //     setMinutes(val);
+    //   }
+    // }
   };
 
   // Handlers for keyboard events on hour and minute inputs
@@ -230,7 +256,8 @@ function TimePicker({ onClose }: TimeProps) {
               step={1}
               defaultValue={0}
               type="number"
-              value={hours}
+              // value={hours}
+              value={hours.toString().padStart(2, "0")}
               onChange={handleHourChange}
               onKeyDown={handleHourKeyDown}
               // onChange={(e) => {
@@ -271,7 +298,8 @@ function TimePicker({ onClose }: TimeProps) {
               step={1}
               defaultValue={0}
               type="number"
-              value={minutes}
+              // value={minutes}
+              value={minutes.toString().padStart(2, "0")}
               onChange={handleMinuteChange}
               onKeyDown={handleMinuteKeyDown}
               // onChange={(e) => {
@@ -313,10 +341,13 @@ function TimePicker({ onClose }: TimeProps) {
             className="px-2 py-[0.625rem] uppercase text-drivado-red"
             onClick={(e) => {
               e.stopPropagation();
+              const hour = hourRef.current?.value.padStart(2, "0");
+              const minute = minRef.current?.value.padStart(2, "0");
               console.log(`${hourRef.current?.value}:${minRef.current?.value}`);
               methods.setValue(
                 "time",
-                `${hourRef.current?.value}:${minRef.current?.value}`,
+                `${hour}:${minute}`,
+                // `${hourRef.current?.value}:${minRef.current?.value}`,
               );
               onClose();
             }}

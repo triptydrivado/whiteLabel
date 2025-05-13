@@ -309,10 +309,7 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
                     onValueChange={handleSearch}
                     autoFocus
                   />
-                  <CommandList
-                    ref={listRef}
-                    className="m-0 rounded-b-[1.25rem] scrollbar-none md:rounded-b-[2rem]"
-                  >
+                  <CommandList ref={listRef} className="m-0 scrollbar-none">
                     <CommandEmpty>No Country found.</CommandEmpty>
                     <CommandGroup>
                       {filteredCountries.map((COUNTRY, index) => (
@@ -325,7 +322,7 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
                           onSelect={() => handleDropdownCountrySelect(COUNTRY)}
                           data-active={index === activeIndex}
                           className={cn(
-                            `w-full items-start justify-between rounded-xl border-b border-t border-transparent px-4 py-3 text-base hover:cursor-pointer [&[aria-selected="true"]]:border-gray-300 [&[aria-selected="true"]]:bg-gray-100`,
+                            `w-full items-start justify-between rounded-none border-b border-t border-transparent px-4 py-3 text-base hover:cursor-pointer [&[aria-selected="true"]]:border-gray-300 [&[aria-selected="true"]]:bg-gray-100`,
                             index === activeIndex &&
                               "border-gray-300 bg-gray-100",
                             field.value?.country === COUNTRY.country &&
