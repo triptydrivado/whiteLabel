@@ -43,7 +43,7 @@ const BookingDetails = () => {
               {vehicle.vehicleType}
             </h2>
             <div className="flex items-center justify-end space-x-1">
-              <div className="ml-4 flex items-center gap-1 rounded-[28px] bg-[#FB4156] px-2 py-1 text-white xl:ml-6 3xl:ml-8 3xl:px-3 3xl:py-[6px]">
+              <div className="ml-4 flex items-center gap-1 rounded-[28px] bg-[var(--brand-icon-color)] px-2 py-1 text-white xl:ml-6 3xl:ml-8 3xl:px-3 3xl:py-[6px]">
                 {tripType === "oneway" ? (
                   <OnewayTwoIcon className="size-[14px] flex-shrink-0 xl:size-3 3xl:size-[14px]" />
                 ) : (
@@ -83,14 +83,14 @@ const BookingDetails = () => {
 
       <div className="flex items-center justify-between pt-[4.25rem]">
         <div className="leading-5 md:leading-3">
-          <h2 className="text-base font-bold leading-3 text-[#fb4156] md:text-xs lg:text-base xl:text-xl">
+          <h2 className="text-base font-bold leading-3 text-[var(--brand-icon-color)] md:text-xs lg:text-base xl:text-xl">
             Total Price
           </h2>
           <span className="text-xs font-medium text-[#282828]/50 md:text-[8px] lg:text-xs xl:leading-6">
             Includes VAT, Gratuities, Meet & Greet services
           </span>
         </div>
-        <h3 className="text-lg font-bold text-black md:text-base md:font-semibold lg:text-2xl xl:text-[32px]">
+        <h3 className="text-lg font-bold text-black md:text-base md:font-semibold lg:text-xl xl:text-2xl 2xl:text-[32px]">
           {vehicle.unit} {vehicle.price}
         </h3>
       </div>

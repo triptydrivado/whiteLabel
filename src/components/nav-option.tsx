@@ -36,7 +36,7 @@ export default function NavOptions() {
                   {isCompleted ? (
                     <Link
                       to={item.path}
-                      className="hover:text-bold text-[#282828] hover:text-drivado-red"
+                      className="hover:text-bold text-[#282828] hover:text-[var(--brand-icon-color)]"
                     >
                       {item.name}
                     </Link>
@@ -44,7 +44,7 @@ export default function NavOptions() {
                     <span
                       className={`${
                         isSelected
-                          ? "font-semibold text-drivado-red"
+                          ? "font-semibold text-[var(--brand-icon-color)]"
                           : "text-[#282828]"
                       }`}
                     >
@@ -55,7 +55,7 @@ export default function NavOptions() {
                     <ChevronRight
                       className={`${
                         isSelected
-                          ? "text-drivado-red"
+                          ? "text-[var(--brand-icon-color)]"
                           : isCompleted
                             ? "text-[#282828]"
                             : "text-[#282828]"

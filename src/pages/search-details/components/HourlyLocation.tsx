@@ -5,7 +5,7 @@ const HourlyLocation = () => {
     <div className="relative mt-8 md:mt-8 xl:mt-6 2xl:mt-10">
       <div className="mt-3">
         <div className="flex w-24 items-center space-x-1.5 rounded-md bg-gray-200 px-1.5 py-1">
-          <PickupDropoffIcon className="mt-1 sm:mt-0.5 sm:size-3 md:size-2 xl:mt-1 xl:size-[14px]" />
+          <PickupDropoffIcon className="mt-1 text-[var(--brand-icon-color)] sm:mt-0.5 sm:size-3 md:size-2 xl:mt-1 xl:size-[14px]" />
           <h2 className="text-sm font-medium text-black">Pick-up</h2>
         </div>
         <div className="relative mt-2 flex items-start space-x-2 xl:space-x-2">

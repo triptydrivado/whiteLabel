@@ -22,14 +22,14 @@ export default function OnewayHourly({ distance, duration }: DefaultProps) {
     <div className="flex flex-wrap items-center justify-start gap-x-[15px]">
       <>
         <div className="flex items-center gap-x-3 p-2 lg:h-[42px]">
-          <RoutingIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
+          <RoutingIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[var(--brand-icon-color)] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
           <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
             Distance: {distance}
           </span>
         </div>
         <div className="flex items-center gap-x-3 p-2 lg:h-[42px]">
-          <Duration1Icon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[#FB4156] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
+          <Duration1Icon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[var(--brand-icon-color)] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
           <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
             Duration: {duration}
@@ -37,7 +37,7 @@ export default function OnewayHourly({ distance, duration }: DefaultProps) {
         </div>
       </>
 
-      <div className="flex items-center gap-1 rounded-[28px] bg-[#FB4156] px-2 py-1 text-white 3xl:px-3 3xl:py-[6px]">
+      <div className="flex items-center gap-1 rounded-[28px] bg-[var(--brand-icon-color)] px-2 py-1 text-white 3xl:px-3 3xl:py-[6px]">
         {tripType === "oneway" ? (
           <OnewayTwoIcon className="size-3 flex-shrink-0 text-white lg:size-5 2xl:size-[22px]" />
         ) : (
