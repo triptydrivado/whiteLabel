@@ -1,4 +1,5 @@
 // import COUNTRY_CODES from "@/constant/utils/CURRENCIES";
+import { min } from "date-fns";
 import { z } from "zod";
 // export const PASSENGER-DETAILS =
 // const passengerDetails = z.
@@ -21,6 +22,7 @@ export const passengerDetailsSchema = z.object({
   salutation: z.enum(PASSENGER_SALUTATIONS),
   firstName: z.string().min(3, "Enter at least 3 characters"),
   lastName: z.string().min(3, "Enter at least 3 characters"),
+  referenceNumber:z.string().min(5,"Enter atleast 5 numbers"),
   // countryCode: z
   //   .string()
   //   .transform((data) =>
@@ -60,6 +62,7 @@ export const PASSENGER_DEFAULT_VALUES: Readonly<TPassengerDetails> = {
   // countryCode: "",
   contactNumber: "",
   email: "",
+  referenceNumber:"",
   flightNumber: "",
   splRequest: "",
   consent: false,
