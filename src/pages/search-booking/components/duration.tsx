@@ -25,15 +25,15 @@ type Props = {
 };
 
 export default function Duration({ name, baseStyle, className }: Props) {
-  const [show, setShow] = React.useState(false);
+  // const [show, setShow] = React.useState(false);
   const methods = useFormContext<TBookingSchema>();
 
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  // const buttonRef = React.useRef<HTMLButtonElement>(null);
 
-  const handleClick = React.useCallback(() => {
-    if (!buttonRef.current) return;
-    buttonRef.current.click();
-  }, [buttonRef.current]);
+  // const handleClick = React.useCallback(() => {
+  //   if (!buttonRef.current) return;
+  //   buttonRef.current.click();
+  // }, [buttonRef.current]);
 
   const desktopButtonRef = React.useRef<HTMLDivElement>(null);
   const [desktopClickInside, setDesktopClickInside] =
@@ -62,9 +62,9 @@ export default function Duration({ name, baseStyle, className }: Props) {
       control={methods.control}
       name={name}
       render={({ field: { value } }) => {
-        const selectedDuration = DURATIONS.find(
-          (DURATION) => DURATION.hours === value,
-        )?.hours;
+        // const selectedDuration = DURATIONS.find(
+        //   (DURATION) => DURATION.hours === value,
+        // )?.hours;
 
         return (
           <>
@@ -141,7 +141,7 @@ export default function Duration({ name, baseStyle, className }: Props) {
                         onSelect={() => {}}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setShow(false);
+                          // setShow(false);
                           methods.setValue("duration", DURATION.hours);
                           setDesktopClickInside(false);
                         }}
