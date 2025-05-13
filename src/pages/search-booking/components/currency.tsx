@@ -28,7 +28,7 @@ type Props = {
   className?: string;
 };
 
-export default function Currency({ label, name, baseStyle, className }: Props) {
+export default function Currency({ label, name, className }: Props) {
   // const [show, setShow] = useState<boolean>(false);
   const methods = useFormContext<TBookingSchema>();
   const [searchQuery, setSearchQuery] = useState("");
@@ -260,8 +260,8 @@ export default function Currency({ label, name, baseStyle, className }: Props) {
               }
             }}
             className={cn(
-              "relative flex items-center gap-[6px] hover:cursor-pointer",
-              baseStyle,
+              "relative flex items-center gap-[6px] rounded-lg hover:cursor-pointer",
+              // baseStyle,
               "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-drivado-red",
               clickedInside &&
                 "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",

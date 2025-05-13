@@ -45,7 +45,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 export default function BookingDate({
   label,
   name,
-  baseStyle,
+  // baseStyle,
   className,
 }: Props) {
   // const [showDialog, setShowDialog] = React.useState<boolean>(false);
@@ -95,7 +95,7 @@ export default function BookingDate({
         }}
         className={cn(
           "relative flex items-center gap-[6px] hover:cursor-pointer",
-          baseStyle,
+          // baseStyle,
           "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-drivado-red",
           desktopClickInside &&
             "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",

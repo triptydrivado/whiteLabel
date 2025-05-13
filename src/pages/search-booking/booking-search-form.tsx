@@ -14,6 +14,7 @@ import PassengerCount from "./components/passenger-count";
 // Custom Types and Zod Schemas
 import { type TBookingSchema } from "./schemas/booking-form";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 // const Separator = () => (
 //   <div className="separator mx-4 h-10 w-px bg-[#D3D3D3]" />
@@ -23,11 +24,16 @@ const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
   const methods = useFormContext<TBookingSchema>();
 
+  const [citySelectedData, setCitySelectedData] = useState<string>("");
+
   // Booking type tab: 'Oneway' | 'Hourly'
   const bookingType = methods.watch("bookingType");
 
   const handleSubmit: SubmitHandler<TBookingSchema> = async (data) => {
     // TODO: add api
+
+    localStorage.setItem("citySelectedData", JSON.stringify(data));
+
     try {
       console.log("Submitting data:", data);
     } catch (error) {
@@ -51,6 +57,11 @@ export default function DesktopBookingSearchForm() {
           <CitySearch
             label="from"
             name="from"
+            value={citySelectedData}
+            // onChange={(e) => setCitySelectedData(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setCitySelectedData(e.target.value)
+            }
             baseStyle={baseStyle}
             className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
@@ -62,6 +73,8 @@ export default function DesktopBookingSearchForm() {
             <CitySearch
               label="to"
               name="to"
+              value={citySelectedData}
+              onChange={(e) => setCitySelectedData(e.target.value)}
               baseStyle={baseStyle}
               className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
             />

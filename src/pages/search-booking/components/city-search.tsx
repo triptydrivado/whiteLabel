@@ -26,13 +26,15 @@ import { MapPin } from "lucide-react";
 // } from "@/components/ui/sheet";
 
 // import for Apis
-const CITY_SEARCH_API = import.meta.env.VITE_LOCATION_SEARCH_API;
+// const CITY_SEARCH_API = import.meta.env.VITE_LOCATION_SEARCH_API;
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   name: "from" | "to";
   label: string;
   baseStyle?: string;
   className?: string;
+  value?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 type State = {
@@ -194,7 +196,7 @@ const stateReducer: (state: State, action: Action) => State = (
 const CitySearch = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>,
   Props
->(({ name, label, baseStyle, className, ...props }, ref) => {
+>(({ name, label, className, ...props }, ref) => {
   const divRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const listRef = React.useRef<HTMLUListElement>(null);
@@ -318,35 +320,34 @@ const CitySearch = React.forwardRef<
 
     const timer = setTimeout(() => {
       async function fetchLocations() {
-        stateDispatch({ type: ActionType.START_FETCHING });
-
         try {
           const response = await fetch(
-            `${CITY_SEARCH_API}?input=${state.debouncedInput}`,
+            `${import.meta.env.VITE_DRIVADO_API}/api/apisearchPlacesByName?placeName=${state.debouncedInput}&email=${import.meta.env.VITE_DRIVADO_EMAIL}`,
+            {
+              headers: {
+                apiKey: import.meta.env.VITE_DRIVADO_KEY,
+              },
+            },
           );
           const data = await response.json();
-          const validatedData = searchLocationApiSchema.safeParse(data);
 
-          if (validatedData.success) {
+          console.log("Data --->", data);
+          const citySelectData = searchLocationApiSchema.safeParse(data);
+
+          console.log(citySelectData);
+          if (citySelectData.success) {
             localStorage.setItem(
-              "validatedData",
-              JSON.stringify(validatedData.data),
+              "citySelectData",
+              JSON.stringify(citySelectData.data),
             );
           }
 
-          if (!validatedData.success) {
+          if (!citySelectData.success) {
             throw new Error();
           }
-
-          stateDispatch({
-            type: ActionType.SET_FETCHED_LOCATIONS,
-            payload: validatedData.data,
-          });
         } catch (e) {
           // Error Handling to be done
           console.log(e);
-        } finally {
-          stateDispatch({ type: ActionType.END_FETCHING });
         }
       }
 
@@ -415,7 +416,7 @@ const CitySearch = React.forwardRef<
         onClick={handleDivClick}
         className={cn(
           "relative flex items-center gap-[6px] hover:cursor-pointer",
-          baseStyle,
+          // baseStyle,
           "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1.5 [&_svg]:focus-visible:text-drivado-red",
           className,
         )}
