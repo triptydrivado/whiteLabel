@@ -53,8 +53,7 @@ const SearchResult = () => {
 
     fetchVehicles();
   }, []);
-  //mBk3Kyo17PUFVSUgj72c6K7tNiHDu3
-  //techsupport10@drivado.com
+
   return (
     <Container className="relative z-20 h-auto bg-[#F6F7F9] pb-8 font-plus-jakarta-sans">
       <div className="pt-6">

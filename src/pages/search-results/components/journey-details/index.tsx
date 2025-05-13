@@ -36,7 +36,7 @@ export default function JourneyDetails() {
   const paxCount = ["2 pax"];
   const distance = ["12 Km"];
   const duration = ["3 hrs 20 mins"];
-  const tripType = ["oneway"];
+  // const tripType = ["oneway"];
 
   return (
     // TODO: Remove font name
