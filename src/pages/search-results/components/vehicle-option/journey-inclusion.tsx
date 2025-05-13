@@ -69,7 +69,7 @@ export default function JourneyInclusions() {
       <div className="block h-[3.125rem] w-full rounded-lg bg-white xl:hidden">
         <div className="flex cursor-pointer gap-2 p-4" onClick={openModal}>
           <div className="flex items-center gap-1">
-            <WarningIcon className="h-[18px] w-[18px] text-[#FB4156]" />
+            <WarningIcon className="h-[18px] w-[18px] text-[var(--brand-icon-color)]" />
             <h2 className="text-xs font-medium md:text-base">
               Journey Inclusions
             </h2>
@@ -96,7 +96,7 @@ export default function JourneyInclusions() {
               <div className="mt-2 space-y-4">
                 <div className="-mt-3 mb-6 ml-0 flex items-center justify-between">
                   <div className="flex items-center justify-center gap-4">
-                    <WarningIcon className="h-4 w-4" />
+                    <WarningIcon className="h-4 w-4 text-[var(--brand-icon-color)]" />
                     <h2 className="text-sm font-semibold">
                       Journey Inclusions
                     </h2>
@@ -115,7 +115,7 @@ export default function JourneyInclusions() {
                   return (
                     <div key={item.id} className="flex items-start gap-4">
                       <div>
-                        <Icon className="h-4 w-4 text-[#FB4156]" />
+                        <Icon className="h-4 w-4 text-[var(--brand-icon-color)]" />
                       </div>
 
                       <div>

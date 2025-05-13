@@ -11,14 +11,20 @@ const PickupDropoffIcon: React.FC<TSVG> = ({
     <svg
       {...props}
       className={cn(`${color} group-hover/edit:${hoverColor} `, className)}
-      width="16"
-      height="16"
+      // width="16"
+      // height="16"
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="8" cy="8" r="7.37255" stroke="#FB4156" strokeWidth="1.2549" />
-      <circle cx="8" cy="8" r="4" fill="#FB4156" />
+      <circle
+        cx="8"
+        cy="8"
+        r="7.37255"
+        stroke="currentColor"
+        strokeWidth="1.2549"
+      />
+      <circle cx="8" cy="8" r="4" fill="currentColor" />
     </svg>
   );
 };

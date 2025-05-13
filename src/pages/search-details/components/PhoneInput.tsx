@@ -81,7 +81,7 @@ const PhoneInput = () => {
                   <SelectItem
                     key={country.abbreviation}
                     value={country.abbreviation}
-                    className="data-[highlighted]:bg-red-100 data-[state=checked]:bg-red-100"
+                    className="data-[highlighted]:bg-gray-200 data-[state=checked]:bg-gray-200"
                   >
                     <div className="flex w-full justify-between">
                       <div>{country.country}</div>
