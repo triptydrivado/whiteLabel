@@ -42,7 +42,7 @@ export default function BookingTypeTabs({ className }: Props) {
             {bookingType === BOOKING_TYPE && (
               <motion.div
                 layoutId="booking-tab-mobile"
-                className="absolute inset-0 bg-[var(--brand-btn-bg)]"
+                className="absolute inset-0 bg-[var(--brand-icon-color)]"
                 transition={{ duration: 0.45 }}
               />
             )}

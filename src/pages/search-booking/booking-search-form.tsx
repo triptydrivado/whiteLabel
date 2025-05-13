@@ -134,7 +134,7 @@ export default function DesktopBookingSearchForm() {
         </>
 
         {/* Search Button */}
-        <Button className="w-full shrink-0 bg-[var(--brand-btn-bg)] text-[var(--brand-btn-text)]">
+        <Button className="w-full shrink-0 bg-[var(--brand-icon-color)] text-[var(--brand-btn-text)]">
           <div className="rounded-lg p-[0.625rem]">
             <Link to="/search-results" state={{ tripType: "oneway" }}>
               Search
