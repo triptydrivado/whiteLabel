@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 // Type and Zod Schemas
 import { type TBookingSchema } from "../schemas/booking-form";
 
-import { format, parse } from "date-fns";
+// import { format, parse } from "date-fns";
 import ClockArrowDownIcon from "@/assets/svgs/clock-arrow-down";
 
 type Props = {
@@ -61,11 +61,11 @@ export default function BookingTime({
   }, []);
 
   // Parse time string into a Date object (assuming today's date)
-  const calcTime = time || "00:00";
-  const parsedDate = parse(calcTime, "H:m", new Date());
+  // const calcTime = time || "00:00";
+  // const parsedDate = parse(calcTime, "H:m", new Date());
 
-  // Format the date in a readable format
-  const formattedTime = format(parsedDate, "hh:mm a"); // e.g., "02:30 PM"
+  // // Format the date in a readable format
+  // const formattedTime = format(parsedDate, "hh:mm a"); // e.g., "02:30 PM"
 
   return (
     <>
