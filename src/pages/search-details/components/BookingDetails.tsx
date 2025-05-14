@@ -34,7 +34,7 @@ const BookingDetails = () => {
   return (
     <div className="flex w-full flex-col justify-between rounded-xl bg-white p-3 shadow-md sm:w-1/2 md:w-1/2 lg:w-1/2 lg:p-6 2xl:rounded-2xl">
       <div className="flex justify-center rounded-lg bg-[#F5F6FA] px-20 py-3 sm:px-16 sm:py-3 md:px-12 md:py-4 xl:px-20 xl:py-8 2xl:rounded-xl 2xl:px-32">
-        <img src={StandardSedan} className="w-44" />
+        <img src={vehicle.image} className="w-44" />
       </div>
       <div className="flex justify-between pt-4 md:pt-5">
         <div className="w-full">
@@ -82,11 +82,11 @@ const BookingDetails = () => {
       )}
 
       <div className="flex items-center justify-between pt-[4.25rem]">
-        <div className="leading-5 md:leading-3">
+        <div className="w-[140px] leading-5 md:w-[200px] md:leading-3 xl:w-[300px]">
           <h2 className="text-base font-bold leading-3 text-[var(--brand-icon-color)] md:text-xs lg:text-base xl:text-xl">
             Total Price
           </h2>
-          <span className="text-xs font-medium text-[#282828]/50 md:text-[8px] lg:text-xs xl:leading-6">
+          <span className="text-[8px] font-medium leading-none text-[#282828]/50 lg:text-xs xl:leading-6">
             Includes VAT, Gratuities, Meet & Greet services
           </span>
         </div>

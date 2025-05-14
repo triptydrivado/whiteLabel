@@ -116,7 +116,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative mb-1.5 flex w-full cursor-default select-none items-center justify-between rounded-lg bg-white px-3 py-3.5 pl-2 pr-8 text-xs text-black outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 hover:bg-white/60 focus:bg-accent focus:text-accent-foreground",
+      "relative mb-1.5 flex w-full cursor-default select-none items-center justify-between rounded-lg bg-white px-3 py-3.5 pl-2 pr-8 text-xs text-black outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 focus:text-accent-foreground",
       className,
     )}
     {...props}
@@ -137,7 +137,7 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-muted", className)}
+    className={cn("-mx-1 my-1 h-px", className)}
     {...props}
   />
 ));

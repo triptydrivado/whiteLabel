@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import LocationDropdown from "./location-dropdown";
+import LocationDropdown from "./pickup-location";
 import DateDropdown from "./date-picker";
 import BookingTime from "./booking-time";
 import CurrencyDropdown from "./currency-dropdown";
 import PaxCounter from "./pax-count";
 import OnewayHourly from "./oneway-hourly";
 import BookingCard from "./booking-card";
+import DropOff from "./dropoff-loaction";
+import PickupLocation from "./pickup-location";
+import DropOffLocation from "./dropoff-loaction";
 
 export default function JourneyDetails() {
   const [isMobile, setIsMobile] = useState(false);
@@ -52,20 +55,17 @@ export default function JourneyDetails() {
 
           <div className="flex w-full space-x-[15px] lg:items-center">
             {/* LocationDropdown - 70% width */}
-            <div className="flex-[7]">
-              <LocationDropdown
-                pickupLocation={pickupLocation}
-                dropoffLocation={dropoffLocation}
-              />
+            <div className="flex w-[70%] space-x-[15px]">
+              <PickupLocation pickupLocation={pickupLocation} />
+              <DropOffLocation dropoffLocation={dropoffLocation} />
             </div>
 
             {/* DateDropdown - 15% width */}
-            <div className="flex-[1.5]">
+            <div className="flex w-[30%] space-x-[15px]">
               <DateDropdown selectedDate={selectedDate} />
-            </div>
 
-            {/* TimeDropdown - 15% width */}
-            <div className="flex-[1.5]">
+              {/* TimeDropdown - 15% width */}
+
               <BookingTime selectedTime={selectedTime} />
             </div>
           </div>
