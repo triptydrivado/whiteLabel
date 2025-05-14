@@ -4,6 +4,8 @@ type LocationDropdownProps = {
   pickupLocation: string[];
 };
 
+// const pickupLocation = localStorage.getItem("pickupLocation");
+
 export default function PickupLocation({
   pickupLocation,
 }: LocationDropdownProps) {

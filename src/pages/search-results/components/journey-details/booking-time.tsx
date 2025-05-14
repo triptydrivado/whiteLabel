@@ -4,6 +4,8 @@ type TimeDropdownProps = {
   selectedTime: string[];
 };
 
+// const time=localStorage.getItem("time");
+
 export default function BookingTime({ selectedTime }: TimeDropdownProps) {
   return (
     <>

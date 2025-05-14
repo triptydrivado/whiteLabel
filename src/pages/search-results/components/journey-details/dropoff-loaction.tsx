@@ -4,6 +4,8 @@ type LocationDropdownProps = {
   dropoffLocation: string[];
 };
 
+// const dropoffLocation = localStorage.getItem("dropoffLocation");
+
 export default function DropOffLocation({
   dropoffLocation,
 }: LocationDropdownProps) {

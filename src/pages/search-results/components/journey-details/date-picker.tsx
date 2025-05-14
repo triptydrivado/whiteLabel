@@ -4,6 +4,8 @@ type DateDropdownProps = {
   selectedDate: string[];
 };
 
+// const date=localStorage.getItem("date");
+
 export default function DateDropdown({ selectedDate }: DateDropdownProps) {
   return (
     <div className="relative">

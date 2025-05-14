@@ -1,6 +1,8 @@
 import PickupDropoffIcon from "@/assets/svgs/pickup-location-icon";
 
 const HourlyLocation = () => {
+  // const pickupLocation=localStorage.getItem("pickupLocation")
+
   return (
     <div className="relative mt-8 md:mt-8 xl:mt-6 2xl:mt-10">
       <div className="mt-3">

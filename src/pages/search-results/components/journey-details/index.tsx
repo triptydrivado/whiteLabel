@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import LocationDropdown from "./pickup-location";
+
 import DateDropdown from "./date-picker";
 import BookingTime from "./booking-time";
 import CurrencyDropdown from "./currency-dropdown";
 import PaxCounter from "./pax-count";
 import OnewayHourly from "./oneway-hourly";
 import BookingCard from "./booking-card";
-import DropOff from "./dropoff-loaction";
+
 import PickupLocation from "./pickup-location";
 import DropOffLocation from "./dropoff-loaction";
 

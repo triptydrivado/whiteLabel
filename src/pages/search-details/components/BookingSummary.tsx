@@ -4,13 +4,14 @@ import AirplaneIcon from "@/assets/svgs/airplane-icon";
 import SpecialRequestIcon from "@/assets/svgs/special-request-icon";
 import SmsIcon from "@/assets/svgs/sms-icon";
 import CallIcon from "@/assets/svgs/call-icon";
+import PaymentButton from "../payment-button";
 
 const BookingSummary = ({}: { onEdit: () => void }) => {
   // const methods = useFormContext<TPassengerDetails>();
 
-  const handleClick = () => {
-    window.location.href = "/booking-confirmation"; // Navigates to /search-form
-  };
+  // const handleClick = () => {
+  //   window.location.href = "/booking-confirmation"; // Navigates to /search-form
+  // };
   const handleEdit = () => {
     window.location.href = "/passenger-details"; // Navigates to /search-form
   };
@@ -87,7 +88,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
             </div>
             <h2 className="text-xs font-normal text-[#282828] 2xl:text-base">
               {/* {methods.watch("flightNumber") || "SK 2301"} */}
-              {flightNumber}
+              {flightNumber || "Not Provided"}
             </h2>
           </div>
         </div>
@@ -101,7 +102,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
             </div>
             <h2 className="text-xs font-normal text-[#282828] 2xl:text-base">
               {/* {methods.watch("splRequest") || "One water bottle please. "} */}
-              {splRequest}
+              {splRequest || "Not Provided"}
             </h2>
           </div>
         </div>
@@ -116,13 +117,14 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
             Edit Details
           </button>
 
-          <button
+          {/* <button
             type="button"
             onClick={handleClick}
             className="w-full items-center justify-center rounded-[11px] bg-[var(--brand-icon-color)] px-4 py-[15px] text-xs font-medium text-white hover:bg-[var(--brand-icon-color)] xl:text-base"
           >
             Confirm & Pay
-          </button>
+          </button> */}
+          <PaymentButton />
         </div>
       </div>
     </div>

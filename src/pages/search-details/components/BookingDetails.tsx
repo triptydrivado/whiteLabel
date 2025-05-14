@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import StandardSedan from "@/assets/image/standard-sedan.png";
 import OnewayLocation from "./OnewayLocation";
 import OnewaySettings from "./OnewaySettings";
 import HourlyLocation from "./HourlyLocation";

@@ -4,6 +4,8 @@ type PaxCounterProps = {
   paxCount: string[];
 };
 
+// const pax = localStorage.getItem("pax");
+
 export default function PaxCounter({ paxCount }: PaxCounterProps) {
   return (
     <div className="relative">
