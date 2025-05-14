@@ -1,6 +1,7 @@
+import { z } from "zod";
+import { useState } from "react";
+import { format } from "date-fns";
 import { SubmitHandler, useFormContext } from "react-hook-form";
-// import { Search } from "lucide-react";
-import { Link } from "react-router-dom";
 
 // Custom Components
 import BookingTypeTabs from "./components/booking-type-tabs";
@@ -14,11 +15,6 @@ import PassengerCount from "./components/passenger-count";
 // Custom Types and Zod Schemas
 import { type TBookingSchema } from "./schemas/booking-form";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-
-// const Separator = () => (
-//   <div className="separator mx-4 h-10 w-px bg-[#D3D3D3]" />
-// );
 
 const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
@@ -30,12 +26,52 @@ export default function DesktopBookingSearchForm() {
   const bookingType = methods.watch("bookingType");
 
   const handleSubmit: SubmitHandler<TBookingSchema> = async (data) => {
+    console.log("Gello -->", data);
     // TODO: add api
 
-    localStorage.setItem("citySelectedData", JSON.stringify(data));
+    const BASE_URL = import.meta.env.VITE_DRIVADO_API;
 
     try {
-      console.log("Submitting data:", data);
+      const payload = {
+        BookingDetails: {
+          sourceLat: data.from.lat,
+          sourceLng: data.from.lng,
+          destinationLat: data.from.lat,
+          destinationLng: data.from.lng,
+          sourcePlaceName: data.from.cityName,
+          destinationPlaceName: data.from.cityName,
+          date: format(data.date, "yyyy-MM-dd"),
+          time: data.time,
+          passenger: data.pax,
+          currency: data.currency.currency,
+        },
+      };
+
+      // fetch data
+      const response = await fetch(
+        `${BASE_URL}/whiteLeveling/searchIdGenOneWayWL?email=techsupport10@drivado.com`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apiKey: import.meta.env.VITE_DRIVADO_KEY,
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+
+      const result = await response.json();
+
+      const parseResult = z.object({ sId: z.string() }).safeParse(result);
+
+      if (!parseResult.success) {
+        console.log("Error", parseResult.error);
+        throw new Error("data not found");
+      }
+
+      // success
+      // local storage set Itm
+      localStorage.setItem("validatedData", JSON.stringify(parseResult.data));
     } catch (error) {
       console.error("Submission error:", error);
     }
@@ -134,13 +170,15 @@ export default function DesktopBookingSearchForm() {
         </>
 
         {/* Search Button */}
-        <Button className="w-full shrink-0 bg-[var(--brand-icon-color)] text-[var(--brand-btn-text)]">
-          <div className="rounded-lg p-[0.625rem]">
-            <Link to="/search-results" state={{ tripType: "oneway" }}>
+        <div className="pt-3">
+          <Button className="w-full shrink-0 bg-[var(--brand-icon-color)] text-[var(--brand-btn-text)]">
+            <div className="rounded-lg p-[0.625rem]">
+              {/* <Link to="/search-results" state={{ tripType: "oneway" }}> */}
               Search
-            </Link>
-          </div>
-        </Button>
+              {/* </Link> */}
+            </div>
+          </Button>
+        </div>
       </div>
     </form>
   );

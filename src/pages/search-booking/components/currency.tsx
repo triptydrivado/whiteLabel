@@ -153,7 +153,7 @@ export default function Currency({ label, name, className }: Props) {
         (divRef.current && !divRef.current.contains(target)) ||
         listRef.current?.contains(target)
       ) {
-        setTimeout(() => setClickedInside(false), 1);
+        setTimeout(() => setClickedInside(false), 200);
       } else {
         setClickedInside(true);
       }
@@ -230,6 +230,7 @@ export default function Currency({ label, name, className }: Props) {
       activeIndex < filteredCountries.length
     ) {
       e.preventDefault();
+      e.stopPropagation();
       const selectedCountry = filteredCountries[activeIndex];
 
       // Update the value in the form
@@ -239,6 +240,7 @@ export default function Currency({ label, name, className }: Props) {
       setClickedInside(false);
     } else if (e.key === "Escape") {
       e.preventDefault();
+      e.stopPropagation();
       setClickedInside(false);
     }
   };
@@ -297,16 +299,14 @@ export default function Currency({ label, name, className }: Props) {
             </div>
 
             {clickedInside && (
-              <div className="absolute -inset-x-px -top-[calc(100%_+_0.645rem)] z-10 h-64 w-auto gap-[2px] overflow-scroll rounded-lg border border-gray-300 bg-white text-sm text-black shadow-md scrollbar-none">
-                <Command
-                  className="-py-2 rounded-lg"
-                  onKeyDown={handleDropdownKeyDown}
-                >
+              <div className="absolute -inset-x-px -top-[calc(100%_+_0.7rem)] z-10 h-[14.2rem] w-auto gap-[2px] overflow-scroll rounded-lg border border-gray-300 bg-white text-sm text-black shadow-md scrollbar-none">
+                <Command className="-py-2 rounded-lg">
                   <CommandInput
-                    className="truncate border-0 focus-visible:outline-none focus-visible:ring-transparent"
+                    className="h-6 truncate border-0 py-0.5 focus-visible:outline-none focus-visible:ring-transparent"
                     placeholder="Search for a Country"
                     onClick={(e) => e.stopPropagation()}
                     onValueChange={handleSearch}
+                    onKeyDown={handleDropdownKeyDown}
                     autoFocus
                   />
                   <CommandList ref={listRef} className="m-0 scrollbar-none">
@@ -318,19 +318,19 @@ export default function Currency({ label, name, className }: Props) {
                           value={COUNTRY.country}
                           disabled={COUNTRY.currency === "N/A"}
                           keywords={[COUNTRY.currency, COUNTRY.country]}
+                          onClick={(e) => e.stopPropagation()}
                           onMouseEnter={() => handleMouseEnter(index)}
                           onSelect={() => handleDropdownCountrySelect(COUNTRY)}
                           data-active={index === activeIndex}
                           className={cn(
-                            `w-full items-start justify-between rounded-none border-b border-t border-transparent px-4 py-3 text-base hover:cursor-pointer [&[aria-selected="true"]]:border-gray-300 [&[aria-selected="true"]]:bg-gray-100`,
-                            index === activeIndex &&
-                              "border-gray-300 bg-gray-100",
+                            `w-full items-start justify-between rounded-none border-b border-t border-transparent px-4 py-2.5 text-sm hover:cursor-pointer [&[aria-selected="true"]]:bg-[#f5f6fa]`,
+                            index === activeIndex && "hover:bg-[#f5f6fa]",
                             field.value?.country === COUNTRY.country &&
-                              "border-gray-300 bg-gray-100",
+                              "hover:bg-[#f5f6fa]",
                           )}
                         >
-                          <div className="flex w-full justify-between gap-x-4 focus-visible:border-0 focus-visible:ring-0">
-                            <span className="text-left font-semibold leading-[normal] text-[#303030]">
+                          <div className="flex w-full justify-between gap-x-4 p-[0.325rem] focus-visible:border-0 focus-visible:ring-0">
+                            <span className="text-left font-medium leading-[normal] text-[#303030]">
                               {COUNTRY.country}
                             </span>
                             <span className="font-normal leading-[normal] text-[#535353]">
