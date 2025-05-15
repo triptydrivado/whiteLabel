@@ -10,12 +10,14 @@ import { Label } from "@/components/ui/label";
 import { type TBookingSchema } from "../schemas/booking-form";
 import {
   DEFAULT_SEARCH_LOCATION,
+  latLongSchema,
   searchLocationApiSchema,
   TSearchLocation,
   type TSearchLocationApi,
 } from "../schemas/search-location";
 // import { Button } from "@/components/ui/button";
-import { MapPin } from "lucide-react";
+import { Loader2, MapPin } from "lucide-react";
+import { parseISO } from "date-fns";
 // import {
 //   Sheet,
 //   SheetClose,
@@ -34,8 +36,6 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   label: string;
   baseStyle?: string;
   className?: string;
-  value?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 // type City = {
@@ -213,7 +213,7 @@ const stateReducer: (state: State, action: Action) => State = (
     case ActionType.SET_LIST_LOCATION_TO_FORM:
       return {
         ...state,
-        input: locations[activeLocationsIndex].name,
+        input: locations[activeLocationsIndex].mainText,
         activeLocationsIndex: 0,
         isDropDownVisible: false,
         fetchLock: true,
@@ -221,7 +221,7 @@ const stateReducer: (state: State, action: Action) => State = (
     case ActionType.SET_LIST_LOCATION_TO_FORM_CLICK:
       return {
         ...state,
-        input: locations[action.payload].name,
+        input: locations[action.payload].mainText,
         activeLocationsIndex: 0,
         isDropDownVisible: false,
         fetchLock: true,
@@ -397,6 +397,85 @@ const CitySearch = React.forwardRef<
     inputRef.current.focus();
   }, []);
 
+  const handleDropDownClick = async (
+    location: TSearchLocation,
+    index: number,
+  ) => {
+    const BASE_URL = import.meta.env.VITE_DRIVADO_API;
+    const EMAIL_ENV = import.meta.env.VITE_DRIVADO_EMAIL;
+
+    try {
+      stateDispatch({
+        type: ActionType.START_FETCHING,
+      });
+
+      stateDispatch({
+        type: ActionType.SET_LIST_LOCATION_TO_FORM_CLICK,
+        payload: index,
+      });
+
+      const response = await fetch(
+        `${BASE_URL}/whiteLeveling/placesDetailsWL?placeId=${location.place_id}&email=${EMAIL_ENV}&isPickup=true`,
+        {
+          method: "POST",
+          headers: {
+            apiKey: import.meta.env.VITE_DRIVADO_KEY,
+          },
+        },
+      );
+
+      const data = await response.json();
+
+      const validatedData = latLongSchema.safeParse(data);
+
+      if (!validatedData.success) {
+        throw new Error("Validation Failed");
+      }
+
+      const { date, isWithinRegion, lat, lng, time } = validatedData.data.data;
+
+      if (name === "from") {
+        methods.setValue("date", parseISO(date));
+        methods.setValue("time", time);
+        methods.setValue("fromLatLong", {
+          lat,
+          lng,
+          isWithinRegion,
+        });
+      } else {
+        methods.setValue("toLatLong", {
+          lat,
+          lng,
+          isWithinRegion,
+        });
+      }
+
+      methods.setValue(name, location);
+    } catch (e) {
+      // Error Handling to be done
+      console.log(e);
+    } finally {
+      stateDispatch({
+        type: ActionType.END_FETCHING,
+      });
+    }
+
+    // try {
+
+    //   console.log("Rahul");
+    // } catch (error: unknown) {
+
+    //   console.log("Rahul", error);
+    // } finally {
+    //   // lodaing false
+    // }
+    // onClick={() => {
+    //   console.log("Data ======>", location, index);
+    // methods.setValue(name, location);
+
+    // }}
+  };
+
   // For Creating this Component Specific APIs
   React.useImperativeHandle(ref, () => ({}));
 
@@ -420,7 +499,7 @@ const CitySearch = React.forwardRef<
   // };
 
   // Initial Set of State
-  const watchValue = methods.watch(name)?.name;
+  const watchValue = methods.watch(name)?.mainText;
   React.useEffect(() => {
     if (watchValue)
       stateDispatch({
@@ -443,33 +522,32 @@ const CitySearch = React.forwardRef<
   // Fetching Logic
   // TODO: add timer and separate function  and clear timeout when unmount
   React.useEffect(() => {
-    // const stored = localStorage.getItem("savedLocations");
-    // if (stored) {
-    //   setData(JSON.parse(stored));
-    // }
     if (state.fetchLock) return;
 
     async function fetchLocations() {
       const BASE_URL = import.meta.env.VITE_DRIVADO_API;
       const EMAIL_ENV = import.meta.env.VITE_DRIVADO_EMAIL;
+
       try {
+        stateDispatch({
+          type: ActionType.START_FETCHING,
+        });
+
         const response = await fetch(
-          `${BASE_URL}/api/apisearchPlacesByName?placeName=${state.debouncedInput}&email=${EMAIL_ENV}`,
+          `${BASE_URL}/whiteLeveling/placesAutoCompleteWL?placeName=${state.debouncedInput}&email=${EMAIL_ENV}`,
           {
             headers: {
               apiKey: import.meta.env.VITE_DRIVADO_KEY,
             },
           },
         );
+
         const data = await response.json();
 
         const validatedData = searchLocationApiSchema.safeParse(data);
 
-        console.log("After Validation", validatedData);
-
         if (!validatedData.success) {
-          console.log("Error --->", validatedData.error);
-          throw new Error("wer");
+          throw new Error("Validation 2 Failed");
         }
 
         stateDispatch({
@@ -479,6 +557,10 @@ const CitySearch = React.forwardRef<
       } catch (e) {
         // Error Handling to be done
         console.log(e);
+      } finally {
+        stateDispatch({
+          type: ActionType.END_FETCHING,
+        });
       }
     }
 
@@ -503,7 +585,7 @@ const CitySearch = React.forwardRef<
   const dropdownList = state.locations.map((location, index) => (
     <li
       role="option"
-      key={location._id}
+      key={location.place_id}
       ref={(el) => {
         if (el) {
           optionRefs.current[index] = el; // Assign the element to the array
@@ -515,24 +597,16 @@ const CitySearch = React.forwardRef<
         "w-full border-b border-t border-transparent p-[0.625rem] text-left hover:bg-[#f5f6fa]",
         index === state.activeLocationsIndex && "rounded-none",
       )}
-      onClick={() => {
-        methods.setValue(name, location);
-        stateDispatch({
-          type: ActionType.SET_LIST_LOCATION_TO_FORM_CLICK,
-          payload: index,
-        });
-      }}
+      onClick={handleDropDownClick.bind(null, location, index)}
     >
       <p className="truncate text-sm font-normal leading-normal text-black">
-        {location.name}, {location.country}
+        {location.mainText}
       </p>
       <p className="truncate text-[0.625rem] font-normal leading-normal text-[#9D9D9D]">
-        {location.name}, {location.cityName}
+        {location.secondaryText}
       </p>
     </li>
   ));
-
-  // const value = methods.watch(name);
 
   return (
     <>
@@ -577,6 +651,11 @@ const CitySearch = React.forwardRef<
               "peer h-auto truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:placeholder:truncate xl:placeholder:text-xs 2xl:placeholder:text-base",
             )}
           />
+          {state.isFetching && (
+            <div className="absolute right-2 top-1/2 -translate-y-1/2">
+              <Loader2 className="size-4 animate-spin" />
+            </div>
+          )}
         </div>
 
         {state.isDropDownVisible && (

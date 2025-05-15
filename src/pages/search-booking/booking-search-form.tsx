@@ -1,6 +1,3 @@
-import { z } from "zod";
-import { useState } from "react";
-import { format } from "date-fns";
 import { SubmitHandler, useFormContext } from "react-hook-form";
 
 // Custom Components
@@ -11,6 +8,7 @@ import BookingDate from "./components/booking-date";
 import BookingTime from "./components/booking-time";
 import Currency from "./components/currency";
 import PassengerCount from "./components/passenger-count";
+import { z } from "zod";
 
 // Custom Types and Zod Schemas
 import { type TBookingSchema } from "./schemas/booking-form";
@@ -20,34 +18,33 @@ const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
   const methods = useFormContext<TBookingSchema>();
 
-  const [citySelectedData, setCitySelectedData] = useState<string>("");
-
   // Booking type tab: 'Oneway' | 'Hourly'
   const bookingType = methods.watch("bookingType");
 
   const handleSubmit: SubmitHandler<TBookingSchema> = async (data) => {
-    console.log("Gello -->", data);
-    // TODO: add api
+    console.log("data -->", data);
+    // add api
 
     const BASE_URL = import.meta.env.VITE_DRIVADO_API;
 
     try {
       const payload = {
         BookingDetails: {
-          sourceLat: data.from.lat,
-          sourceLng: data.from.lng,
-          destinationLat: data.from.lat,
-          destinationLng: data.from.lng,
-          sourcePlaceName: data.from.cityName,
-          destinationPlaceName: data.from.cityName,
-          date: format(data.date, "yyyy-MM-dd"),
+          sourceLat: data.fromLatLong.lat,
+          sourceLng: data.fromLatLong.lng,
+          destinationLat: data.toLatLong.lat,
+          destinationLng: data.toLatLong.lng,
+          sourcePlaceName: data.from.mainText,
+          destinationPlaceName: data.from.secondaryText,
+          date: data.date,
           time: data.time,
-          passenger: data.pax,
-          currency: data.currency.currency,
+          passenger: data.time,
         },
       };
 
-      // fetch data
+      console.log("submitting data-------->", data);
+
+      //   // fetch data
       const response = await fetch(
         `${BASE_URL}/whiteLeveling/searchIdGenOneWayWL?email=techsupport10@drivado.com`,
         {
@@ -69,12 +66,20 @@ export default function DesktopBookingSearchForm() {
         throw new Error("data not found");
       }
 
-      // success
-      // local storage set Itm
+      console.log("Data submitted successfully:", result);
+
+      //   // local storage set Item
       localStorage.setItem("validatedData", JSON.stringify(parseResult.data));
+
+      console.log("Data saved to localStorage");
     } catch (error) {
       console.error("Submission error:", error);
     }
+
+    console.log("saved in local storage", "validatedData");
+
+    // localStorage.setItem("test", "Hello, World!");
+    // console.log(localStorage.getItem("test"));
   };
 
   return (
@@ -93,11 +98,6 @@ export default function DesktopBookingSearchForm() {
           <CitySearch
             label="from"
             name="from"
-            value={citySelectedData}
-            // onChange={(e) => setCitySelectedData(e.target.value)}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setCitySelectedData(e.target.value)
-            }
             baseStyle={baseStyle}
             className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
@@ -109,8 +109,6 @@ export default function DesktopBookingSearchForm() {
             <CitySearch
               label="to"
               name="to"
-              value={citySelectedData}
-              onChange={(e) => setCitySelectedData(e.target.value)}
               baseStyle={baseStyle}
               className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
             />
@@ -171,7 +169,7 @@ export default function DesktopBookingSearchForm() {
 
         {/* Search Button */}
         <div className="pt-3">
-          <Button className="w-full shrink-0 bg-[var(--brand-icon-color)] text-[var(--brand-btn-text)]">
+          <Button className="w-full shrink-0 bg-[var(--brand-theme-color)] text-[var(--brand-hover-btn-text)]">
             <div className="rounded-lg p-[0.625rem]">
               {/* <Link to="/search-results" state={{ tripType: "oneway" }}> */}
               Search
