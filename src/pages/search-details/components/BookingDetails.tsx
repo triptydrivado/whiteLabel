@@ -42,7 +42,7 @@ const BookingDetails = () => {
               {vehicle.vehicleType}
             </h2>
             <div className="flex items-center justify-end space-x-1">
-              <div className="ml-4 flex items-center gap-1 rounded-[28px] bg-[var(--brand-icon-color)] px-2 py-1 text-white xl:ml-6 3xl:ml-8 3xl:px-3 3xl:py-[6px]">
+              <div className="ml-4 flex items-center gap-1 rounded-[28px] bg-[var(--brand-theme-color)] px-2 py-1 text-white xl:ml-6 3xl:ml-8 3xl:px-3 3xl:py-[6px]">
                 {tripType === "oneway" ? (
                   <OnewayTwoIcon className="size-[14px] flex-shrink-0 xl:size-3 3xl:size-[14px]" />
                 ) : (
@@ -82,7 +82,7 @@ const BookingDetails = () => {
 
       <div className="flex items-center justify-between pt-[4.25rem]">
         <div className="w-[140px] leading-5 md:w-[200px] md:leading-3 xl:w-[300px]">
-          <h2 className="text-base font-bold leading-3 text-[var(--brand-icon-color)] md:text-xs lg:text-base xl:text-xl">
+          <h2 className="text-base font-bold leading-3 text-[var(--brand-theme-color)] md:text-xs lg:text-base xl:text-xl">
             Total Price
           </h2>
           <span className="text-[8px] font-medium leading-none text-[#282828]/50 lg:text-xs xl:leading-6">

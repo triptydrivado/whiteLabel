@@ -67,7 +67,7 @@ const PaymentButton: React.FC = () => {
       <RazorpayScriptLoader />
       <button
         onClick={handlePayment}
-        className="w-full items-center justify-center rounded-[11px] bg-[var(--brand-icon-color)] px-4 py-[15px] text-xs font-medium text-white hover:bg-[var(--brand-icon-color)] xl:text-base"
+        className="w-full items-center justify-center rounded-[11px] bg-[var(--brand-theme-color)] px-4 py-[15px] text-xs font-medium text-white hover:bg-[var(--brand-theme-color)] xl:text-base"
       >
         Confirm & Pay
       </button>

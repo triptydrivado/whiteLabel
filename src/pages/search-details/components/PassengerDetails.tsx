@@ -47,13 +47,13 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
     setIsOpen(!isOpen);
   };
 
-  const salutation = localStorage.getItem("salutation");
-  const firstName = localStorage.getItem("firstName");
-  const lastName = localStorage.getItem("lastName");
-  const contactNumber = localStorage.getItem("contactNumber");
-  const email = localStorage.getItem("email");
-  const flightNumber = localStorage.getItem("flightNumber");
-  const splRequest = localStorage.getItem("splRequest");
+  // const salutation = localStorage.getItem("salutation");
+  // const firstName = localStorage.getItem("firstName");
+  // const lastName = localStorage.getItem("lastName");
+  // const contactNumber = localStorage.getItem("contactNumber");
+  // const email = localStorage.getItem("email");
+  // const flightNumber = localStorage.getItem("flightNumber");
+  // const splRequest = localStorage.getItem("splRequest");
 
   const handleSubmit: SubmitHandler<TPassengerDetails> = (data) => {
     console.log("formdata", data);
@@ -84,9 +84,9 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
         onSubmit={methods.handleSubmit(handleSubmit)}
       >
         <div className="peer mb-2 mt-4 flex items-center justify-between rounded-md bg-[#F5F6FA] px-4 py-[14px] text-[#0D0D0D]/50 hover:bg-[#EBECF0] md:mb-3 lg:rounded-lg lg:px-4 lg:py-[18px] 2xl:rounded-[10px]">
-          <h2 className="text-xs font-normal text-[#0D0D0D]/50 peer-hover:text-[var(--brand-icon-color)] 2xl:text-sm">
+          <h2 className="text-xs font-normal text-[#0D0D0D]/50 peer-hover:text-[var(--brand-theme-color)] 2xl:text-sm">
             Are you the passenger ?
-            <span className="text-[var(--brand-icon-color)]">*</span>
+            <span className="text-[var(--brand-theme-color)]">*</span>
           </h2>
           <div className="flex items-center space-x-2 lg:space-x-4">
             <div className="inline-flex items-center">
@@ -99,10 +99,10 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
                   value="true"
                   defaultChecked={true}
                   type="radio"
-                  className="peer size-5 cursor-pointer appearance-none rounded-full border border-[#cecece] transition-all checked:border-[var(--brand-icon-color)] sm:size-4 md:size-3.5 lg:size-5"
+                  className="peer size-5 cursor-pointer appearance-none rounded-full border border-[#cecece] transition-all checked:border-[var(--brand-theme-color)] sm:size-4 md:size-3.5 lg:size-5"
                   id="yes"
                 />
-                <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[var(--brand-icon-color)] opacity-0 transition-opacity duration-200 peer-checked:opacity-100 sm:size-2 md:size-2 lg:size-3"></span>
+                <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[var(--brand-theme-color)] opacity-0 transition-opacity duration-200 peer-checked:opacity-100 sm:size-2 md:size-2 lg:size-3"></span>
               </label>
               <h2 className="ml-1 text-xs font-medium text-[#72777a] md:text-sm lg:ml-1.5">
                 Yes
@@ -117,10 +117,10 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
                   {...methods.register("isPassenger")}
                   value="false"
                   type="radio"
-                  className="peer size-5 cursor-pointer appearance-none rounded-full border border-[#cecece] transition-all checked:border-[var(--brand-icon-color)] sm:size-4 md:size-3.5 lg:size-5"
+                  className="peer size-5 cursor-pointer appearance-none rounded-full border border-[#cecece] transition-all checked:border-[var(--brand-theme-color)] sm:size-4 md:size-3.5 lg:size-5"
                   id="no"
                 />
-                <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[var(--brand-icon-color)] opacity-0 transition-opacity duration-200 peer-checked:opacity-100 sm:size-2 md:size-2 lg:size-3"></span>
+                <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[var(--brand-theme-color)] opacity-0 transition-opacity duration-200 peer-checked:opacity-100 sm:size-2 md:size-2 lg:size-3"></span>
               </label>
               <h2 className="ml-1 text-xs font-medium text-[#72777a] md:text-sm lg:ml-1.5">
                 No
@@ -157,7 +157,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
                 <li
                   key={index}
                   onClick={() => handleSelect(title)}
-                  className="cursor-pointer px-4 py-3 text-sm font-normal text-black hover:bg-[#F5F6FA] hover:text-[var(--brand-icon-color)] first:hover:rounded-t-[10px] last:hover:rounded-b-[10px]"
+                  className="cursor-pointer px-4 py-3 text-sm font-normal text-black hover:bg-[#F5F6FA] hover:text-[var(--brand-theme-color)] first:hover:rounded-t-[10px] last:hover:rounded-b-[10px]"
                 >
                   {title}
                 </li>
@@ -248,7 +248,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
                   className="hidden"
                 />
                 {methods.watch("consent") ? (
-                  <SquareTickIcon className="size-3.5 rounded-sm bg-[var(--brand-icon-color)] text-white md:size-3 lg:size-4 2xl:size-5" />
+                  <SquareTickIcon className="size-3.5 rounded-sm bg-[var(--brand-theme-color)] text-white md:size-3 lg:size-4 2xl:size-5" />
                 ) : (
                   <SquareIcon className="size-3.5 rounded-sm border border-[#606060] text-[#606060] md:size-3 lg:size-4 2xl:size-5" />
                 )}
@@ -258,21 +258,21 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
               I agree to
               <Link
                 to=""
-                className="font-semibold hover:text-[var(--brand-icon-color)]"
+                className="font-semibold hover:text-[var(--brand-theme-color)]"
               >
                 &nbsp;Terms & Conditions
               </Link>
               ,
               <Link
                 to=""
-                className="font-semibold hover:text-[var(--brand-icon-color)]"
+                className="font-semibold hover:text-[var(--brand-theme-color)]"
               >
                 Booking Conditions
               </Link>
               and
               <Link
                 to=""
-                className="font-semibold hover:text-[var(--brand-icon-color)]"
+                className="font-semibold hover:text-[var(--brand-theme-color)]"
               >
                 Privacy Policy
               </Link>
@@ -280,7 +280,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
           </div>
           <button
             disabled={!methods.watch("consent")}
-            className="mt-4 w-full items-center justify-center rounded-[11px] bg-[var(--brand-icon-color)] px-4 py-3 text-sm font-semibold text-white disabled:bg-gray-500 disabled:hover:cursor-not-allowed md:text-xs lg:text-base 2xl:rounded-xl"
+            className="mt-4 w-full items-center justify-center rounded-[11px] bg-[var(--brand-theme-color)] px-4 py-3 text-sm font-semibold text-white disabled:bg-gray-500 disabled:hover:cursor-not-allowed md:text-xs lg:text-base 2xl:rounded-xl"
           >
             Confirm Booking
           </button>

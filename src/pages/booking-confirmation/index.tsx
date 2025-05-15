@@ -207,7 +207,7 @@ export default function BookingConfirmation() {
                       <p className="text-[9px] font-medium text-[#6D6D6D]">
                         Booking ID
                       </p>
-                      <p className="text-xs font-semibold text-[var(--brand-icon-color)]">
+                      <p className="text-xs font-semibold text-[var(--brand-theme-color)]">
                         {bookingData.bookingId}
                       </p>
                     </div>
@@ -246,25 +246,25 @@ export default function BookingConfirmation() {
                   </div>
                   <div className="mt-[28px] flex items-center space-x-2 text-[11px] font-semibold">
                     <div className="text-gray-700">
-                      <span className="text-[var(--brand-icon-color)]">
+                      <span className="text-[var(--brand-theme-color)]">
                         &#8226;
                       </span>{" "}
                       {bookingData.pax}
                     </div>
                     <div className="text-gray-700">
-                      <span className="text-[var(--brand-icon-color)]">
+                      <span className="text-[var(--brand-theme-color)]">
                         &#8226;
                       </span>{" "}
                       {bookingData.distance}
                     </div>
                     <div className="text-gray-700">
-                      <span className="text-[var(--brand-icon-color)]">
+                      <span className="text-[var(--brand-theme-color)]">
                         &#8226;
                       </span>{" "}
                       {bookingData.tol_distance}
                     </div>
                     <div className="text-gray-700">
-                      <span className="text-[var(--brand-icon-color)]">
+                      <span className="text-[var(--brand-theme-color)]">
                         &#8226;
                       </span>{" "}
                       {bookingData.bookingType}
@@ -275,7 +275,7 @@ export default function BookingConfirmation() {
 
                 {/* Passenger Details */}
                 <div className="mt-4">
-                  <h3 className="mb-4 text-[10px] font-semibold text-[var(--brand-icon-color)]">
+                  <h3 className="mb-4 text-[10px] font-semibold text-[var(--brand-theme-color)]">
                     Passenger Details
                   </h3>
                   <div className="grid grid-cols-[75px,1fr] gap-y-4 text-xs mobM:grid-cols-[130px,1fr]">
@@ -297,7 +297,7 @@ export default function BookingConfirmation() {
                 <hr className="mt-4 w-full border-t border-[#C3D4E9]" />
                 {/* Vehicle Details */}
                 <div className="mt-6">
-                  <h3 className="mb-4 text-[10px] font-semibold text-[var(--brand-icon-color)]">
+                  <h3 className="mb-4 text-[10px] font-semibold text-[var(--brand-theme-color)]">
                     Vehicle Details
                   </h3>
                   <div className="grid grid-cols-[130px,1fr] gap-y-4 text-xs">
@@ -319,7 +319,7 @@ export default function BookingConfirmation() {
                 <div className="mt-[32px] text-center">
                   <div className="flex justify-between">
                     <span className="text-left">
-                      <h3 className="text-sm font-semibold text-[var(--brand-icon-color)]">
+                      <h3 className="text-sm font-semibold text-[var(--brand-theme-color)]">
                         Total Price
                       </h3>
                       <p className="mt-[3px] w-[120px] text-[9px] font-medium text-[#282828] mobM:w-max">
@@ -343,7 +343,7 @@ export default function BookingConfirmation() {
                       </button>
                       <button
                         onClick={downloadInvoice}
-                        className="flex w-full items-center gap-2 rounded-lg bg-[var(--brand-icon-color)] px-6 py-2 text-white sm:w-auto"
+                        className="flex w-full items-center gap-2 rounded-lg bg-[var(--brand-theme-color)] px-6 py-2 text-white sm:w-auto"
                       >
                         <InvoiceSvg className="h-4 w-4" />
                         Invoice
@@ -386,7 +386,7 @@ export default function BookingConfirmation() {
                   </h2>
                   <div className="mb-6 mt-[44px] flex items-center justify-between text-sm xl:mt-[46px]">
                     <div className="flex rounded-lg border border-[#EDEDED] p-[6px] xl:p-2 2xl:p-2">
-                      <p className="text-sm font-medium text-[var(--brand-icon-color)]">
+                      <p className="text-sm font-medium text-[var(--brand-theme-color)]">
                         Booking ID-
                       </p>
                       <p className="text-sm font-semibold text-[#1E1E1E]">
@@ -442,25 +442,25 @@ export default function BookingConfirmation() {
                   {/* Additional Info */}
                   <div className="mt-[30px] flex items-center space-x-[14px] rounded-2xl text-sm font-semibold xl:mt-[22px] xl:space-x-[18px] 2xl:mt-[24px] 2xl:space-x-5 2xl:text-base">
                     <p className="text-gray-700">
-                      <span className="text-[var(--brand-icon-color)]">
+                      <span className="text-[var(--brand-theme-color)]">
                         &#8226;
                       </span>{" "}
                       {bookingData.tol_distance}
                     </p>
                     <p className="text-gray-700">
-                      <span className="text-[var(--brand-icon-color)]">
+                      <span className="text-[var(--brand-theme-color)]">
                         &#8226;
                       </span>{" "}
                       {bookingData.distance}
                     </p>
                     <p className="text-gray-700">
-                      <span className="text-[var(--brand-icon-color)]">
+                      <span className="text-[var(--brand-theme-color)]">
                         &#8226;
                       </span>{" "}
                       {bookingData.pax}
                     </p>
                     <p className="text-gray-700">
-                      <span className="text-[var(--brand-icon-color)]">
+                      <span className="text-[var(--brand-theme-color)]">
                         &#8226;
                       </span>{" "}
                       {bookingData.bookingType}
@@ -472,7 +472,7 @@ export default function BookingConfirmation() {
 
                 {/* Passenger Details */}
                 <div className="mt-4 2xl:mt-[25px]">
-                  <h3 className="mb-[20px] text-sm font-semibold text-[var(--brand-icon-color)] xl:text-base 2xl:text-[20px]">
+                  <h3 className="mb-[20px] text-sm font-semibold text-[var(--brand-theme-color)] xl:text-base 2xl:text-[20px]">
                     Passenger Details
                   </h3>
                   <div className="mt-5 grid grid-cols-[160px,1fr] gap-y-4 text-sm xl:mt-[18px] xl:grid-cols-[160px,1fr] 2xl:mt-[20px] 2xl:grid-cols-[170px,1fr] 2xl:text-base">
@@ -510,7 +510,7 @@ export default function BookingConfirmation() {
                 <hr className="mt-4 border-t border-[#C3D4E9] px-[10px] 2xl:mt-[20px]" />
                 {/* Vehicle Details */}
                 <div className="mt-4 xl:mt-[25px]">
-                  <h3 className="text-sm font-semibold text-[var(--brand-icon-color)] xl:text-base 2xl:text-[20px]">
+                  <h3 className="text-sm font-semibold text-[var(--brand-theme-color)] xl:text-base 2xl:text-[20px]">
                     Vehicle Details
                   </h3>
                   <div className="mt-5 grid grid-cols-[160px,1fr] gap-y-4 text-sm xl:grid-cols-[160px,1fr] 2xl:mt-[20px] 2xl:grid-cols-[170px,1fr] 2xl:text-base">
@@ -539,7 +539,7 @@ export default function BookingConfirmation() {
                 <div className="mt-3 text-center xl:mt-4 2xl:mt-[20px]">
                   <div className="flex justify-between 2xl:mt-[20px]">
                     <span className="text-left">
-                      <h3 className="text-sm font-bold text-[var(--brand-icon-color)] xl:text-[20px]">
+                      <h3 className="text-sm font-bold text-[var(--brand-theme-color)] xl:text-[20px]">
                         Total Price
                       </h3>
                       <p className="mt-[6px] text-[10px] font-medium text-[#282828] xl:text-xs mobM:w-max">
@@ -563,7 +563,7 @@ export default function BookingConfirmation() {
                       </button>
                       <button
                         onClick={downloadInvoice}
-                        className="flex items-center gap-2 rounded-lg bg-[var(--brand-icon-color)] px-6 py-2 text-white md:rounded-[11px] xl:rounded-[10px] 2xl:px-[24px] 2xl:py-[10px]"
+                        className="flex items-center gap-2 rounded-lg bg-[var(--brand-theme-color)] px-6 py-2 text-white md:rounded-[11px] xl:rounded-[10px] 2xl:px-[24px] 2xl:py-[10px]"
                       >
                         <InvoiceSvg className="h-4 w-4" />
                         Invoice

@@ -50,7 +50,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
         </h2>
         <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-6 xl:pt-6">
           <div className="mb-3 flex items-center space-x-4 text-center 2xl:mb-8">
-            <div className="flex size-7 items-center justify-center rounded-full bg-[var(--brand-icon-color)] text-center text-xs font-light text-white xl:size-6 xl:text-sm 2xl:size-11 2xl:text-3xl">
+            <div className="flex size-7 items-center justify-center rounded-full bg-[var(--brand-theme-color)] text-center text-xs font-light text-white xl:size-6 xl:text-sm 2xl:size-11 2xl:text-3xl">
               {/* C */}
               {firstLetterCapitalized}
             </div>

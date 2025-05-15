@@ -33,9 +33,9 @@ const BookingCard = () => {
       <div className="flex justify-between">
         <div className="flex items-center gap-2">
           {bookingData.tripType === "hourly" ? (
-            <HourlyIcon className="size-3 text-[var(--brand-icon-color)]" />
+            <HourlyIcon className="size-3 text-[var(--brand-theme-color)]" />
           ) : (
-            <OneWayIcon className="ml-1 size-3 text-[var(--brand-icon-color)]" />
+            <OneWayIcon className="ml-1 size-3 text-[var(--brand-theme-color)]" />
           )}
           <span className="ml-1 text-[10px] font-medium sm:text-xs">
             {bookingData.tripType}
@@ -51,7 +51,7 @@ const BookingCard = () => {
                 key={index}
                 className={`flex w-full items-center ${label === "From" ? "mb-4" : ""}`}
               >
-                <LocationMobSvg className="h-5 w-5 text-[var(--brand-icon-color)]" />
+                <LocationMobSvg className="h-5 w-5 text-[var(--brand-theme-color)]" />
                 <div className="ml-2 flex min-w-0 flex-1 flex-col">
                   <span className="text-[10px] font-normal text-gray-500 sm:text-xs">
                     {label}
@@ -84,7 +84,7 @@ const BookingCard = () => {
       ) : (
         <div className="mt-[15px] flex flex-col">
           <div className="flex items-center">
-            <LocationMobSvg className="h-5 w-5 text-[var(--brand-icon-color)]" />
+            <LocationMobSvg className="h-5 w-5 text-[var(--brand-theme-color)]" />
             <div className="ml-2 flex flex-col">
               <span className="text-[10px] font-normal text-gray-500 sm:text-xs">
                 From
@@ -97,7 +97,7 @@ const BookingCard = () => {
 
           <div className="mt-4 flex justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Duration1Icon className="h-4 w-4 text-[var(--brand-icon-color)]" />
+              <Duration1Icon className="h-4 w-4 text-[var(--brand-theme-color)]" />
               <span className="text-[9px] sm:text-xs mobM:text-[10px] mobL:text-[10px]">
                 Duration:
                 <p className="text-[9px] font-semibold sm:text-[11px] mobM:text-[11px] mobL:text-[11px]">
@@ -107,7 +107,7 @@ const BookingCard = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-[var(--brand-icon-color)]" />
+              <Users className="h-4 w-4 text-[var(--brand-theme-color)]" />
               <span className="text-[9px] sm:text-xs mobM:text-[10px] mobL:text-[10px]">
                 Passengers:{" "}
                 <p className="text-[9px] font-semibold sm:text-[11px] mobM:text-[11px] mobL:text-[11px]">
@@ -117,7 +117,7 @@ const BookingCard = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              <MapDeskIcon className="h-4 w-4 text-[var(--brand-icon-color)]" />
+              <MapDeskIcon className="h-4 w-4 text-[var(--brand-theme-color)]" />
               <span className="text-[9px] sm:text-xs mobM:text-[10px] mobL:text-[10px]">
                 Distance:
                 <p className="text-[9px] font-semibold sm:text-[11px] mobM:text-[11px] mobL:text-[11px]">
@@ -140,7 +140,7 @@ const BookingCard = () => {
                 detail.wide ? "flex-[1.6]" : "flex-1"
               } min-w-0`}
             >
-              <detail.icon className="h-[15px] w-[15px] text-[var(--brand-icon-color)]" />
+              <detail.icon className="h-[15px] w-[15px] text-[var(--brand-theme-color)]" />
               <span className="text-[10px] font-normal sm:ml-2 sm:text-xs mobM:ml-2 mobL:ml-2">
                 {detail.label}
               </span>

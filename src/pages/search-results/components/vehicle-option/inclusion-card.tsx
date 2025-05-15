@@ -68,7 +68,7 @@ const InclusionCard = () => {
           >
             <div className="flex h-full gap-x-3">
               <div className="flex h-[39px] w-[39px] items-center justify-center rounded-lg bg-[#F7F6F6]">
-                <Icon className="h-4 w-4 text-[var(--brand-icon-color)]" />
+                <Icon className="h-4 w-4 text-[var(--brand-theme-color)]" />
               </div>
 
               <div className="flex-1">

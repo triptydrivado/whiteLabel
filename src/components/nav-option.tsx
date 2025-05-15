@@ -7,7 +7,7 @@ export default function NavOptions() {
 
   const items = [
     { name: "Home", path: "/search-booking" },
-    { name: "Vehicles", path: "/search-results" },
+    { name: "Vehicles", path: "/select-vehicle" },
     { name: "Details", path: "/passenger-details" },
     { name: "Summary", path: "/booking-summary" },
     { name: "Overview", path: "/booking-confirmation" },
@@ -36,7 +36,7 @@ export default function NavOptions() {
                   {isCompleted ? (
                     <Link
                       to={item.path}
-                      className="hover:text-bold text-[#282828] hover:text-[var(--brand-icon-color)]"
+                      className="hover:text-bold text-[#282828] hover:text-[var(--brand-theme-color)]"
                     >
                       {item.name}
                     </Link>
@@ -44,7 +44,7 @@ export default function NavOptions() {
                     <span
                       className={`${
                         isSelected
-                          ? "font-semibold text-[var(--brand-icon-color)]"
+                          ? "font-semibold text-[var(--brand-theme-color)]"
                           : "text-[#282828]"
                       }`}
                     >
@@ -55,7 +55,7 @@ export default function NavOptions() {
                     <ChevronRight
                       className={`${
                         isSelected
-                          ? "text-[var(--brand-icon-color)]"
+                          ? "text-[var(--brand-theme-color)]"
                           : isCompleted
                             ? "text-[#282828]"
                             : "text-[#282828]"
