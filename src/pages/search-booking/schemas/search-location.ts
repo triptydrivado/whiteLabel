@@ -4,24 +4,30 @@ import { z } from "zod";
 export const searchLocationSchema = z.object({
   _id: z.string().min(1),
   name: z.string().min(1),
-  category: z.string().min(1),
   lat: z.string().min(1),
   lng: z.string().min(1),
-  iata: z.string().min(1),
+
+  category: z.string().min(1),
+  // giataId: z.string().min(1),
   cityName: z.string().min(1),
   cityId: z.string().min(1),
   country: z.string().min(1),
 
-  description: z.string().min(1),
-  place_id: z.string().min(1),
-  structured_formatting: z.object({
-    main_text: z.string().min(1),
-    secondary_text: z.string().min(1).optional(),
-  }),
+  // address: z.object({
+  //   addressOne: z.string(),
+  //   addressTwo: z.string(),
+  //   addressThree: z.string().optional(),
+  //   street: z.string(),
+  //   streetNumber: z.string(),
+  //   cityName: z.string(),
+  //   postalCode: z.string(),
+  // }),
 });
 
 // Schema for Api Response
-export const searchLocationApiSchema = z.array(searchLocationSchema);
+export const searchLocationApiSchema = z.object({
+  data: z.array(searchLocationSchema),
+});
 
 // Inferred Types
 export type TSearchLocation = z.infer<typeof searchLocationSchema>;
@@ -34,15 +40,17 @@ export const DEFAULT_SEARCH_LOCATION: TSearchLocation = {
   category: "",
   lat: "",
   lng: "",
-  iata: "",
+  // giataId: "",
   cityName: "",
   cityId: "",
   country: "",
-
-  description: "",
-  place_id: "",
-  structured_formatting: {
-    main_text: "",
-    secondary_text: "",
-  },
+  // address: {
+  //   addressOne: "",
+  //   addressTwo: "",
+  //   cityName: "",
+  //   postalCode: "",
+  //   street: "",
+  //   streetNumber: "",
+  //   addressThree: "",
+  // },
 };

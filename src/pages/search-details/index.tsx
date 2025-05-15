@@ -28,7 +28,7 @@ export default function SearchDetails() {
 
   return (
     <FormProvider {...methods}>
-      <section className="relative z-20 bg-[#f6f7f9]">
+      <section className="relative z-20 h-full bg-[#f6f7f9]">
         <Container className="w-full py-6 sm:px-5">
           <NavOptions />
           <div className="py-4 sm:flex sm:space-x-4 sm:py-6 xl:space-x-[30px]">

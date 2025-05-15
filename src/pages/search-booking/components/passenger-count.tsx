@@ -22,7 +22,7 @@ type Props = {
 export default function PassengerCount({
   label,
   name,
-  baseStyle,
+  // baseStyle,
   className,
 }: Props) {
   const methods = useFormContext<TBookingSchema>();
@@ -62,7 +62,7 @@ export default function PassengerCount({
         ref={divRef}
         className={cn(
           "relative flex items-center justify-start gap-[6px] hover:cursor-pointer",
-          baseStyle,
+          // baseStyle,
           "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-drivado-red",
           className,
           clickedInside &&
@@ -117,7 +117,7 @@ export default function PassengerCount({
                   if (e.key === "Enter") e.preventDefault();
                 }}
                 type="number"
-                className="inline-block h-auto flex-grow appearance-none border-0 p-0 text-center text-sm font-medium leading-[normal] text-[#1E1E1E] shadow-none placeholder:text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:text-[2rem] xl:text-sm xl:leading-none"
+                className="inline-block h-auto flex-grow appearance-none border-0 p-0 text-center text-sm font-medium leading-[normal] text-[#1E1E1E] shadow-none placeholder:text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent xl:leading-none"
               />
               <Button
                 type="button"

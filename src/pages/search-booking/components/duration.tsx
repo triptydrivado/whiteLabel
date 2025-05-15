@@ -24,7 +24,7 @@ type Props = {
   className?: string;
 };
 
-export default function Duration({ name, baseStyle, className }: Props) {
+export default function Duration({ name, className }: Props) {
   // const [show, setShow] = React.useState(false);
   const methods = useFormContext<TBookingSchema>();
 
@@ -83,7 +83,7 @@ export default function Duration({ name, baseStyle, className }: Props) {
               }}
               className={cn(
                 "relative flex items-center gap-[6px] hover:cursor-pointer",
-                baseStyle,
+                // baseStyle,
                 "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1.5 [&_svg]:focus-visible:text-drivado-red",
                 desktopClickInside &&
                   "border-[#FFB1BA] bg-gray-100 [&_svg]:text-drivado-red",

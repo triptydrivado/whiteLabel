@@ -25,7 +25,7 @@ type Props = {
 export default function BookingTime({
   label,
   name,
-  baseStyle,
+  // baseStyle,
   className,
 }: Props) {
   // const [show, setShow] = React.useState<boolean>(false);
@@ -82,7 +82,7 @@ export default function BookingTime({
         }}
         className={cn(
           "relative flex items-center gap-[6px] hover:cursor-pointer",
-          baseStyle,
+          // baseStyle,
           "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-drivado-red",
           desktopClickInside &&
             "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",

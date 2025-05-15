@@ -11,6 +11,7 @@ import { type TBookingSchema } from "../schemas/booking-form";
 import {
   DEFAULT_SEARCH_LOCATION,
   searchLocationApiSchema,
+  TSearchLocation,
   type TSearchLocationApi,
 } from "../schemas/search-location";
 // import { Button } from "@/components/ui/button";
@@ -26,14 +27,57 @@ import { MapPin } from "lucide-react";
 // } from "@/components/ui/sheet";
 
 // import for Apis
-const CITY_SEARCH_API = import.meta.env.VITE_LOCATION_SEARCH_API;
+// const CITY_SEARCH_API = import.meta.env.VITE_LOCATION_SEARCH_API;
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   name: "from" | "to";
   label: string;
   baseStyle?: string;
   className?: string;
+  value?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+// type City = {
+//   _id: string;
+//   name: string;
+//   category: string;
+//   lat: string;
+//   lng: string;
+//   cityName: string;
+//   cityId: string;
+//   country: string;
+//   address?: {
+//     addressOne?: string;
+//     addressTwo?: string;
+//     addressThree?: string;
+//     street?: string;
+//     streetNumber?: string;
+//     cityName?: string;
+//     postalCode?: string;
+//   };
+// };
+
+// type Place = {
+//   _id: string;
+//   name: string;
+//   category: string;
+//   cityName: string;
+//   country: string;
+//   lat?: string;
+//   lng?: string;
+//   iata?: string;
+//   giataId?: string;
+//   address?: {
+//     addressOne?: string;
+//     addressTwo?: string;
+//     addressThree?: string;
+//     street?: string;
+//     streetNumber?: string;
+//     cityName?: string;
+//     postalCode?: string;
+//   };
+// };
 
 type State = {
   // Local State
@@ -45,7 +89,7 @@ type State = {
   // Fetch State
   isFetching: boolean;
   isFetched: boolean;
-  locations: TSearchLocationApi;
+  locations: TSearchLocation[];
   activeLocationsIndex: number;
   fetchLock: boolean;
 };
@@ -85,7 +129,10 @@ type Action =
   | { type: ActionType.END_FETCHING }
   | { type: ActionType.SET_FETCHED }
   | { type: ActionType.SET_NOT_FETCHED }
-  | { type: ActionType.SET_FETCHED_LOCATIONS; payload: TSearchLocationApi }
+  | {
+      type: ActionType.SET_FETCHED_LOCATIONS;
+      payload: TSearchLocationApi["data"];
+    }
   | { type: ActionType.SHOW_DROPDOWN }
   | { type: ActionType.HIDE_DROPDOWN }
   | { type: ActionType.TOGGLE_DROPDOWN }
@@ -166,7 +213,7 @@ const stateReducer: (state: State, action: Action) => State = (
     case ActionType.SET_LIST_LOCATION_TO_FORM:
       return {
         ...state,
-        input: locations[activeLocationsIndex].structured_formatting.main_text,
+        input: locations[activeLocationsIndex].name,
         activeLocationsIndex: 0,
         isDropDownVisible: false,
         fetchLock: true,
@@ -174,7 +221,7 @@ const stateReducer: (state: State, action: Action) => State = (
     case ActionType.SET_LIST_LOCATION_TO_FORM_CLICK:
       return {
         ...state,
-        input: locations[action.payload].structured_formatting.main_text,
+        input: locations[action.payload].name,
         activeLocationsIndex: 0,
         isDropDownVisible: false,
         fetchLock: true,
@@ -191,10 +238,90 @@ const stateReducer: (state: State, action: Action) => State = (
   }
 };
 
+// const stateReducer: (state: State, action: Action) => State = (
+//   state,
+//   action,
+// ) => {
+//   const { input, isDropDownVisible, locations, activeLocationsIndex } = state;
+//   const listLength = locations.length;
+
+//   const nextIndex = (activeLocationsIndex + 1) % listLength;
+//   const prevIndex =
+//     activeLocationsIndex === 0
+//       ? locations.length - 1
+//       : activeLocationsIndex - 1;
+
+//   switch (action.type) {
+//     // Input and Debounce
+//     case ActionType.SET_INPUT:
+//       return { ...state, input: action.payload };
+//     case ActionType.SET_DEBOUNCE:
+//       return { ...state, debouncedInput: input };
+
+//     // IsDebounce
+//     case ActionType.START_FETCHING:
+//       return { ...state, isFetching: true };
+//     case ActionType.END_FETCHING:
+//       return { ...state, isFetching: false };
+//     case ActionType.SET_FETCHED_LOCATIONS:
+//       return { ...state, locations: action.payload };
+
+//     // Dropdown
+//     case ActionType.SHOW_DROPDOWN:
+//       return { ...state, isDropDownVisible: true };
+//     case ActionType.HIDE_DROPDOWN:
+//       return { ...state, isDropDownVisible: false };
+//     case ActionType.TOGGLE_DROPDOWN:
+//       return { ...state, isDropDownVisible: !isDropDownVisible };
+
+//     // ActiveLocationsIndex
+//     case ActionType.INCREMENT_ACTIVE_LOCATION_INDEX:
+//       if (!isDropDownVisible) {
+//         return { ...state, isDropDownVisible: true };
+//       }
+
+//       return { ...state, activeLocationsIndex: nextIndex };
+
+//     case ActionType.DECREMENT_ACTIVE_LOCATION_INDEX:
+//       if (!isDropDownVisible) {
+//         return { ...state, isDropDownVisible: true };
+//       }
+
+//       return { ...state, activeLocationsIndex: prevIndex };
+
+//     // Set Location to input
+//     case ActionType.SET_LIST_LOCATION_TO_FORM:
+//       return {
+//         ...state,
+//         input: locations[activeLocationsIndex].name,
+//         activeLocationsIndex: 0,
+//         isDropDownVisible: false,
+//         fetchLock: true,
+//       };
+//     case ActionType.SET_LIST_LOCATION_TO_FORM_CLICK:
+//       return {
+//         ...state,
+//         input: locations[action.payload].name,
+//         activeLocationsIndex: 0,
+//         isDropDownVisible: false,
+//         fetchLock: true,
+//       };
+
+//     // Fetch Lock
+//     case ActionType.SET_FETCH_LOCK:
+//       return { ...state, fetchLock: true };
+//     case ActionType.UNSET_FETCH_LOCK:
+//       return { ...state, fetchLock: false };
+
+//     default:
+//       return initialState;
+//   }
+// };
+
 const CitySearch = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>,
   Props
->(({ name, label, baseStyle, className, ...props }, ref) => {
+>(({ name, label, className, ...props }, ref) => {
   const divRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const listRef = React.useRef<HTMLUListElement>(null);
@@ -202,6 +329,8 @@ const CitySearch = React.forwardRef<
 
   const [state, stateDispatch] = React.useReducer(stateReducer, initialState);
   const methods = useFormContext<TBookingSchema>();
+
+  // const [selectCities, setSelectCities] = React.useState<TSearchLocation[]>([]);
 
   // const [data, setData] = React.useState<Location[]>([]);
 
@@ -286,8 +415,12 @@ const CitySearch = React.forwardRef<
     };
   }, []);
 
+  // const handleSelectCity = (city: TSearchLocation) => {
+  //   localStorage.setItem("selectedPlace", JSON.stringify(city));
+  // };
+
   // Initial Set of State
-  const watchValue = methods.watch(name)?.structured_formatting.main_text;
+  const watchValue = methods.watch(name)?.name;
   React.useEffect(() => {
     if (watchValue)
       stateDispatch({
@@ -316,46 +449,40 @@ const CitySearch = React.forwardRef<
     // }
     if (state.fetchLock) return;
 
-    const timer = setTimeout(() => {
-      async function fetchLocations() {
-        stateDispatch({ type: ActionType.START_FETCHING });
+    async function fetchLocations() {
+      const BASE_URL = import.meta.env.VITE_DRIVADO_API;
+      const EMAIL_ENV = import.meta.env.VITE_DRIVADO_EMAIL;
+      try {
+        const response = await fetch(
+          `${BASE_URL}/api/apisearchPlacesByName?placeName=${state.debouncedInput}&email=${EMAIL_ENV}`,
+          {
+            headers: {
+              apiKey: import.meta.env.VITE_DRIVADO_KEY,
+            },
+          },
+        );
+        const data = await response.json();
 
-        try {
-          const response = await fetch(
-            `${CITY_SEARCH_API}?input=${state.debouncedInput}`,
-          );
-          const data = await response.json();
-          const validatedData = searchLocationApiSchema.safeParse(data);
+        const validatedData = searchLocationApiSchema.safeParse(data);
 
-          if (validatedData.success) {
-            localStorage.setItem(
-              "validatedData",
-              JSON.stringify(validatedData.data),
-            );
-          }
+        console.log("After Validation", validatedData);
 
-          if (!validatedData.success) {
-            throw new Error();
-          }
-
-          stateDispatch({
-            type: ActionType.SET_FETCHED_LOCATIONS,
-            payload: validatedData.data,
-          });
-        } catch (e) {
-          // Error Handling to be done
-          console.log(e);
-        } finally {
-          stateDispatch({ type: ActionType.END_FETCHING });
+        if (!validatedData.success) {
+          console.log("Error --->", validatedData.error);
+          throw new Error("wer");
         }
+
+        stateDispatch({
+          type: ActionType.SET_FETCHED_LOCATIONS,
+          payload: validatedData.data.data,
+        });
+      } catch (e) {
+        // Error Handling to be done
+        console.log(e);
       }
+    }
 
-      fetchLocations();
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    fetchLocations();
   }, [state.debouncedInput, state.fetchLock]);
 
   // Dropdown auto scroll logic
@@ -376,7 +503,7 @@ const CitySearch = React.forwardRef<
   const dropdownList = state.locations.map((location, index) => (
     <li
       role="option"
-      key={location.place_id}
+      key={location._id}
       ref={(el) => {
         if (el) {
           optionRefs.current[index] = el; // Assign the element to the array
@@ -385,9 +512,8 @@ const CitySearch = React.forwardRef<
         }
       }}
       className={cn(
-        "w-full border border-transparent p-[0.625rem] text-left",
-        index === state.activeLocationsIndex &&
-          "rounded-2xl border md:border-[#FFB1BA] md:bg-gray-100",
+        "w-full border-b border-t border-transparent p-[0.625rem] text-left hover:bg-[#f5f6fa]",
+        index === state.activeLocationsIndex && "rounded-none",
       )}
       onClick={() => {
         methods.setValue(name, location);
@@ -398,10 +524,10 @@ const CitySearch = React.forwardRef<
       }}
     >
       <p className="truncate text-sm font-normal leading-normal text-black">
-        {location.structured_formatting.main_text}
+        {location.name}, {location.country}
       </p>
       <p className="truncate text-[0.625rem] font-normal leading-normal text-[#9D9D9D]">
-        {location.structured_formatting.secondary_text}
+        {location.name}, {location.cityName}
       </p>
     </li>
   ));
@@ -415,7 +541,7 @@ const CitySearch = React.forwardRef<
         onClick={handleDivClick}
         className={cn(
           "relative flex items-center gap-[6px] hover:cursor-pointer",
-          baseStyle,
+          // baseStyle,
           "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1.5 [&_svg]:focus-visible:text-drivado-red",
           className,
         )}
@@ -454,9 +580,9 @@ const CitySearch = React.forwardRef<
         </div>
 
         {state.isDropDownVisible && (
-          <div className="absolute -inset-x-px top-[calc(100%_+_0.5rem)] z-10 h-64 w-auto gap-[2px] rounded-lg border-2 border-[#EEE] bg-white text-sm text-black">
+          <div className="absolute -inset-x-px top-[calc(100%_+_0.5rem)] z-10 h-80 w-auto gap-[2px] rounded-lg border-2 border-[#EEE] bg-white text-sm text-black">
             <ul
-              className="absolute inset-3 overflow-scroll rounded-2xl scrollbar-none"
+              className="absolute w-full overflow-scroll scrollbar-none"
               id="combobox-list"
               role="list"
               ref={listRef}
