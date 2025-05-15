@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { SubmitHandler, useFormContext } from "react-hook-form";
 
@@ -15,6 +15,7 @@ import PassengerCount from "./components/passenger-count";
 // Custom Types and Zod Schemas
 import { type TBookingSchema } from "./schemas/booking-form";
 import { Button } from "@/components/ui/button";
+import { useLocation } from "react-router-dom";
 
 const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
@@ -76,6 +77,58 @@ export default function DesktopBookingSearchForm() {
       console.error("Submission error:", error);
     }
   };
+
+  const location = useLocation();
+  const tripType = location.state?.tripType ?? "oneway";
+
+  useEffect(() => {
+    if (tripType) {
+      localStorage.setItem("tripType", tripType);
+    }
+  }, [tripType]);
+
+  // const email = import.meta.env.VITE_DRIVADO_Email;
+
+  // const BASE_URL = import.meta.env.VITE_DRIVADO_API;
+
+  const email = "techsupport10@drivado.com";
+  const apiKey = "mBk3Kyo17PUFVSUgj72c6K7tNiHDu3";
+  const BASE_URL = "https://testapi.drivado.com/api/v1";
+
+  useEffect(() => {
+    const storedTripType = localStorage.getItem("tripType") ?? "";
+
+    const searchId =
+      storedTripType === "hourly" ? "WL-ZFU972OE-HR" : "WL-EUEWEHCB-OW"; // default for oneway
+
+    const endpoint =
+      storedTripType === "hourly"
+        ? `${BASE_URL}/whiteLeveling/vehiclesWithPriceHourly_WL?searchId=${searchId}&email=${email}`
+        : `${BASE_URL}/whiteLeveling/vehiclesWithPriceOW_WL?email=${email}&searchId=${searchId}`;
+
+    const fetchVehicles = async () => {
+      try {
+        const response = await fetch(endpoint, {
+          headers: {
+            apiKey: apiKey,
+          },
+        });
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(`API Error ${response.status}: ${text}`);
+        }
+
+        const vehicleData = await response.json();
+        localStorage.setItem("vehicleList", JSON.stringify(vehicleData));
+        console.log(vehicleData);
+      } catch (error) {
+        console.error("Fetch vehicle list error:", error);
+      }
+    };
+
+    fetchVehicles();
+  }, []);
 
   return (
     <form
@@ -171,7 +224,7 @@ export default function DesktopBookingSearchForm() {
 
         {/* Search Button */}
         <div className="pt-3">
-          <Button className="w-full shrink-0 bg-[var(--brand-icon-color)] text-[var(--brand-btn-text)]">
+          <Button className="w-full shrink-0 bg-[var(--brand-theme-color)] text-[var(--brand-hover-btn-text)]">
             <div className="rounded-lg p-[0.625rem]">
               {/* <Link to="/search-results" state={{ tripType: "oneway" }}> */}
               Search

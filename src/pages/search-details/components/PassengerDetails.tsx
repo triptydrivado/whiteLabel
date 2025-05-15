@@ -62,6 +62,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
     localStorage.setItem("lastName", data.lastName);
     localStorage.setItem("contactNumber", data.contactNumber);
     localStorage.setItem("email", data.email);
+    localStorage.setItem("referenceNumber", data.referenceNumber);
     localStorage.setItem("flightNumber", data.flightNumber);
     localStorage.setItem("splRequest", data.splRequest);
 

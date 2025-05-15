@@ -23,7 +23,7 @@ const SearchResult = () => {
     const storedTripType = localStorage.getItem("tripType") ?? "";
 
     const searchId =
-      storedTripType === "hourly" ? "WL-JYLV66QZ-HR" : "WL-K5T37G2K-OW"; // default for oneway
+      storedTripType === "hourly" ? "WL-VLCGCQOE-HR" : "WL-OCW2CPVG-OW"; // default for oneway
 
     const endpoint =
       storedTripType === "hourly"
@@ -34,7 +34,7 @@ const SearchResult = () => {
       try {
         const response = await fetch(endpoint, {
           headers: {
-            apikey: apiKey,
+            apiKey: apiKey,
           },
         });
 
