@@ -47,6 +47,14 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
     setIsOpen(!isOpen);
   };
 
+  const salutation = localStorage.getItem("salutation");
+  const firstName = localStorage.getItem("firstName");
+  const lastName = localStorage.getItem("lastName");
+  const contactNumber = localStorage.getItem("contactNumber");
+  const email = localStorage.getItem("email");
+  const flightNumber = localStorage.getItem("flightNumber");
+  const splRequest = localStorage.getItem("splRequest");
+
   const handleSubmit: SubmitHandler<TPassengerDetails> = (data) => {
     console.log("formdata", data);
     localStorage.setItem("salutation", data.salutation);

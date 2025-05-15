@@ -4,6 +4,8 @@ type CurrenyDropdownProps = {
   selectedCurrency: string[];
 };
 
+// const currency = localStorage.getItem("currency");
+
 export default function BookingTime({
   selectedCurrency,
 }: CurrenyDropdownProps) {

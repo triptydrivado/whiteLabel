@@ -1,6 +1,9 @@
 import PickupDropoffIcon from "@/assets/svgs/pickup-location-icon";
 
 const OnewayLocation = () => {
+  // const pickupLocation = localStorage.getItem("pickupLocation");
+  // const dropoffLocation = localStorage.getItem("dropoffLocation");
+
   return (
     <div className="relative mt-8 md:mt-8 xl:mt-6 2xl:mt-10">
       <div className="absolute left-[5px] top-5 h-[50%] w-0.5 rounded-full bg-[repeating-linear-gradient(to_bottom,white_1px,var(--brand-icon-color)_7px)] sm:left-[5px] sm:top-4 md:left-[5px] md:top-4 xl:left-1.5 3xl:h-[90%]">

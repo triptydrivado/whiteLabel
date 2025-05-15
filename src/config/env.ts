@@ -22,8 +22,8 @@
 
 // export const debugEnv = () => {
 //   console.group("Drivado ENV");
-//   console.log("API  :", API || "❌ missing");
-//   console.log("KEY  :", KEY ? "✔︎ set" : "❌ missing");
-//   console.log("EMAIL:", EMAIL || "❌ missing");
+//   console.log("API  :", API || " missing");
+//   console.log("KEY  :", KEY ? " set" : " missing");
+//   console.log("EMAIL:", EMAIL || " missing");
 //   console.groupEnd();
 // };

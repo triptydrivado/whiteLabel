@@ -17,6 +17,10 @@ type DefaultProps = {
   duration: string[];
 };
 
+// const distance = localStorage.getItem("distance");
+// const duration = localStorage.getItem("duration");
+// const tripType = localStorage.getItem("tripType");
+
 export default function OnewayHourly({ distance, duration }: DefaultProps) {
   return (
     <div className="flex flex-wrap items-center justify-start gap-x-[15px]">
