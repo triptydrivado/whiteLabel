@@ -75,7 +75,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
         className="space-y-2 md:space-y-3"
         onSubmit={methods.handleSubmit(handleSubmit)}
       >
-        <div className="peer mb-2 mt-4 flex items-center justify-between rounded-md bg-[#F5F6FA] px-4 py-[14px] text-[#0D0D0D]/50 hover:bg-[#EBECF0] md:mb-3 lg:rounded-lg lg:px-4 lg:py-[18px] 2xl:rounded-[10px]">
+        {/* <div className="peer mb-2 mt-4 flex items-center justify-between rounded-md bg-[#F5F6FA] px-4 py-[14px] text-[#0D0D0D]/50 hover:bg-[#EBECF0] md:mb-3 lg:rounded-lg lg:px-4 lg:py-[18px] 2xl:rounded-[10px]">
           <h2 className="text-xs font-normal text-[#0D0D0D]/50 peer-hover:text-[var(--brand-icon-color)] 2xl:text-sm">
             Are you the passenger ?
             <span className="text-[var(--brand-icon-color)]">*</span>
@@ -119,7 +119,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
               </h2>
             </div>
           </div>
-        </div>
+        </div> */}
         <div
           className="group relative mt-4 flex items-center"
           ref={dropdownRef}
