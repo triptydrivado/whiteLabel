@@ -12,7 +12,7 @@ const Routes = () => {
     <BrowserRouter>
       <RoutePath>
         <Route path="search-booking" element={<SearchBooking />} />
-        <Route path="search-results" element={<SearchResult />} />
+        <Route path="select-vehicle" element={<SearchResult />} />
         <Route path="passenger-details" element={<SearchDetails />} />
         <Route path="booking-summary" element={<SummaryBooking />} />
         <Route path="booking-confirmation" element={<BookingConfirmation />} />

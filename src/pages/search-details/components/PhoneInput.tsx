@@ -46,6 +46,7 @@ const PhoneInput = () => {
               );
               setSelectedCountry(country!);
               setSearchTerm("");
+              localStorage.setItem("selectedCountry", selectedCountry?.value);
             }}
           >
             <SelectTrigger className="h-12 rounded-l-xl rounded-r-none border border-none group-hover:bg-[#EBECF0] focus:outline-none focus:ring-0 lg:h-14">

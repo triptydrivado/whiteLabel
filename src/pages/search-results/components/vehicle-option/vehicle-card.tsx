@@ -55,7 +55,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
             <div className="absolute bottom-0 left-0 flex w-full flex-col gap-2">
               {/* Passengers */}
               <span className="flex items-center gap-2">
-                <CapacityIcon className="h-[10.36px] w-[10.36px] text-[var(--brand-icon-color)] sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-4 lg:w-4 2xl:h-3.5 2xl:w-3.5" />
+                <CapacityIcon className="h-[10.36px] w-[10.36px] text-[var(--brand-theme-color)] sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-4 lg:w-4 2xl:h-3.5 2xl:w-3.5" />
                 <p className="text-[10px] font-medium text-[#6D6D6D] sm:text-[13px] md:text-base lg:text-base 2xl:text-base mobM:text-xs 3xl:text-base 4xl:text-[18px]">
                   {vehicle.pax} Pax
                 </p>
@@ -63,7 +63,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
 
               {/* Luggage */}
               <span className="flex items-center gap-2">
-                <BriefCaseIcon className="h-[10.36px] w-[10.36px] text-[var(--brand-icon-color)] sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-4 lg:w-4 2xl:w-3.5 3xl:h-4 3xl:w-4" />
+                <BriefCaseIcon className="h-[10.36px] w-[10.36px] text-[var(--brand-theme-color)] sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 lg:h-4 lg:w-4 2xl:w-3.5 3xl:h-4 3xl:w-4" />
                 <p className="text-[10px] font-medium text-[#6D6D6D] sm:text-[13px] md:text-base lg:text-base xl:text-base 2xl:text-base mobM:text-xs 3xl:text-base 4xl:text-[18px]">
                   {vehicle.luggage} Luggage
                 </p>
@@ -87,7 +87,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
                 );
                 navigate("/passenger-details");
               }}
-              className="absolute bottom-0 right-0 h-[35px] w-[6.25rem] items-center rounded-[7px] border border-[var(--brand-icon-color)] text-xs text-[var(--brand-icon-color)] shadow-md transition-all duration-300 hover:bg-[var(--brand-icon-color)] hover:text-[var(--brand-btn-text)] hover:shadow-lg sm:h-[37px] sm:w-[9.5rem] sm:text-sm md:rounded-[10px] lg:h-[45px] lg:w-[13.5rem] lg:text-base xl:h-[45px] xl:w-[11.375rem] xl:rounded-xl 2xl:h-[45px] 2xl:w-[11.375rem] 2xl:text-sm mobM:h-[35px] mobM:w-[8.375rem] mobM:text-xs 3xl:h-[45px] 3xl:w-[11.375rem] 3xl:text-base 4xl:h-[3.75rem] 4xl:w-[16.25rem] 4xl:text-[18px]"
+              className="absolute bottom-0 right-0 h-[35px] w-[6.25rem] items-center rounded-[7px] border border-[var(--brand-theme-color)] text-xs text-[var(--brand-theme-color)] shadow-md transition-all duration-300 hover:bg-[var(--brand-theme-color)] hover:text-[var(--brand-hover-btn-text)] hover:shadow-lg sm:h-[37px] sm:w-[9.5rem] sm:text-sm md:rounded-[10px] lg:h-[45px] lg:w-[13.5rem] lg:text-base xl:h-[45px] xl:w-[11.375rem] xl:rounded-xl 2xl:h-[45px] 2xl:w-[11.375rem] 2xl:text-sm mobM:h-[35px] mobM:w-[8.375rem] mobM:text-xs 3xl:h-[45px] 3xl:w-[11.375rem] 3xl:text-base 4xl:h-[3.75rem] 4xl:w-[16.25rem] 4xl:text-[18px]"
             >
               Book Now
             </Button>

@@ -19,8 +19,8 @@
 
 @layer base {
   :root {
-    --brand-icon-color: #e42c3f;
-    --brand-btn-text: white;
+    --brand-theme-color: #5b0a3d;
+    --brand-hover-btn-text: white;
 
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
