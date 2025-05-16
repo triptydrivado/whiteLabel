@@ -88,6 +88,7 @@ export default function DesktopBookingSearchForm() {
 
       //   // local storage set Item
       localStorage.setItem("validatedData", JSON.stringify(parseResult.data));
+      localStorage.setItem("bookingSearchForm", JSON.stringify(data));
 
       // console.log("Data saved to localStorage");
     } catch (error) {
