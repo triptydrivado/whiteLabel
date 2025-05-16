@@ -13,6 +13,7 @@ import { z } from "zod";
 // Custom Types and Zod Schemas
 import { type TBookingSchema } from "./schemas/booking-form";
 import { Button } from "@/components/ui/button";
+import { format, parse } from "date-fns";
 
 const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
@@ -21,24 +22,37 @@ export default function DesktopBookingSearchForm() {
   // Booking type tab: 'Oneway' | 'Hourly'
   const bookingType = methods.watch("bookingType");
 
+  console.log("form", methods.getValues());
+
   const handleSubmit: SubmitHandler<TBookingSchema> = async (data) => {
-    console.log("data -->", data);
+    // console.log("data -->", data);
     // add api
 
     const BASE_URL = import.meta.env.VITE_DRIVADO_API;
 
+    function formatToHHMM(timeString: string): string {
+      const parsedTime = parse(
+        timeString,
+        timeString.includes(":") && timeString.split(":").length === 3
+          ? "HH:mm:ss"
+          : "HH:mm",
+        new Date(),
+      );
+      return format(parsedTime, "HH:mm");
+    }
+
     try {
       const payload = {
         BookingDetails: {
-          sourceLat: data.fromLatLong.lat,
-          sourceLng: data.fromLatLong.lng,
-          destinationLat: data.toLatLong.lat,
-          destinationLng: data.toLatLong.lng,
+          sourceLat: data.fromLatLong.lat.toString(),
+          sourceLng: data.fromLatLong.lng.toString(),
+          destinationLat: data.toLatLong.lat.toString(),
+          destinationLng: data.toLatLong.lng.toString(),
           sourcePlaceName: data.from.mainText,
           destinationPlaceName: data.from.secondaryText,
-          date: data.date,
-          time: data.time,
-          passenger: data.time,
+          date: format(data.date, "yyyy-MM-dd"),
+          time: formatToHHMM(data.time),
+          passenger: data.pax,
         },
       };
 
@@ -59,6 +73,8 @@ export default function DesktopBookingSearchForm() {
 
       const result = await response.json();
 
+      console.log("response ---->", result);
+
       const parseResult = z.object({ sId: z.string() }).safeParse(result);
 
       if (!parseResult.success) {
@@ -71,7 +87,7 @@ export default function DesktopBookingSearchForm() {
       //   // local storage set Item
       localStorage.setItem("validatedData", JSON.stringify(parseResult.data));
 
-      console.log("Data saved to localStorage");
+      // console.log("Data saved to localStorage");
     } catch (error) {
       console.error("Submission error:", error);
     }

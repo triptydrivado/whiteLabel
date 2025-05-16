@@ -450,6 +450,7 @@ const CitySearch = React.forwardRef<
         });
       }
 
+      console.log("he");
       methods.setValue(name, location);
     } catch (e) {
       // Error Handling to be done
