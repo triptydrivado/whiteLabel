@@ -146,10 +146,10 @@ export default function Duration({ name, className }: Props) {
                           setDesktopClickInside(false);
                         }}
                         className={cn(
-                          `w-full items-start justify-between rounded-[1.25rem] border border-transparent px-4 py-1.5 text-sm hover:cursor-pointer [&[aria-selected="true"]]:border-drivado-red [&[aria-selected="true"]]:bg-gray-100`,
+                          `w-full items-start justify-between px-4 py-2.5 text-sm hover:cursor-pointer hover:bg-[#f5f6fa] [&[aria-selected="true"]]:bg-[#f5f6fa]`,
                         )}
                       >
-                        <div className="flex w-full gap-2">
+                        <div className="flex w-full gap-x-4 p-[0.325rem]">
                           <span className="font-semibold leading-[normal] text-[#303030]">
                             {DURATION.hours > 1
                               ? `${DURATION.hours} hours`

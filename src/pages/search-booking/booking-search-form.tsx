@@ -1,6 +1,4 @@
-import { z } from "zod";
-import { useState, useEffect } from "react";
-import { format } from "date-fns";
+import { useEffect } from "react";
 import { SubmitHandler, useFormContext } from "react-hook-form";
 
 // Custom Components
@@ -11,44 +9,58 @@ import BookingDate from "./components/booking-date";
 import BookingTime from "./components/booking-time";
 import Currency from "./components/currency";
 import PassengerCount from "./components/passenger-count";
+import { z } from "zod";
 
 // Custom Types and Zod Schemas
 import { type TBookingSchema } from "./schemas/booking-form";
 import { Button } from "@/components/ui/button";
+import { format, parse } from "date-fns";
 import { useLocation } from "react-router-dom";
 
 const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
   const methods = useFormContext<TBookingSchema>();
 
-  const [citySelectedData, setCitySelectedData] = useState<string>("");
-
   // Booking type tab: 'Oneway' | 'Hourly'
   const bookingType = methods.watch("bookingType");
 
+  console.log("form", methods.getValues());
+
   const handleSubmit: SubmitHandler<TBookingSchema> = async (data) => {
-    console.log("Gello -->", data);
-    // TODO: add api
+    // console.log("data -->", data);
+    // add api
 
     const BASE_URL = import.meta.env.VITE_DRIVADO_API;
+
+    function formatToHHMM(timeString: string): string {
+      const parsedTime = parse(
+        timeString,
+        timeString.includes(":") && timeString.split(":").length === 3
+          ? "HH:mm:ss"
+          : "HH:mm",
+        new Date(),
+      );
+      return format(parsedTime, "HH:mm");
+    }
 
     try {
       const payload = {
         BookingDetails: {
-          sourceLat: data.from.lat,
-          sourceLng: data.from.lng,
-          destinationLat: data.from.lat,
-          destinationLng: data.from.lng,
-          sourcePlaceName: data.from.cityName,
-          destinationPlaceName: data.from.cityName,
+          sourceLat: data.fromLatLong.lat.toString(),
+          sourceLng: data.fromLatLong.lng.toString(),
+          destinationLat: data.toLatLong.lat.toString(),
+          destinationLng: data.toLatLong.lng.toString(),
+          sourcePlaceName: data.from.mainText,
+          destinationPlaceName: data.from.secondaryText,
           date: format(data.date, "yyyy-MM-dd"),
-          time: data.time,
+          time: formatToHHMM(data.time),
           passenger: data.pax,
-          currency: data.currency.currency,
         },
       };
 
-      // fetch data
+      console.log("submitting data-------->", data);
+
+      //   // fetch data
       const response = await fetch(
         `${BASE_URL}/whiteLeveling/searchIdGenOneWayWL?email=techsupport10@drivado.com`,
         {
@@ -63,6 +75,8 @@ export default function DesktopBookingSearchForm() {
 
       const result = await response.json();
 
+      console.log("response ---->", result);
+
       const parseResult = z.object({ sId: z.string() }).safeParse(result);
 
       if (!parseResult.success) {
@@ -70,12 +84,20 @@ export default function DesktopBookingSearchForm() {
         throw new Error("data not found");
       }
 
-      // success
-      // local storage set Itm
+      console.log("Data submitted successfully:", result);
+
+      //   // local storage set Item
       localStorage.setItem("validatedData", JSON.stringify(parseResult.data));
+
+      // console.log("Data saved to localStorage");
     } catch (error) {
       console.error("Submission error:", error);
     }
+
+    console.log("saved in local storage", "validatedData");
+
+    // localStorage.setItem("test", "Hello, World!");
+    // console.log(localStorage.getItem("test"));
   };
 
   const location = useLocation();
@@ -146,11 +168,6 @@ export default function DesktopBookingSearchForm() {
           <CitySearch
             label="from"
             name="from"
-            value={citySelectedData}
-            // onChange={(e) => setCitySelectedData(e.target.value)}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setCitySelectedData(e.target.value)
-            }
             baseStyle={baseStyle}
             className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
@@ -162,8 +179,6 @@ export default function DesktopBookingSearchForm() {
             <CitySearch
               label="to"
               name="to"
-              value={citySelectedData}
-              onChange={(e) => setCitySelectedData(e.target.value)}
               baseStyle={baseStyle}
               className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
             />

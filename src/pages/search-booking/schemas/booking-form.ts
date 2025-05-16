@@ -18,6 +18,18 @@ const commonSchema = z.object({
     .number()
     .positive()
     .refine((data) => data !== 0),
+
+  // Additional Attributes for 2nd API Call
+  fromLatLong: z.object({
+    lat: z.number(),
+    lng: z.number(),
+    isWithinRegion: z.boolean(),
+  }),
+  toLatLong: z.object({
+    lat: z.number(),
+    lng: z.number(),
+    isWithinRegion: z.boolean(),
+  }),
 });
 
 const onewaySchema = z.object({
@@ -57,4 +69,15 @@ export const BOOKING_DEFAULT_VALUES: Partial<TBookingSchema> = {
     value: "",
   },
   pax: 1,
+
+  fromLatLong: {
+    lat: 0,
+    lng: 0,
+    isWithinRegion: false,
+  },
+  toLatLong: {
+    lat: 0,
+    lng: 0,
+    isWithinRegion: false,
+  },
 };
