@@ -1,11 +1,13 @@
 // import { TPassengerDetails } from "../passenger-details-form-schema";
 // import { useFormContext } from "react-hook-form";
+import { useEffect } from "react";
 import AirplaneIcon from "@/assets/svgs/airplane-icon";
 import SpecialRequestIcon from "@/assets/svgs/special-request-icon";
 import SmsIcon from "@/assets/svgs/sms-icon";
 import CallIcon from "@/assets/svgs/call-icon";
 import PaymentButton from "../payment-button";
-
+import RazorpayPayment from "../RazorpayPayment";
+import { useRazorpay } from "@/lib/razorpayService";
 const BookingSummary = ({}: { onEdit: () => void }) => {
   // const methods = useFormContext<TPassengerDetails>();
 
@@ -15,6 +17,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
   const handleEdit = () => {
     window.location.href = "/passenger-details"; // Navigates to /search-form
   };
+
   // const [isOpen, setIsOpen] = useState(false);
   // const [selectedTitle, setSelectedTitle] = useState("Select your salutation");
 
@@ -33,6 +36,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
   const contactNumber = localStorage.getItem("contactNumber");
   const email = localStorage.getItem("email");
   const flightNumber = localStorage.getItem("flightNumber");
+  const referenceNumber = localStorage.getItem("referenceNumber");
   const splRequest = localStorage.getItem("splRequest");
   const firstLetterCapitalized = firstName
     ? firstName.charAt(0).toUpperCase()
@@ -44,7 +48,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
         Review Booking Details
       </h2>
 
-      <div className="lg mb-12 mt-[30px] md:mb-20 lg:mb-[180px] xl:mb-32 xl:mt-12">
+      <div className="lg mb-12 mt-[30px] md:mb-20 lg:mb-[160px] xl:mb-16 xl:mt-12">
         <h2 className="text-[10px] font-semibold text-black xl:text-sm">
           Passenger Information
         </h2>
@@ -89,6 +93,21 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
             <h2 className="text-xs font-normal text-[#282828] 2xl:text-base">
               {/* {methods.watch("flightNumber") || "SK 2301"} */}
               {flightNumber || "Not Provided"}
+            </h2>
+          </div>
+        </div>
+
+        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-6 xl:pt-6">
+          <h2 className="text-[10px] font-semibold text-black xl:text-sm">
+            Reference Number
+          </h2>
+          <div className="flex items-center space-x-3 pt-4 xl:pt-6">
+            <div className="rounded-lg bg-[#F6F7F9] px-[6.56px] py-[6.56px] 2xl:px-2.5 2xl:py-2.5">
+              <SpecialRequestIcon className="size-5" />
+            </div>
+            <h2 className="text-xs font-normal text-[#282828] 2xl:text-base">
+              {/* {methods.watch("splRequest") || "One water bottle please. "} */}
+              {referenceNumber || "Not Provided"}
             </h2>
           </div>
         </div>

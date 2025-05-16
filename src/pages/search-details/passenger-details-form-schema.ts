@@ -13,12 +13,12 @@ export const PASSENGER_SALUTATIONS = [
 ] as const;
 // export const salutationSchema = z.enum(PASSENGER_SALUTATIONS);
 export const passengerDetailsSchema = z.object({
-  isPassenger: z
-    .string()
-    .refine((data) => data === "true" || data === "false")
-    .transform((data) => {
-      return data === "true" ? true : false;
-    }),
+  // isPassenger: z
+  //   .string()
+  //   .refine((data) => data === "true" || data === "false")
+  //   .transform((data) => {
+  //     return data === "true" ? true : false;
+  //   }),
   salutation: z.enum(PASSENGER_SALUTATIONS),
   firstName: z.string().min(3, "Enter at least 3 characters"),
   lastName: z.string().min(3, "Enter at least 3 characters"),
@@ -55,7 +55,7 @@ export type TPassengerDetails = z.infer<typeof passengerDetailsSchema>;
 export type TSalutations = TPassengerDetails["salutation"];
 
 export const PASSENGER_DEFAULT_VALUES: Readonly<TPassengerDetails> = {
-  isPassenger: true,
+  // isPassenger: true,
   salutation: "Mr.",
   firstName: "",
   lastName: "",
