@@ -153,7 +153,7 @@ export default function Currency({ label, name, className }: Props) {
         (divRef.current && !divRef.current.contains(target)) ||
         listRef.current?.contains(target)
       ) {
-        setTimeout(() => setClickedInside(false), 200);
+        setTimeout(() => setClickedInside(false), 500);
       } else {
         setClickedInside(true);
       }

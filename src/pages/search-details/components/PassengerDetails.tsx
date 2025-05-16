@@ -9,8 +9,13 @@ import {
   TPassengerDetails,
   TSalutations,
 } from "../passenger-details-form-schema";
-import { type SubmitHandler, useFormContext } from "react-hook-form";
+import {
+  FormProvider,
+  type SubmitHandler,
+  useFormContext,
+} from "react-hook-form";
 import PhoneInput from "./PhoneInput";
+import FlightInput from "./flight-number"; // Import the new FlightInput component
 
 import ProfileDropdown from "@/assets/svgs/profile-dropdown";
 import { SquareTickIcon } from "@/assets/svgs/square-tick";
@@ -24,8 +29,6 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
   const methods = useFormContext<TPassengerDetails>();
 
   const titles = PASSENGER_SALUTATIONS;
-
-  // console.log(methods.formState.errors);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -47,24 +50,36 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
     setIsOpen(!isOpen);
   };
 
-  // const salutation = localStorage.getItem("salutation");
-  // const firstName = localStorage.getItem("firstName");
-  // const lastName = localStorage.getItem("lastName");
-  // const contactNumber = localStorage.getItem("contactNumber");
-  // const email = localStorage.getItem("email");
-  // const flightNumber = localStorage.getItem("flightNumber");
-  // const splRequest = localStorage.getItem("splRequest");
-
   const handleSubmit: SubmitHandler<TPassengerDetails> = (data) => {
     console.log("formdata", data);
+
+    // Save form data to localStorage
     localStorage.setItem("salutation", data.salutation);
     localStorage.setItem("firstName", data.firstName);
     localStorage.setItem("lastName", data.lastName);
     localStorage.setItem("contactNumber", data.contactNumber);
     localStorage.setItem("email", data.email);
     localStorage.setItem("referenceNumber", data.referenceNumber);
-    localStorage.setItem("flightNumber", data.flightNumber);
-    localStorage.setItem("splRequest", data.splRequest);
+    localStorage.setItem("flightNumber", data.flightNumber || "");
+    localStorage.setItem("splRequest", data.splRequest || "");
+
+    // Get any flight details we've stored in session storage
+    if (data.flightNumber) {
+      const flightDetails = sessionStorage.getItem(
+        `flight_${data.flightNumber}`,
+      );
+      if (flightDetails) {
+        const passengerData = {
+          ...data,
+          _flightDetails: JSON.parse(flightDetails),
+        };
+        localStorage.setItem("passengerDetails", JSON.stringify(passengerData));
+      } else {
+        localStorage.setItem("passengerDetails", JSON.stringify(data));
+      }
+    } else {
+      localStorage.setItem("passengerDetails", JSON.stringify(data));
+    }
 
     onConfirm();
   };
@@ -74,6 +89,7 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
     methods.setValue("salutation", title);
     setIsOpen(false);
   };
+
   return (
     <div className="relative mt-5 w-full rounded-xl bg-white p-3 shadow-md sm:mt-0 sm:w-1/2 md:w-1/2 lg:w-1/2 xl:p-[22px] 2xl:rounded-2xl">
       <h2 className="pb-1.5 pt-2 text-center text-sm font-medium text-[#000000] sm:font-semibold md:text-base 2xl:text-2xl">
@@ -84,51 +100,6 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
         className="space-y-2 md:space-y-3"
         onSubmit={methods.handleSubmit(handleSubmit)}
       >
-        {/* <div className="peer mb-2 mt-4 flex items-center justify-between rounded-md bg-[#F5F6FA] px-4 py-[14px] text-[#0D0D0D]/50 hover:bg-[#EBECF0] md:mb-3 lg:rounded-lg lg:px-4 lg:py-[18px] 2xl:rounded-[10px]">
-          <h2 className="text-xs font-normal text-[#0D0D0D]/50 peer-hover:text-[var(--brand-icon-color)] 2xl:text-sm">
-            Are you the passenger ?
-            <span className="text-[var(--brand-theme-color)]">*</span>
-          </h2>
-          <div className="flex items-center space-x-2 lg:space-x-4">
-            <div className="inline-flex items-center">
-              <label
-                className="relative flex cursor-pointer items-center text-xs md:text-sm"
-                htmlFor="yes"
-              >
-                <input
-                  {...methods.register("isPassenger")}
-                  value="true"
-                  defaultChecked={true}
-                  type="radio"
-                  className="peer size-5 cursor-pointer appearance-none rounded-full border border-[#cecece] transition-all checked:border-[var(--brand-theme-color)] sm:size-4 md:size-3.5 lg:size-5"
-                  id="yes"
-                />
-                <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[var(--brand-theme-color)] opacity-0 transition-opacity duration-200 peer-checked:opacity-100 sm:size-2 md:size-2 lg:size-3"></span>
-              </label>
-              <h2 className="ml-1 text-xs font-medium text-[#72777a] md:text-sm lg:ml-1.5">
-                Yes
-              </h2>
-            </div>
-            <div className="inline-flex items-center">
-              <label
-                className="relative flex cursor-pointer items-center text-xs md:text-sm"
-                htmlFor="no"
-              >
-                <input
-                  {...methods.register("isPassenger")}
-                  value="false"
-                  type="radio"
-                  className="peer size-5 cursor-pointer appearance-none rounded-full border border-[#cecece] transition-all checked:border-[var(--brand-theme-color)] sm:size-4 md:size-3.5 lg:size-5"
-                  id="no"
-                />
-                <span className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-[var(--brand-theme-color)] opacity-0 transition-opacity duration-200 peer-checked:opacity-100 sm:size-2 md:size-2 lg:size-3"></span>
-              </label>
-              <h2 className="ml-1 text-xs font-medium text-[#72777a] md:text-sm lg:ml-1.5">
-                No
-              </h2>
-            </div>
-          </div>
-        </div> */}
         <div
           className="group relative mt-4 flex items-center"
           ref={dropdownRef}
@@ -168,12 +139,6 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
         </div>
         <div className="grid gap-y-2 md:grid-cols-2 md:items-start md:gap-x-1 md:gap-y-0 lg:gap-x-3">
           <div className="relative w-full">
-            {/* <label
-              htmlFor="name"
-              className="absolute left-2 top-2 origin-left -translate-y-3 scale-75 transform text-sm text-[#6a6a6a] opacity-0 transition-all duration-200 peer-placeholder-shown:translate-y-2 peer-placeholder-shown:opacity-0 peer-focus:translate-y-0 peer-focus:opacity-100"
-            >
-              First name
-            </label> */}
             <InputField
               type="text"
               label="First Name"
@@ -197,14 +162,6 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
           </div>
         </div>
         <div className="relative">
-          {/* <InputField
-            type="number"
-            label="Contact Number"
-            field="contactNumber"
-            placeholder="Enter your contact number*"
-            className="px-2.5 py-[19px]"
-          /> */}
-
           <PhoneInput />
         </div>
         <InputField
@@ -225,13 +182,12 @@ const PassengerDetails = ({ onConfirm }: { onConfirm: () => void }) => {
           isRequired
         />
 
-        <InputField
-          type="text"
-          label="Flight No."
-          field="flightNumber"
-          placeholder="Enter your flight number (Optional)"
-          className="px-2.5 py-[19px] placeholder:text-[#0D0D0D]/50"
-        />
+        {/* Using our new FlightInput component */}
+        {/* <FlightInput /> */}
+        <FormProvider {...methods}>
+          <FlightInput />
+        </FormProvider>
+
         <InputField
           type="text"
           label="Special request"

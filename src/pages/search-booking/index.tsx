@@ -17,7 +17,6 @@ import {
 } from "./schemas/booking-form";
 import BookingSearchForm from "./booking-search-form";
 import Container from "@/components/container";
-import { useLocation } from "react-router-dom";
 
 export default function SearchBooking() {
   const methods = useForm<TBookingSchema>({

@@ -96,9 +96,9 @@ export default function BookingDate({
         className={cn(
           "relative flex items-center gap-[6px] hover:cursor-pointer",
           // baseStyle,
-          "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-[var(--brand-theme-color)]",
           desktopClickInside &&
-            "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",
+            "border-gray-300 bg-gray-100 [&_>_svg]:text-[var(--brand-theme-color)]",
           className,
         )}
       >
@@ -231,9 +231,9 @@ const CalendarPick = ({
               "flex size-10 select-none items-center justify-center rounded-full border-0 bg-transparent text-center text-xs font-semibold leading-4 tracking-[0.4px] text-[rgba(0,0,0,0.40)] shadow-none hover:bg-gray-100",
               isSameMonth(currentMonth, day) &&
                 "font-semibold text-[rgba(0,0,0,0.87)]",
-              isToday(day) && "bg-gray-50 text-drivado-red",
+              isToday(day) && "bg-gray-50 text-[var(--brand-theme-color)]",
               isEqual(selectedDay, day) &&
-                "bg-drivado-red text-white hover:bg-drivado-red",
+                "bg-[var(--brand-theme-color)] text-white hover:bg-[var(--brand-theme-color)]",
             )}
           >
             <time dateTime={format(day, "yyyy-MM-dd")} className="rounded-full">
@@ -251,13 +251,13 @@ const CalendarPick = ({
             setOpen();
           }}
           type="button"
-          className="min-w-16 border-0 bg-white px-2 py-[0.625rem] text-center text-sm font-bold uppercase leading-[1rem] tracking-[0.4px] text-[#E0606F] shadow-none hover:bg-white focus-visible:ring-[#FB4156] focus-visible:ring-offset-2"
+          className="min-w-16 border-0 bg-white px-2 py-[0.625rem] text-center text-sm font-bold uppercase leading-[1rem] tracking-[0.4px] text-[var(--brand-theme-color)] shadow-none hover:bg-white focus-visible:ring-[#FB4156] focus-visible:ring-offset-2"
         >
           cancel
         </Button>
         <Button
           type="button"
-          className="min-w-16 border-0 bg-white px-2 py-[0.625rem] text-center text-sm font-bold uppercase leading-[1rem] tracking-[0.4px] text-[#FB4156] shadow-none hover:bg-white focus-visible:ring-[#FB4156] focus-visible:ring-offset-2"
+          className="min-w-16 border-0 bg-white px-2 py-[0.625rem] text-center text-sm font-bold uppercase leading-[1rem] tracking-[0.4px] text-[var(--brand-theme-color)] shadow-none hover:bg-white focus-visible:ring-[#FB4156] focus-visible:ring-offset-2"
           onClick={(e) => {
             e.stopPropagation();
             methods.setValue(name, selectedDay);

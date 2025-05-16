@@ -1,8 +1,6 @@
-// import COUNTRY_CODES from "@/constant/utils/CURRENCIES";
-// import { min } from "date-fns";
+
 import { z } from "zod";
-// export const PASSENGER-DETAILS =
-// const passengerDetails = z.
+
 export const PASSENGER_SALUTATIONS = [
   "Mr.",
   "Mrs.",
@@ -11,25 +9,13 @@ export const PASSENGER_SALUTATIONS = [
   "Prof.",
   "H.E.",
 ] as const;
-// export const salutationSchema = z.enum(PASSENGER_SALUTATIONS);
+
+// Main schema for passenger details
 export const passengerDetailsSchema = z.object({
-  // isPassenger: z
-  //   .string()
-  //   .refine((data) => data === "true" || data === "false")
-  //   .transform((data) => {
-  //     return data === "true" ? true : false;
-  //   }),
   salutation: z.enum(PASSENGER_SALUTATIONS),
   firstName: z.string().min(3, "Enter at least 3 characters"),
   lastName: z.string().min(3, "Enter at least 3 characters"),
-  referenceNumber:z.string().min(5,"Enter atleast 5 numbers"),
-  // countryCode: z
-  //   .string()
-  //   .transform((data) =>
-  //     COUNTRY_CODES.findIndex((country) => country.value === data),
-  //   )
-  //   .refine((data) => data !== -1)
-  //   .transform((data) => COUNTRY_CODES[data].value),
+  referenceNumber: z.string().min(5, "Enter atleast 5 numbers"),
   contactNumber: z.string().regex(/^\+?[1-9]\d{1,14}$/, {
     message: "Please enter valid phone number",
   }),
@@ -39,30 +25,34 @@ export const passengerDetailsSchema = z.object({
     .refine(
       (data) => data.length >= 3 || data.length === 0,
       "Enter valid flight number",
-    ),
-
+    )
+    .optional(),
   splRequest: z
     .string()
     .refine(
       (data) => data.length >= 3 || data.length === 0,
       "Enter your special request",
-    ),
-
+    )
+    .optional(),
   consent: z.boolean().refine((data) => !!data),
 });
 
+// Extended schema for internal use that includes flight details
+export const extendedPassengerDetailsSchema = passengerDetailsSchema.extend({
+  _flightDetails: z.any().optional(),  // For storing flight API response data
+});
+
 export type TPassengerDetails = z.infer<typeof passengerDetailsSchema>;
+export type TExtendedPassengerDetails = z.infer<typeof extendedPassengerDetailsSchema>;
 export type TSalutations = TPassengerDetails["salutation"];
 
 export const PASSENGER_DEFAULT_VALUES: Readonly<TPassengerDetails> = {
-  // isPassenger: true,
   salutation: "Mr.",
   firstName: "",
   lastName: "",
-  // countryCode: "",
   contactNumber: "",
   email: "",
-  referenceNumber:"",
+  referenceNumber: "",
   flightNumber: "",
   splRequest: "",
   consent: false,

@@ -15,7 +15,7 @@ export default function PaxCounter({ paxCount }: PaxCounterProps) {
           <CapacityIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[var(--brand-theme-color)] transition-colors duration-300 lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
           <span className="items-center truncate text-[10px] font-medium lg:text-sm 2xl:text-base">
-            {paxCount}
+            {paxCount} pax
           </span>
         </>
       </div>

@@ -10,7 +10,20 @@ import RoutingIcon from "@/assets/svgs/routing-icon";
 //   duration?: string;
 // }
 
-const tripType = "oneway";
+const validatedDataString = localStorage.getItem("validatedData");
+
+let bookingType = "oneway"; // default fallback
+
+if (validatedDataString) {
+  try {
+    const validatedData = JSON.parse(validatedDataString);
+    bookingType = validatedData.bookingType || "oneway";
+  } catch (error) {
+    console.error("Error parsing validatedData:", error);
+  }
+}
+
+console.log("Booking Type:", bookingType);
 
 type DefaultProps = {
   distance: string[];
@@ -42,13 +55,13 @@ export default function OnewayHourly({ distance, duration }: DefaultProps) {
       </>
 
       <div className="flex items-center gap-1 rounded-[28px] bg-[var(--brand-theme-color)] px-2 py-1 text-white 3xl:px-3 3xl:py-[6px]">
-        {tripType === "oneway" ? (
+        {bookingType === "oneway" ? (
           <OnewayTwoIcon className="size-3 flex-shrink-0 text-white lg:size-5 2xl:size-[22px]" />
         ) : (
           <HourlyManageIcon className="size-3 flex-shrink-0 text-white lg:size-5 2xl:size-[22px]" />
         )}
         <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
-          {tripType}
+          {bookingType}
         </span>
       </div>
     </div>

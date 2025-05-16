@@ -1,4 +1,5 @@
 import { Clock3, Users } from "lucide-react";
+import { useEffect } from "react";
 import OneWayIcon from "@/assets/svgs/oneway-icon";
 import HourlyIcon from "@/assets/svgs/hourly-icon";
 import ClockIcon from "@/assets/svgs/clock-icon";
@@ -25,6 +26,14 @@ const BookingCard = () => {
       { icon: CurrencyMoney, label: "USD" },
     ],
   };
+
+  console.log("helloygfbycg");
+
+  useEffect(() => {
+    const bookingData = localStorage.getItem("bookingSearchForm");
+    console.log("booking data", bookingData);
+    // (JSON.parse(bookingData));
+  }, []);
 
   // const iconColor = bookingData.tripType === "Hourly" ? "#FB4156" : "#282828";
 

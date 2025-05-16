@@ -83,9 +83,9 @@ export default function BookingTime({
         className={cn(
           "relative flex items-center gap-[6px] hover:cursor-pointer",
           // baseStyle,
-          "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-[var(--brand-theme-color)]",
           desktopClickInside &&
-            "border-gray-300 bg-gray-100 [&_>_svg]:text-drivado-red",
+            "border-gray-300 bg-gray-100 [&_>_svg]:text-[var(--brand-theme-color)]",
           className,
         )}
       >
@@ -269,7 +269,7 @@ function TimePicker({ onClose }: TimeProps) {
               //   }
               //   e.target.value = value.toString();
               // }}
-              className="h-full w-28 flex-1 rounded-sm border-0 bg-[#F6F7F9] text-center text-5xl font-medium leading-none text-black shadow-none ring-1 ring-[#DADCE0] focus:bg-[#FFEBED] focus:text-drivado-red focus:shadow-none focus:ring-drivado-red focus-visible:text-drivado-red focus-visible:outline-none focus-visible:ring-drivado-red md:text-5xl"
+              className="h-full w-28 flex-1 rounded-sm border-0 bg-[#F6F7F9] text-center text-5xl font-medium leading-none text-black shadow-none ring-1 ring-[#DADCE0] focus:bg-[#FFEBED] focus:text-[var(--brand-theme-color)] focus:shadow-none focus:ring-[var(--brand-theme-color)] focus-visible:text-[var(--brand-theme-color)] focus-visible:outline-none focus-visible:ring-[var(--brand-theme-color)] md:text-5xl"
             />
             <div className="flex justify-center">
               <ClockArrowDownIcon
@@ -311,7 +311,7 @@ function TimePicker({ onClose }: TimeProps) {
               //   }
               //   e.target.value = value.toString();
               // }}
-              className="h-full w-28 flex-1 rounded-sm border-0 bg-[#F6F7F9] text-center text-5xl font-medium leading-none text-black shadow-none ring-1 ring-[#DADCE0] focus:bg-[#FFEBED] focus:text-drivado-red focus:shadow-none focus:ring-drivado-red focus-visible:text-drivado-red focus-visible:outline-none focus-visible:ring-drivado-red md:text-5xl"
+              className="h-full w-28 flex-1 rounded-sm border-0 bg-[#F6F7F9] text-center text-5xl font-medium leading-none text-black shadow-none ring-1 ring-[#DADCE0] focus:bg-[#FFEBED] focus:text-[var(--brand-theme-color)] focus:shadow-none focus:ring-[var(--brand-theme-color)] focus-visible:text-[var(--brand-theme-color)] focus-visible:outline-none focus-visible:ring-[var(--brand-theme-color)] md:text-5xl"
             />
             <div className="flex justify-center">
               <ClockArrowDownIcon
@@ -328,7 +328,7 @@ function TimePicker({ onClose }: TimeProps) {
         <div className="">
           <Button
             type="button"
-            className="px-2 py-[0.625rem] uppercase text-drivado-red"
+            className="px-2 py-[0.625rem] uppercase text-[var(--brand-theme-color)]"
             onClick={(e) => {
               e.stopPropagation();
               onClose();
@@ -338,7 +338,7 @@ function TimePicker({ onClose }: TimeProps) {
           </Button>
           <Button
             type="button"
-            className="px-2 py-[0.625rem] uppercase text-drivado-red"
+            className="px-2 py-[0.625rem] uppercase text-[var(--brand-theme-color)]"
             onClick={(e) => {
               e.stopPropagation();
               const hour = hourRef.current?.value.padStart(2, "0");

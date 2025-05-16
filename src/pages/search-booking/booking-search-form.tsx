@@ -15,11 +15,13 @@ import { z } from "zod";
 import { type TBookingSchema } from "./schemas/booking-form";
 import { Button } from "@/components/ui/button";
 import { format, parse } from "date-fns";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
   const methods = useFormContext<TBookingSchema>();
+
+  const navigate = useNavigate();
 
   // Booking type tab: 'Oneway' | 'Hourly'
   const bookingType = methods.watch("bookingType");
@@ -27,10 +29,11 @@ export default function DesktopBookingSearchForm() {
   console.log("form", methods.getValues());
 
   const handleSubmit: SubmitHandler<TBookingSchema> = async (data) => {
-    // console.log("data -->", data);
-    // add api
+    const bookingType = data.bookingType;
 
     const BASE_URL = import.meta.env.VITE_DRIVADO_API;
+    const email = "techsupport10@drivado.com";
+    const apiKey = import.meta.env.VITE_DRIVADO_KEY;
 
     function formatToHHMM(timeString: string): string {
       const parsedTime = parse(
@@ -44,61 +47,83 @@ export default function DesktopBookingSearchForm() {
     }
 
     try {
-      const payload = {
+      const payload: Record<string, any> = {
         BookingDetails: {
           sourceLat: data.fromLatLong.lat.toString(),
           sourceLng: data.fromLatLong.lng.toString(),
-          destinationLat: data.toLatLong.lat.toString(),
-          destinationLng: data.toLatLong.lng.toString(),
           sourcePlaceName: data.from.mainText,
-          destinationPlaceName: data.from.secondaryText,
           date: format(data.date, "yyyy-MM-dd"),
           time: formatToHHMM(data.time),
           passenger: data.pax,
         },
       };
 
-      console.log("submitting data-------->", data);
-
-      //   // fetch data
-      const response = await fetch(
-        `${BASE_URL}/whiteLeveling/searchIdGenOneWayWL?email=techsupport10@drivado.com`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            apiKey: import.meta.env.VITE_DRIVADO_KEY,
-          },
-          body: JSON.stringify(payload),
-        },
-      );
-
-      const result = await response.json();
-
-      console.log("response ---->", result);
-
-      const parseResult = z.object({ sId: z.string() }).safeParse(result);
-
-      if (!parseResult.success) {
-        console.log("Error", parseResult.error);
-        throw new Error("data not found");
+      if (bookingType === "oneway") {
+        payload.BookingDetails.destinationLat = data.toLatLong.lat.toString();
+        payload.BookingDetails.destinationLng = data.toLatLong.lng.toString();
+        payload.BookingDetails.destinationPlaceName = data.to.secondaryText;
+      } else if (bookingType === "hourly") {
+        payload.BookingDetails.hour = data.duration.toString();
       }
 
-      console.log("Data submitted successfully:", result);
+      console.log("submitting data-------->", data);
 
-      //   // local storage set Item
-      localStorage.setItem("validatedData", JSON.stringify(parseResult.data));
+      const searchIdEndpoint =
+        bookingType === "oneway"
+          ? `${BASE_URL}/whiteLeveling/searchIdGenOneWayWL?email=${email}`
+          : `${BASE_URL}/whiteLeveling/searchIdGenHourlyWL?email=${email}`;
+
+      const response = await fetch(searchIdEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apiKey: apiKey,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+      console.log("searchId response ---->", result);
+
+      const parseResult = z.object({ sId: z.string() }).safeParse(result);
+      if (!parseResult.success) {
+        console.log("Error", parseResult.error);
+        throw new Error("Search ID not found");
+      }
+
+      const sId = parseResult.data.sId;
+
+      // Save search ID and booking data
+      localStorage.setItem(
+        "validatedData",
+        JSON.stringify({ sId, bookingType }),
+      );
       localStorage.setItem("bookingSearchForm", JSON.stringify(data));
 
-      // console.log("Data saved to localStorage");
+      // 👉 Fetch vehicles using searchId
+      const vehicleEndpoint =
+        bookingType === "hourly"
+          ? `${BASE_URL}/whiteLeveling/vehiclesWithPriceHourly_WL?searchId=${sId}&email=${email}`
+          : `${BASE_URL}/whiteLeveling/vehiclesWithPriceOW_WL?searchId=${sId}&email=${email}`;
+
+      const vehicleResponse = await fetch(vehicleEndpoint, {
+        headers: {
+          apiKey: apiKey,
+        },
+      });
+
+      if (!vehicleResponse.ok) {
+        const text = await vehicleResponse.text();
+        throw new Error(`Vehicle API Error ${vehicleResponse.status}: ${text}`);
+      }
+
+      const vehicleData = await vehicleResponse.json();
+      localStorage.setItem("vehicleList", JSON.stringify(vehicleData));
+      console.log("Fetched vehicle list:", vehicleData);
+      navigate("/select-vehicle");
     } catch (error) {
       console.error("Submission error:", error);
     }
-
-    console.log("saved in local storage", "validatedData");
-
-    // localStorage.setItem("test", "Hello, World!");
-    // console.log(localStorage.getItem("test"));
   };
 
   const location = useLocation();
@@ -113,45 +138,6 @@ export default function DesktopBookingSearchForm() {
   // const email = import.meta.env.VITE_DRIVADO_Email;
 
   // const BASE_URL = import.meta.env.VITE_DRIVADO_API;
-
-  const email = "techsupport10@drivado.com";
-  const apiKey = "mBk3Kyo17PUFVSUgj72c6K7tNiHDu3";
-  const BASE_URL = "https://testapi.drivado.com/api/v1";
-
-  useEffect(() => {
-    const storedTripType = localStorage.getItem("tripType") ?? "";
-
-    const searchId =
-      storedTripType === "hourly" ? "WL-ZFU972OE-HR" : "WL-EUEWEHCB-OW"; // default for oneway
-
-    const endpoint =
-      storedTripType === "hourly"
-        ? `${BASE_URL}/whiteLeveling/vehiclesWithPriceHourly_WL?searchId=${searchId}&email=${email}`
-        : `${BASE_URL}/whiteLeveling/vehiclesWithPriceOW_WL?email=${email}&searchId=${searchId}`;
-
-    const fetchVehicles = async () => {
-      try {
-        const response = await fetch(endpoint, {
-          headers: {
-            apiKey: apiKey,
-          },
-        });
-
-        if (!response.ok) {
-          const text = await response.text();
-          throw new Error(`API Error ${response.status}: ${text}`);
-        }
-
-        const vehicleData = await response.json();
-        localStorage.setItem("vehicleList", JSON.stringify(vehicleData));
-        console.log(vehicleData);
-      } catch (error) {
-        console.error("Fetch vehicle list error:", error);
-      }
-    };
-
-    fetchVehicles();
-  }, []);
 
   return (
     <form

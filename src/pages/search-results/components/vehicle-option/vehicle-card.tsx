@@ -74,7 +74,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
           {/* Price and Book Now Button */}
           <div className="relative flex w-full flex-col items-end text-right lg:w-[267px] xl:h-[147px] xl:w-[8.75rem] 2xl:h-[10rem] 2xl:w-[7.625rem] mobS:w-[18.75rem] mobM:w-[8.75rem] 3xl:h-full 3xl:w-[11.375rem] 4xl:h-full 4xl:w-[20.5rem]">
             <h2 className="text-sm font-semibold md:text-xl md:font-semibold mobM:text-xl 3xl:text-2xl 4xl:text-[26px]">
-              {vehicle.unit} {vehicle.price.toFixed(2)}
+              {vehicle.unit} {Number(vehicle.price).toFixed(2)}
             </h2>
             <p className="w-[6.25rem] whitespace-normal text-[10px] text-[#6D6D6D] md:text-[11px] lg:w-[7.25rem] lg:text-sm xl:text-[11px] 2xl:w-[7rem] 2xl:text-[11px] mobM:text-[10px] 3xl:w-[8.125rem] 3xl:text-xs 4xl:w-[11.25rem] 4xl:text-base">
               Includes VAT, Gratuities, Meet & Greet services

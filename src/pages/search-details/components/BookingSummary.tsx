@@ -31,6 +31,8 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
   //   setSelectedTitle(title);
   //   setIsOpen(false);
   // };
+  const arrivalTime = localStorage.getItem("flight_arrivalTime");
+
   const firstName = localStorage.getItem("firstName");
   const lastName = localStorage.getItem("lastName");
   const contactNumber = localStorage.getItem("contactNumber");
@@ -95,6 +97,14 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
               {flightNumber || "Not Provided"}
             </h2>
           </div>
+          <h2 className="mt-2 flex text-xs font-medium text-[#282828] 2xl:text-base">
+            {/* {methods.watch("flightNumber") || "SK 2301"} */}
+            Arrival Time :{"  "}
+            <p className="font-medium text-green-500">
+              {"  "}
+              {arrivalTime || "Not Provided"}
+            </p>
+          </h2>
         </div>
 
         <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-6 xl:pt-6">

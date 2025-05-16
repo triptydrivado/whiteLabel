@@ -26,20 +26,102 @@ export default function JourneyDetails() {
     };
   }, []);
 
-  const pickupLocation = [
-    "London Heathrow Airport (LHR), TW6 1QG, United Kingdom",
-  ];
+  // const pickupLocation = [
+  //   "London Heathrow Airport (LHR), TW6 1QG, United Kingdom",
+  // ];
 
-  const dropoffLocation = [
-    "Los Angeles International Airport (LAX), Los Angeles, CA, USA",
-  ];
-  const selectedDate = ["09-05-2025"];
-  const selectedTime = ["02:00  AM"];
-  const selectedCurrency = ["USD"];
-  const paxCount = ["2 pax"];
-  const distance = ["12 Km"];
+  // const dropoffLocation = [
+  //   "Los Angeles International Airport (LAX), Los Angeles, CA, USA",
+  // ];
+  // const selectedDate = ["09-05-2025"];
+  // const selectedTime = ["02:00  AM"];
+  // const selectedCurrency = ["USD"];
+  // const paxCount = ["2 pax"];
+  // const distance = ["12 Km"];
   const duration = ["3 hrs 20 mins"];
   // const tripType = ["oneway"];
+
+  const [pickupLocation, setPickupLocation] = useState<string[]>([]);
+  const [dropoffLocation, setDropoffLocation] = useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState<string[]>([]);
+  const [selectedTime, setSelectedTime] = useState<string[]>([]);
+  const [selectedCurrency, setSelectedCurrency] = useState<string[]>([]);
+  const [distance, setDistance] = useState<string[]>([]);
+  const [paxCount, setPaxCount] = useState<string[]>([]);
+  const [bookingType, setBookingType] = useState<string[]>([]);
+
+  useEffect(() => {
+    const bookingData = localStorage.getItem("bookingSearchForm");
+    const vehicle = JSON.parse(bookingData || "{}");
+
+    // Handle different data structures
+    if (vehicle?.from?.description) {
+      // Handle pickup location
+      if (Array.isArray(vehicle.from.description)) {
+        setPickupLocation(vehicle.from.description);
+      } else {
+        setPickupLocation([vehicle.from.description]);
+      }
+
+      // Handle dropoff location, but check if it exists first
+      if (vehicle?.to?.description) {
+        if (Array.isArray(vehicle.to.description)) {
+          setDropoffLocation(vehicle.to.description);
+        } else {
+          setDropoffLocation([vehicle.to.description]);
+        }
+      }
+
+      if (vehicle?.date) {
+        if (Array.isArray(vehicle.date)) {
+          // Fix the typo: vehicle.dat -> vehicle.date
+          // Also limit to first 10 characters for each date in the array
+          setSelectedDate(
+            vehicle.date.map((date: string) => date.substring(0, 10)),
+          );
+        } else {
+          // For a single date string, limit to first 10 characters
+          setSelectedDate([vehicle.date.substring(0, 10)]);
+        }
+      } else {
+        setSelectedDate([]); // Set default empty array if no date
+      }
+
+      if (vehicle?.time) {
+        if (Array.isArray(vehicle.time)) {
+          setSelectedTime(vehicle.time);
+        } else {
+          setSelectedTime([vehicle.time]);
+        }
+      }
+      if (vehicle?.currency) {
+        if (Array.isArray(vehicle.currency.currency)) {
+          setSelectedCurrency(vehicle.currency.currency);
+        } else {
+          setSelectedCurrency([vehicle.currency.currency]);
+        }
+      }
+      if (vehicle?.pax) {
+        if (Array.isArray(vehicle.pax)) {
+          setPaxCount(vehicle.pax);
+        } else {
+          setPaxCount([vehicle.pax]);
+        }
+      }
+      if (vehicle?.bookingType) {
+        if (Array.isArray(vehicle.bookingType)) {
+          setBookingType(vehicle.bookingType);
+        } else {
+          setBookingType([vehicle.bookingType]);
+        }
+      }
+    }
+  }, []);
+
+  const validatedData = JSON.parse(
+    localStorage.getItem("validatedData") || "{}",
+  );
+  const tripType = validatedData.bookingType || "oneway";
 
   return (
     <div>
@@ -57,7 +139,9 @@ export default function JourneyDetails() {
             {/* LocationDropdown - 70% width */}
             <div className="flex w-[70%] space-x-[15px]">
               <PickupLocation pickupLocation={pickupLocation} />
-              <DropOffLocation dropoffLocation={dropoffLocation} />
+              {tripType !== "hourly" && (
+                <DropOffLocation dropoffLocation={dropoffLocation} />
+              )}
             </div>
 
             {/* DateDropdown - 15% width */}

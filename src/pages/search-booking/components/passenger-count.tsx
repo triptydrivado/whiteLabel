@@ -63,10 +63,10 @@ export default function PassengerCount({
         className={cn(
           "relative flex items-center justify-start gap-[6px] hover:cursor-pointer",
           // baseStyle,
-          "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-drivado-red",
+          "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1 [&_svg]:focus-visible:text-[var(--brand-theme-color)]",
           className,
           clickedInside &&
-            "border-gray-100 bg-gray-100 [&_>_svg]:text-drivado-red",
+            "border-gray-100 bg-gray-100 [&_>_svg]:text-[var(--brand-theme-color)]",
         )}
         onClick={() => setClickedInside(true)}
         onKeyDown={(e) => {
@@ -102,7 +102,7 @@ export default function PassengerCount({
                   e.stopPropagation();
                   methods.setValue("pax", +value - 1);
                 }}
-                className="m-0 flex size-6 shrink-0 items-center justify-start rounded-full bg-drivado-red p-[5px] leading-none"
+                className="m-0 flex size-6 shrink-0 items-center justify-start rounded-full bg-[var(--brand-theme-color)] p-[5px] leading-none"
               >
                 <Minus className="text-white" />
               </Button>
@@ -126,7 +126,7 @@ export default function PassengerCount({
                   e.stopPropagation();
                   methods.setValue("pax", +value + 1);
                 }}
-                className="m-0 flex size-6 shrink-0 items-center justify-start rounded-full bg-drivado-red p-[5px] leading-none"
+                className="m-0 flex size-6 shrink-0 items-center justify-start rounded-full bg-[var(--brand-theme-color)] p-[5px] leading-none"
               >
                 <Plus className="text-white" />
               </Button>
