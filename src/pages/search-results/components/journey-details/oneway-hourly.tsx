@@ -10,48 +10,31 @@ import RoutingIcon from "@/assets/svgs/routing-icon";
 //   duration?: string;
 // }
 
-const validatedDataString = localStorage.getItem("validatedData");
+const distance = localStorage.getItem("distance");
+const duration = localStorage.getItem("duration");
+const bookingType = localStorage.getItem("bookingType");
 
-let bookingType = "oneway"; // default fallback
-
-if (validatedDataString) {
-  try {
-    const validatedData = JSON.parse(validatedDataString);
-    bookingType = validatedData.bookingType || "oneway";
-  } catch (error) {
-    console.error("Error parsing validatedData:", error);
-  }
-}
-
-console.log("Booking Type:", bookingType);
-
-type DefaultProps = {
-  distance: string[];
-  duration: string[];
-};
-
-// const distance = localStorage.getItem("distance");
-// const duration = localStorage.getItem("duration");
-// const tripType = localStorage.getItem("tripType");
-
-export default function OnewayHourly({ distance, duration }: DefaultProps) {
+export default function OnewayHourly({}) {
   return (
     <div className="flex flex-wrap items-center justify-start gap-x-[15px]">
       <>
-        <div className="flex items-center gap-x-3 p-2 lg:h-[42px]">
-          <RoutingIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[var(--brand-theme-color)] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
+        {bookingType === "oneway" ? (
+          <div className="flex items-center gap-x-3 p-2 lg:h-[42px]">
+            <RoutingIcon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[var(--brand-theme-color)] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
-          <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
-            Distance: {distance}
-          </span>
-        </div>
-        <div className="flex items-center gap-x-3 p-2 lg:h-[42px]">
-          <Duration1Icon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[var(--brand-theme-color)] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
+            <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
+              Distance: {distance}
+            </span>
+          </div>
+        ) : (
+          <div className="flex items-center gap-x-3 p-2 lg:h-[42px]">
+            <Duration1Icon className="h-3 min-h-3 w-3 min-w-3 flex-shrink-0 text-[var(--brand-theme-color)] lg:h-5 lg:w-5 2xl:h-[22px] 2xl:w-[22px]" />
 
-          <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
-            Duration: {duration}
-          </span>
-        </div>
+            <span className="text-[10px] font-medium lg:text-sm 2xl:text-base">
+              Duration: {duration}
+            </span>
+          </div>
+        )}
       </>
 
       <div className="flex items-center gap-1 rounded-[28px] bg-[var(--brand-theme-color)] px-2 py-1 text-white 3xl:px-3 3xl:py-[6px]">

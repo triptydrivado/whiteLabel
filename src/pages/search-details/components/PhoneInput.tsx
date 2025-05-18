@@ -35,7 +35,7 @@ const PhoneInput = () => {
 
   return (
     <div className="flex w-full flex-col space-y-2">
-      <div className="group relative flex items-start space-x-0 rounded-xl border border-transparent bg-[#f6f7f9] focus-within:border-[#000000]/50 lg:space-x-0">
+      <div className="group relative flex items-start space-x-0 rounded-lg border border-transparent bg-[#f6f7f9] focus-within:border-[#000000]/50 lg:space-x-0">
         {/* Country Code Dropdown */}
         <div className="relative shrink-0">
           <Select
@@ -49,7 +49,7 @@ const PhoneInput = () => {
               localStorage.setItem("selectedCountry", selectedCountry?.value);
             }}
           >
-            <SelectTrigger className="h-12 rounded-l-xl rounded-r-none border border-none group-hover:bg-[#EBECF0] focus:outline-none focus:ring-0 lg:h-14">
+            <SelectTrigger className="h-12 rounded-l-lg rounded-r-none border border-none group-hover:bg-[#EBECF0] focus:outline-none focus:ring-0 lg:h-14">
               <SelectValue placeholder="Country">
                 {selectedCountry?.value || "Select"}
               </SelectValue>
@@ -115,7 +115,7 @@ const PhoneInput = () => {
         <div className="relative w-full">
           <div
             className={cn(
-              "relative h-12 w-full flex-grow items-center justify-between overflow-hidden rounded-l-none rounded-r-xl bg-[#F5F6FA] text-xs font-normal text-[#0d0d0d]/50 shadow-none group-hover:bg-[#EBECF0] placeholder:hover:text-drivado-red focus:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:text-xs lg:h-14 lg:text-sm xl:text-sm 2xl:text-sm",
+              "relative h-12 w-full flex-grow items-center justify-between overflow-hidden rounded-l-none rounded-r-lg bg-[#F5F6FA] text-xs font-normal text-[#0d0d0d]/50 shadow-none group-hover:bg-[#EBECF0] placeholder:hover:text-drivado-red focus:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:text-xs lg:h-14 lg:text-sm xl:text-sm 2xl:text-sm",
               hasError && "border border-drivado-red",
             )}
           >
@@ -144,7 +144,7 @@ const PhoneInput = () => {
                 methods.trigger("contactNumber");
               }}
               className={cn(
-                "h-12 w-full border border-transparent bg-[#F5F6FA] px-4 text-xs font-normal text-[#0D0D0D] transition-all duration-200 group-hover:bg-[#EBECF0] focus:outline-none focus:ring-0 lg:h-14 2xl:text-sm",
+                "h-12 w-full border border-transparent bg-[#F5F6FA] px-4 text-xs font-normal text-[#0D0D0D] transition-all duration-200 placeholder:text-[#0D0D0D]/50 group-hover:bg-[#EBECF0] focus:outline-none focus:ring-0 lg:h-14 2xl:text-sm",
                 isActive ? "pt-[10px]" : "pt-0",
                 hasError && "pr-10",
               )}

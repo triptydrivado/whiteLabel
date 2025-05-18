@@ -82,19 +82,19 @@ export default function PassengerCount({
           <Label
             htmlFor={name}
             className={
-              "mt-0 h-auto max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:h-auto xl:text-xs xl:font-medium xl:leading-[1.75rem]"
+              "mt-0 max-w-fit items-center justify-end gap-2 truncate border-none p-0 px-0 text-right text-xs font-normal capitalize leading-[1.75rem] text-[#1E1E1E] shadow-none focus-within:bg-gray-100 peer-placeholder-shown:inline hover:cursor-pointer focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent md:gap-4 xl:h-auto xl:text-xs xl:font-medium xl:leading-[1.75rem]"
             }
           >
             {!clickedInside ? label : "Passengers"}
           </Label>
 
           {!clickedInside && (
-            <div className="text-left text-xs text-[#999] xl:text-base">
+            <div className="text-left text-xs text-[#999] xl:text-sm 2xl:text-base">
               {value ? value : "No. of Pax"}
             </div>
           )}
           {clickedInside && (
-            <div className="flex h-[30px] w-[100px] items-center justify-start gap-px overflow-hidden rounded-full border border-[#FFB1BA] bg-[rgba(251,65,86,0.15)] bg-gray-100 p-[2.2px]">
+            <div className="flex h-[30px] w-[100px] items-center justify-start gap-px overflow-hidden rounded-full border border-[var(--brand-theme-color)] bg-[var(--brand-theme-color)] bg-gray-100 p-[2.2px]">
               <Button
                 type="button"
                 disabled={value <= 1}
@@ -117,7 +117,7 @@ export default function PassengerCount({
                   if (e.key === "Enter") e.preventDefault();
                 }}
                 type="number"
-                className="inline-block h-auto flex-grow appearance-none border-0 p-0 text-center text-sm font-medium leading-[normal] text-[#1E1E1E] shadow-none placeholder:text-sm focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent xl:leading-none"
+                className="inline-block h-auto flex-grow appearance-none border-0 p-0 text-center text-xs font-medium leading-[normal] text-[#1E1E1E] shadow-none placeholder:text-xs focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent xl:text-sm xl:leading-none xl:placeholder:text-sm 2xl:text-base 2xl:placeholder:text-base"
               />
               <Button
                 type="button"

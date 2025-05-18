@@ -3,60 +3,39 @@ import { useFormContext } from "react-hook-form";
 import { CircleAlert } from "lucide-react";
 import { TPassengerDetails } from "../passenger-details-form-schema";
 import { cn } from "@/lib/utils";
+import FlightIcon from "@/assets/svgs/flightIcon";
 
-// Store/retrieve flight data
+// Save flight details
 const saveFlightDetails = (flightNumber: string, details: any) => {
   sessionStorage.setItem(`flight_${flightNumber}`, JSON.stringify(details));
-};
-const getFlightDetails = (flightNumber: string) => {
-  const details = sessionStorage.getItem(`flight_${flightNumber}`);
-  return details ? JSON.parse(details) : null;
 };
 
 const FlightInput = () => {
   const [flightNumber, setFlightNumber] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [isChecking, setIsChecking] = useState(false);
+  const [arrivalTime, setArrivalTime] = useState<string | null>(null);
 
   const methods = useFormContext<TPassengerDetails>();
   const { errors } = methods.formState;
   const isActive = isFocused || flightNumber.length > 0;
 
-  // Load initial value from form
   useEffect(() => {
     const initialValue = methods.getValues("flightNumber");
-    if (initialValue) {
-      setFlightNumber(initialValue);
-    }
+    if (initialValue) setFlightNumber(initialValue);
   }, []);
 
-  const bookingData = JSON.parse(
-    localStorage.getItem("bookingSearchForm") || "{}",
-  );
-  const sourceLat = bookingData?.fromLatLong?.lat;
-  const sourceLng = bookingData?.fromLatLong?.lng;
-  const destLat = bookingData?.toLatLong?.lat;
-  const destLng = bookingData?.toLatLong?.lng;
+  useEffect(() => {
+    if (arrivalTime) {
+      localStorage.setItem("arrival time", arrivalTime);
+    } else {
+      localStorage.removeItem("arrival time");
+    }
+  }, [arrivalTime]);
+
+  const booking = JSON.parse(localStorage.getItem("bookingSearchForm") || "{}");
 
   const validateFlightCoordinates = async (flightNum: string) => {
-    if (flightNum.toUpperCase() === "EK31") {
-      methods.clearErrors("flightNumber");
-      const mockArrival = new Date().toISOString();
-
-      const mockData = {
-        mock: true,
-        flightNumber: "EK31",
-        arrivalDateTime: mockArrival,
-      };
-
-      saveFlightDetails(flightNum, mockData);
-      localStorage.setItem(
-        "flight_arrivalTime",
-        new Date(mockArrival).toLocaleString(),
-      );
-      return;
-    }
-
     setIsChecking(true);
     methods.clearErrors("flightNumber");
 
@@ -64,7 +43,7 @@ const FlightInput = () => {
     const apiKey = import.meta.env.VITE_DRIVADO_KEY;
     const BASE_URL = import.meta.env.VITE_DRIVADO_API;
 
-    const dateObj = bookingData?.date ? new Date(bookingData.date) : new Date();
+    const dateObj = booking?.date ? new Date(booking.date) : new Date();
     const year = dateObj.getFullYear();
     const month = String(dateObj.getMonth() + 1).padStart(2, "0");
     const date = String(dateObj.getDate()).padStart(2, "0");
@@ -79,44 +58,62 @@ const FlightInput = () => {
       if (!res.ok) throw new Error("Flight not found");
 
       const data = await res.json();
-      if (!data || data.error) {
+      if (!data || data.error || !data.scheduledFlights?.length) {
         throw new Error(data?.error || "Invalid flight number");
       }
 
-      const pickup = data.pickupLatLng;
-      const dropoff = data.dropLatLng;
-      const round = (n: number) => Number(n.toFixed(4));
+      const flightInfo = data.scheduledFlights[0];
+      const arrivalFsCode = flightInfo.arrivalAirportFsCode?.toUpperCase();
+      const departureFsCode = flightInfo.departureAirportFsCode?.toUpperCase();
+
+      const pickup = booking?.from?.placename?.toUpperCase() || "";
+      const dropoff = booking?.to?.placename?.toUpperCase() || "";
+
+      const includesAirport = (str: string) =>
+        [
+          "AIRPORT",
+          "مَطَار",
+          "AÉROPORT",
+          "AEROPORTO",
+          "AEROPUERTO",
+          "FLUGHAFEN",
+        ].some((word) => str.includes(word));
+
+      const pickupHasAirport = includesAirport(pickup);
+      const dropoffHasAirport = includesAirport(dropoff);
 
       if (
-        !pickup ||
-        !dropoff ||
-        !sourceLat ||
-        !sourceLng ||
-        !destLat ||
-        !destLng ||
-        round(pickup.lat) !== round(sourceLat) ||
-        round(pickup.lng) !== round(sourceLng) ||
-        round(dropoff.lat) !== round(destLat) ||
-        round(dropoff.lng) !== round(destLng)
+        pickupHasAirport &&
+        departureFsCode &&
+        !pickup.includes(departureFsCode)
       ) {
         throw new Error(
-          "Flight route doesn't match your pickup/dropoff locations",
+          "Pickup location must match the flight's departure airport.",
         );
       }
 
-      // Save full flight data
-      saveFlightDetails(flightNum, data);
+      if (
+        dropoffHasAirport &&
+        arrivalFsCode &&
+        !dropoff.includes(arrivalFsCode)
+      ) {
+        throw new Error(
+          "Dropoff location must match the flight's arrival airport.",
+        );
+      }
 
-      // Save formatted arrival time if available
-      if (data.arrivalDateTime) {
-        const formattedArrival = new Date(
-          data.arrivalDateTime,
-        ).toLocaleString();
-        localStorage.setItem("flight_arrivalTime", formattedArrival);
+      saveFlightDetails(flightNum, flightInfo);
+
+      if (flightInfo.arrivalTime) {
+        const formatted = new Date(flightInfo.arrivalTime).toLocaleString();
+        setArrivalTime(formatted);
+      } else {
+        setArrivalTime(null);
       }
 
       methods.clearErrors("flightNumber");
     } catch (error: any) {
+      setArrivalTime(null);
       methods.setError("flightNumber", {
         type: "manual",
         message: error.message || "Validation failed",
@@ -136,6 +133,7 @@ const FlightInput = () => {
 
     if (!value) {
       methods.clearErrors("flightNumber");
+      setArrivalTime(null);
     }
   };
 
@@ -148,14 +146,12 @@ const FlightInput = () => {
 
   return (
     <div className="w-full">
-      {/* Input container */}
       <div
         className={cn(
           "relative h-12 w-full overflow-hidden rounded-lg border border-transparent bg-[#F5F6FA] focus-within:border-[#000000]/50 hover:bg-[#EBECF0] lg:h-14",
           errors.flightNumber ? "border border-drivado-red" : "",
         )}
       >
-        {/* Floating label */}
         <label
           htmlFor="flightNumber"
           className={cn(
@@ -166,7 +162,6 @@ const FlightInput = () => {
           Flight No.
         </label>
 
-        {/* Input field */}
         <input
           id="flightNumber"
           type="text"
@@ -189,7 +184,6 @@ const FlightInput = () => {
           }}
         />
 
-        {/* Spinner or error icon */}
         {isChecking ? (
           <div className="absolute right-4 top-0 flex h-full items-center">
             <div className="size-4 animate-spin rounded-full border-2 border-[#cecece] border-t-[var(--brand-theme-color)]"></div>
@@ -200,6 +194,14 @@ const FlightInput = () => {
           </div>
         ) : null}
       </div>
+
+      {!errors.flightNumber && arrivalTime && (
+        <span className="mt-2 flex text-[10px] font-medium text-[#737373] 2xl:text-xs">
+          <FlightIcon className="size-3 xl:size-4" />
+          <p className="ml-1">Arrival:</p>
+          <p className="ml-1 text-green-500">{arrivalTime}</p>
+        </span>
+      )}
 
       {errors.flightNumber && (
         <p className="mt-1 text-xs text-drivado-red">

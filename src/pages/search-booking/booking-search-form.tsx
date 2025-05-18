@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useFormContext } from "react-hook-form";
-
+import Popup from "@/components/ui/popup";
 // Custom Components
 import BookingTypeTabs from "./components/booking-type-tabs";
 import CitySearch from "./components/city-search";
@@ -15,11 +15,14 @@ import { z } from "zod";
 import { type TBookingSchema } from "./schemas/booking-form";
 import { Button } from "@/components/ui/button";
 import { format, parse } from "date-fns";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const baseStyle = "input-base-style";
 export default function DesktopBookingSearchForm() {
   const methods = useFormContext<TBookingSchema>();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -29,6 +32,7 @@ export default function DesktopBookingSearchForm() {
   console.log("form", methods.getValues());
 
   const handleSubmit: SubmitHandler<TBookingSchema> = async (data) => {
+    setLoading(true);
     const bookingType = data.bookingType;
 
     const BASE_URL = import.meta.env.VITE_DRIVADO_API;
@@ -55,6 +59,7 @@ export default function DesktopBookingSearchForm() {
           date: format(data.date, "yyyy-MM-dd"),
           time: formatToHHMM(data.time),
           passenger: data.pax,
+          currency: data.currency.currency,
         },
       };
 
@@ -93,14 +98,12 @@ export default function DesktopBookingSearchForm() {
 
       const sId = parseResult.data.sId;
 
-      // Save search ID and booking data
       localStorage.setItem(
         "validatedData",
         JSON.stringify({ sId, bookingType }),
       );
       localStorage.setItem("bookingSearchForm", JSON.stringify(data));
 
-      // 👉 Fetch vehicles using searchId
       const vehicleEndpoint =
         bookingType === "hourly"
           ? `${BASE_URL}/whiteLeveling/vehiclesWithPriceHourly_WL?searchId=${sId}&email=${email}`
@@ -113,39 +116,56 @@ export default function DesktopBookingSearchForm() {
       });
 
       if (!vehicleResponse.ok) {
-        const text = await vehicleResponse.text();
-        throw new Error(`Vehicle API Error ${vehicleResponse.status}: ${text}`);
+        const errorBody = await vehicleResponse.json();
+        throw new Error(` ${errorBody.error}`);
       }
 
       const vehicleData = await vehicleResponse.json();
       localStorage.setItem("vehicleList", JSON.stringify(vehicleData));
       console.log("Fetched vehicle list:", vehicleData);
       navigate("/select-vehicle");
-    } catch (error) {
+    } catch (error: any) {
+      let message = "Something went wrong!";
+      if (error instanceof Error) {
+        message = error.message;
+      } else if (typeof error === "object" && error?.message) {
+        message = String(error.message);
+      }
+      setErrorMessage(message);
+      setShowPopup(true);
       console.error("Submission error:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
-
-  const location = useLocation();
-  const tripType = location.state?.tripType ?? "oneway";
-
-  useEffect(() => {
-    if (tripType) {
-      localStorage.setItem("tripType", tripType);
-    }
-  }, [tripType]);
 
   // const email = import.meta.env.VITE_DRIVADO_Email;
 
   // const BASE_URL = import.meta.env.VITE_DRIVADO_API;
 
+  useEffect(() => {
+    const shouldRefresh = localStorage.getItem("silentRefresh");
+
+    if (location.pathname === "/select-vehicle" && shouldRefresh === "true") {
+      console.log("Silent refresh triggered");
+
+      // Do whatever silent refresh logic you want:
+      // - Fetch vehicles again
+      // - Force component updates
+      // - Reset some cached state
+
+      // ✅ Then reset the flag
+      localStorage.removeItem("silentRefresh");
+    }
+  }, [location.pathname]);
+
   return (
     <form
       onSubmit={methods.handleSubmit(handleSubmit)}
-      className="[container:inline-size]"
+      className="mx-auto w-full max-w-full flex-1 px-4 sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
     >
       {/* Book Mark Section */}
-      <div className="w-96 items-center justify-between space-y-2 rounded-2xl bg-white px-[0.625rem] py-[0.625rem] text-black shadow-[0px_5px_10px_0px_rgba(89,27,27,0.05)] xl:px-3 xl:pt-3">
+      <div className="w-76 items-center justify-between space-y-2 rounded-2xl bg-white px-[0.625rem] py-[0.625rem] text-black shadow-[0px_5px_10px_0px_rgba(89,27,27,0.05)] xl:px-3 xl:pt-3">
         <div className="">
           <BookingTypeTabs className="relative" />
         </div>
@@ -156,7 +176,7 @@ export default function DesktopBookingSearchForm() {
             label="from"
             name="from"
             baseStyle={baseStyle}
-            className="flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
+            className="w-full flex-1 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-200 transition-[width] duration-500 xl:rounded-lg"
           />
         </>
 
@@ -226,15 +246,21 @@ export default function DesktopBookingSearchForm() {
 
         {/* Search Button */}
         <div className="pt-3">
-          <Button className="w-full shrink-0 bg-[var(--brand-theme-color)] text-[var(--brand-hover-btn-text)]">
+          <Button
+            disabled={loading}
+            className="w-full shrink-0 bg-[var(--brand-theme-color)] text-[var(--brand-hover-btn-text)]"
+          >
             <div className="rounded-lg p-[0.625rem]">
               {/* <Link to="/search-results" state={{ tripType: "oneway" }}> */}
-              Search
+              {loading ? "Searching..." : "Search"}
               {/* </Link> */}
             </div>
           </Button>
         </div>
       </div>
+      {showPopup && (
+        <Popup message={errorMessage} onClose={() => setShowPopup(false)} />
+      )}
     </form>
   );
 }

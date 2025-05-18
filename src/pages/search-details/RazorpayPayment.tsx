@@ -162,13 +162,13 @@ export default function RazorpayPayment({
         console.log("Completing hourly booking...");
 
         // Format vehicle price - hourly bookings also need vehicle price in the parameters
-        const vehiclePrice: VehiclePrice = {
-          price:
-            typeof bookingData.vehicle.price === "number"
-              ? bookingData.vehicle.price.toString()
-              : bookingData.vehicle.price.toString(),
-          currency: bookingData.vehicle.unit || "USD",
-        };
+        // const vehiclePrice: VehiclePrice = {
+        //   price:
+        //     typeof bookingData.vehicle.price === "number"
+        //       ? bookingData.vehicle.price.toString()
+        //       : bookingData.vehicle.price.toString(),
+        //   currency: bookingData.vehicle.unit || "USD",
+        // };
 
         // Need to pass vehiclePrice for hourly bookings too, as per API specs in your docs
         // Modified function call to include vehiclePrice

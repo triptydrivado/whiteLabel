@@ -8,16 +8,10 @@ import OnewayTwoIcon from "@/assets/svgs/oneway-two-icon";
 import HourlyManageIcon from "@/assets/svgs/hourly-manage-icon";
 
 const BookingDetails = () => {
-  const [tripType, setTripType] = useState<"oneway" | "hourly" | null>(null);
   const [vehicle, setVehicle] = useState<any>(null);
 
   useEffect(() => {
-    const storedType = localStorage.getItem("tripType");
     const storedVehicle = localStorage.getItem("selectedVehicle");
-
-    if (storedType === "oneway" || storedType === "hourly") {
-      setTripType(storedType);
-    }
 
     if (storedVehicle) {
       try {
@@ -28,10 +22,13 @@ const BookingDetails = () => {
     }
   }, []);
 
-  if (!tripType || !vehicle) return null;
+  if (!vehicle) return null;
+
+  const bookngForm = localStorage.getItem("bookingSearchForm");
+  const bookingType = JSON.parse(bookngForm || "{}");
 
   return (
-    <div className="flex w-full flex-col justify-between rounded-xl bg-white p-3 shadow-md sm:w-1/2 md:w-1/2 lg:w-1/2 lg:p-6 2xl:rounded-2xl">
+    <div className="flex w-full flex-col rounded-xl bg-white p-3 shadow-md sm:w-1/2 md:w-1/2 lg:w-1/2 lg:p-6 2xl:rounded-2xl">
       <div className="flex justify-center rounded-lg bg-[#F5F6FA] px-20 py-3 sm:px-16 sm:py-3 md:px-12 md:py-4 xl:px-20 xl:py-8 2xl:rounded-xl 2xl:px-32">
         <img src={vehicle.image} className="w-44" />
       </div>
@@ -43,13 +40,14 @@ const BookingDetails = () => {
             </h2>
             <div className="flex items-center justify-end space-x-1">
               <div className="ml-4 flex items-center gap-1 rounded-[28px] bg-[var(--brand-theme-color)] px-2 py-1 text-white xl:ml-6 3xl:ml-8 3xl:px-3 3xl:py-[6px]">
-                {tripType === "oneway" ? (
+                {bookingType.bookingType === "oneway" ? (
                   <OnewayTwoIcon className="size-[14px] flex-shrink-0 xl:size-3 3xl:size-[14px]" />
                 ) : (
                   <HourlyManageIcon className="size-[14px] flex-shrink-0 xl:size-3 3xl:size-[14px]" />
                 )}
                 <span className="text-xs font-medium 2xl:text-sm">
-                  {tripType.charAt(0).toUpperCase() + tripType.slice(1)}
+                  {bookingType.bookingType.charAt(0).toUpperCase() +
+                    bookingType.bookingType.slice(1)}
                 </span>
               </div>
 
@@ -65,7 +63,7 @@ const BookingDetails = () => {
       </div>
 
       {/* ONEWAY SECTION */}
-      {tripType === "oneway" && (
+      {bookingType.bookingType === "oneway" && (
         <div>
           <OnewaySettings />
           <OnewayLocation />
@@ -73,25 +71,29 @@ const BookingDetails = () => {
       )}
 
       {/* HOURLY SECTION */}
-      {tripType === "hourly" && (
+      {bookingType.bookingType === "hourly" && (
         <div>
           <HourlyLocation />
           <HourlySettings />
         </div>
       )}
 
-      <div className="flex items-center justify-between pt-[4.25rem]">
-        <div className="w-[140px] leading-5 md:w-[200px] md:leading-3 xl:w-[300px]">
-          <h2 className="text-base font-bold leading-3 text-[var(--brand-theme-color)] md:text-xs lg:text-base xl:text-xl">
-            Total Price
-          </h2>
-          <span className="text-[8px] font-medium leading-none text-[#282828]/50 lg:text-xs xl:leading-6">
-            Includes VAT, Gratuities, Meet & Greet services
-          </span>
+      <div className="flex h-full flex-col justify-between">
+        {/* Other content here */}
+
+        <div className="mt-auto flex items-center justify-between pt-[4.25rem]">
+          <div className="w-[140px] leading-5 md:w-[200px] md:leading-3 xl:w-[300px]">
+            <h2 className="text-base font-bold leading-3 text-[var(--brand-theme-color)] md:text-xs lg:text-base xl:text-xl">
+              Total Price
+            </h2>
+            <span className="text-[8px] font-medium leading-none text-[#282828]/50 lg:text-xs xl:leading-6">
+              Includes VAT, Gratuities, Meet & Greet services
+            </span>
+          </div>
+          <h3 className="text-base font-bold text-black md:text-base md:font-semibold lg:text-xl 2xl:text-2xl">
+            {vehicle.unit} {vehicle.price}
+          </h3>
         </div>
-        <h3 className="text-lg font-bold text-black md:text-base md:font-semibold lg:text-xl xl:text-2xl 2xl:text-[32px]">
-          {vehicle.unit} {vehicle.price}
-        </h3>
       </div>
     </div>
   );

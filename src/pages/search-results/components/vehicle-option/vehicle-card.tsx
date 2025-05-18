@@ -33,12 +33,12 @@ const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
           <img
             src={vehicle.image}
             alt={vehicle.name}
-            className="h-[10rem] w-[300px] rounded-lg bg-[#0000000A] sm:h-[7.625rem] sm:w-[12.25rem] md:h-[147px] md:w-[235px] lg:h-[12.25rem] lg:w-[313px] xl:h-[147px] xl:w-[258px] 2xl:h-[10rem] 3xl:h-[10.1rem] 3xl:w-[300px] 4xl:h-full 4xl:w-[421px]"
+            className="h-[10rem] w-[300px] rounded-lg bg-[#0000000A] sm:h-[7.625rem] sm:w-[12.25rem] md:h-[147px] md:w-[235px] lg:h-[12rem] lg:w-[316px] xl:h-[147px] xl:w-[258px] 2xl:h-[10rem] 3xl:h-[10.1rem] 3xl:w-[300px] 4xl:h-full 4xl:w-[421px]"
           />
         </div>
 
         {/* Vehicle Details */}
-        <div className="mt-4 flex h-[7.5rem] w-full flex-1 justify-between sm:ml-8 sm:mt-0 md:mt-0 md:h-[9rem] md:w-[20.625rem] lg:h-[12.25rem] lg:w-[519px] xl:h-[147px] xl:w-[26.875rem] 2xl:h-[10rem] mobS:w-full mobM:h-[8.125rem] mobM:w-full mobL:w-full 3xl:h-[10.125rem] 3xl:w-[30.625rem] 4xl:h-[13.125rem]">
+        <div className="mt-4 flex h-[7.5rem] w-full flex-1 justify-between sm:ml-8 sm:mt-0 md:mt-0 md:h-[9rem] md:w-[20.625rem] lg:h-[12rem] lg:w-[519px] xl:h-[147px] xl:w-[26.875rem] 2xl:h-[10rem] mobS:w-full mobM:h-[8.125rem] mobM:w-full mobL:w-full 3xl:h-[10.125rem] 3xl:w-[30.625rem] 4xl:h-[13.125rem]">
           {/* Description */}
           <div className="relative flex h-full w-60 flex-col items-start text-left sm:w-[8.75rem] md:w-[13.75rem] lg:w-[243px] xl:w-[12rem] 2xl:w-[10.125rem] mobM:w-[11.875rem] 3xl:w-[243px] 4xl:h-full 4xl:w-[20.25rem]">
             {/* Vehicle Name */}

@@ -287,7 +287,7 @@ export default function Currency({ label, name, className }: Props) {
                 aria-haspopup="listbox"
                 aria-controls="combobox-list"
                 className={cn(
-                  "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-base xl:placeholder:truncate xl:placeholder:text-base",
+                  "peer truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-sm xl:placeholder:truncate xl:placeholder:text-sm 2xl:text-base 2xl:placeholder:text-base",
                 )}
               >
                 {field.value?.currency ? (

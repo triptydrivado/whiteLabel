@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 // Cus
 // import MobileBookingSearchForm from "./mobile-booking-search-form";
@@ -75,7 +75,7 @@ export default function SearchBooking() {
 
   return (
     <Form {...methods}>
-      <section className="sm:bg-bottom-right min-h-[calc(100svh_-_2rem)] bg-black bg-cover bg-[bottom_right_10%] bg-no-repeat pt-56 md:pt-[8.5rem] xl:pt-[9.8125rem]">
+      <section className="sm:bg-bottom-right min-h-[calc(100svh_-_2rem)] bg-black bg-cover bg-[bottom_right_10%] bg-no-repeat pt-20">
         <Container className="text-white">
           <BookingSearchForm />
         </Container>

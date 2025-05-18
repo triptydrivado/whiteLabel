@@ -28,6 +28,12 @@ export default function NavOptions() {
               const isSelected = selected === index;
               const isCompleted = selected !== null && index < selected;
 
+              const handleClick = () => {
+                if (item.name === "Home") {
+                  localStorage.clear(); // or selectively clear specific keys
+                }
+              };
+
               return (
                 <li
                   key={index}
@@ -36,6 +42,7 @@ export default function NavOptions() {
                   {isCompleted ? (
                     <Link
                       to={item.path}
+                      onClick={handleClick}
                       className="hover:text-bold text-[#282828] hover:text-[var(--brand-theme-color)]"
                     >
                       {item.name}
@@ -56,9 +63,7 @@ export default function NavOptions() {
                       className={`${
                         isSelected
                           ? "text-[var(--brand-theme-color)]"
-                          : isCompleted
-                            ? "text-[#282828]"
-                            : "text-[#282828]"
+                          : "text-[#282828]"
                       } size-[8px] md:size-[18px] xs:size-[10px] 3xl:size-[26px]`}
                     />
                   )}

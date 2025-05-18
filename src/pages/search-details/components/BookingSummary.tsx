@@ -1,22 +1,23 @@
 // import { TPassengerDetails } from "../passenger-details-form-schema";
 // import { useFormContext } from "react-hook-form";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import AirplaneIcon from "@/assets/svgs/airplane-icon";
 import SpecialRequestIcon from "@/assets/svgs/special-request-icon";
 import SmsIcon from "@/assets/svgs/sms-icon";
 import CallIcon from "@/assets/svgs/call-icon";
 import PaymentButton from "../payment-button";
-import RazorpayPayment from "../RazorpayPayment";
-import { useRazorpay } from "@/lib/razorpayService";
+import FlightIcon from "@/assets/svgs/flightIcon";
+// import RazorpayPayment from "../RazorpayPayment";
+// import { useRazorpay } from "@/lib/razorpayService";
 const BookingSummary = ({}: { onEdit: () => void }) => {
   // const methods = useFormContext<TPassengerDetails>();
 
   // const handleClick = () => {
   //   window.location.href = "/booking-confirmation"; // Navigates to /search-form
   // };
-  const handleEdit = () => {
-    window.location.href = "/passenger-details"; // Navigates to /search-form
-  };
+  // const handleEdit = () => {
+  //   window.location.href = "/passenger-details"; // Navigates to /search-form
+  // };
 
   // const [isOpen, setIsOpen] = useState(false);
   // const [selectedTitle, setSelectedTitle] = useState("Select your salutation");
@@ -31,7 +32,7 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
   //   setSelectedTitle(title);
   //   setIsOpen(false);
   // };
-  const arrivalTime = localStorage.getItem("flight_arrivalTime");
+  const arrivalTime = localStorage.getItem("arrival time");
 
   const firstName = localStorage.getItem("firstName");
   const lastName = localStorage.getItem("lastName");
@@ -50,45 +51,48 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
         Review Booking Details
       </h2>
 
-      <div className="lg mb-12 mt-[30px] md:mb-20 lg:mb-[160px] xl:mb-16 xl:mt-12">
+      <div className="lg mb-12 mt-[30px] md:mb-20 lg:mb-[160px] xl:mb-14 xl:mt-12">
         <h2 className="text-[10px] font-semibold text-black xl:text-sm">
           Passenger Information
         </h2>
-        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-6 xl:pt-6">
+        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-5">
           <div className="mb-3 flex items-center space-x-4 text-center 2xl:mb-8">
             <div className="flex size-7 items-center justify-center rounded-full bg-[var(--brand-theme-color)] text-center text-xs font-light text-white xl:size-6 xl:text-sm 2xl:size-11 2xl:text-3xl">
               {/* C */}
               {firstLetterCapitalized}
             </div>
-            <h2 className="text-sm font-semibold text-black xl:text-base 2xl:text-xl">
+            <h2
+              className="overflow-hidden truncate whitespace-nowrap text-sm font-semibold text-black"
+              title={`${firstName} ${lastName}`}
+            >
+              {" "}
               {/* {`${methods.getValues("salutation")} ${methods.getValues("firstName") || "Cameron Williamson"} ${methods.getValues("lastName")}`}
                */}{" "}
               {firstName}
               {lastName}
             </h2>
           </div>
-          <div className="md:flex md:items-center md:space-x-3">
-            <div className="flex items-center space-x-2 rounded-lg bg-[#F6F7F9] px-2.5 py-1.5">
+          <div className="min-w-0 md:flex md:items-center md:space-x-3">
+            <div className="flex min-w-0 flex-1 items-center space-x-2 rounded-lg bg-[#F6F7F9] px-2.5 py-1.5">
               <CallIcon className="size-3 md:size-4" />
-              <h2 className="text-xs font-normal text-[#282828] 2xl:text-base">
-                {/* {methods.getValues("contactNumber") || "(907) 555-0101-775"} */}
+              <h2 className="w-full overflow-hidden truncate whitespace-nowrap text-xs font-normal text-[#282828]">
                 {contactNumber}
               </h2>
             </div>
-            <div className="mt-3 flex items-center space-x-2 rounded-lg bg-[#F6F7F9] px-2.5 py-1.5 md:mt-0">
+
+            <div className="mt-3 flex min-w-0 flex-1 items-center space-x-2 rounded-lg bg-[#F6F7F9] px-2.5 py-1.5 md:mt-0">
               <SmsIcon className="size-3 md:size-4" />
-              <h2 className="text-xs font-normal text-[#282828] 2xl:text-base">
-                {/* {methods.getValues("email") || "manhhachkt08@gmail.com"} */}
+              <h2 className="w-full overflow-hidden truncate whitespace-nowrap text-xs font-normal text-[#282828]">
                 {email}
               </h2>
             </div>
           </div>
         </div>
-        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-6 xl:pt-6">
+        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-5 xl:pt-5">
           <h2 className="text-[10px] font-semibold text-black xl:text-sm">
             Flight Information
           </h2>
-          <div className="flex items-center space-x-3 pt-4 xl:pt-6">
+          <div className="flex items-center space-x-3 pt-4 xl:pt-5">
             <div className="rounded-lg bg-[#F6F7F9] px-[6.56px] py-[6.56px] 2xl:px-2.5 2xl:py-2.5">
               <AirplaneIcon className="size-5" />
             </div>
@@ -99,19 +103,21 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
           </div>
           <h2 className="mt-2 flex text-xs font-medium text-[#282828] 2xl:text-base">
             {/* {methods.watch("flightNumber") || "SK 2301"} */}
-            Arrival Time :{"  "}
-            <p className="font-medium text-green-500">
+
+            <span className="mt-2 flex text-[10px] font-medium text-[#737373] 2xl:text-xs">
+              <FlightIcon className="size-3 xl:size-4" />
               {"  "}
-              {arrivalTime || "Not Provided"}
-            </p>
+              <p className="ml-1"> Arrival :</p>{" "}
+              <p className="text-green-500">{arrivalTime}</p>
+            </span>
           </h2>
         </div>
 
-        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-6 xl:pt-6">
+        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-5 xl:pt-5">
           <h2 className="text-[10px] font-semibold text-black xl:text-sm">
             Reference Number
           </h2>
-          <div className="flex items-center space-x-3 pt-4 xl:pt-6">
+          <div className="flex items-center space-x-3 pt-4 xl:pt-5">
             <div className="rounded-lg bg-[#F6F7F9] px-[6.56px] py-[6.56px] 2xl:px-2.5 2xl:py-2.5">
               <SpecialRequestIcon className="size-5" />
             </div>
@@ -121,11 +127,11 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
             </h2>
           </div>
         </div>
-        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-6 xl:pt-6">
+        <div className="border-b border-[#282828]/20 pb-4 pt-4 xl:pb-5 xl:pt-5">
           <h2 className="text-[10px] font-semibold text-black xl:text-sm">
             Special Request
           </h2>
-          <div className="flex items-center space-x-3 pt-4 xl:pt-6">
+          <div className="flex items-center space-x-3 pt-4">
             <div className="rounded-lg bg-[#F6F7F9] px-[6.56px] py-[6.56px] 2xl:px-2.5 2xl:py-2.5">
               <SpecialRequestIcon className="size-5" />
             </div>
@@ -138,13 +144,13 @@ const BookingSummary = ({}: { onEdit: () => void }) => {
       </div>
       <div className="align-baseline">
         <div className="flex items-baseline justify-end space-x-3">
-          <button
+          {/* <button
             type="button"
             onClick={handleEdit}
             className="w-full items-center justify-center rounded-[11px] border border-[#282828]/50 bg-white px-4 py-[15px] text-xs font-medium text-[#282828] hover:border-[#282828] hover:bg-[#efefef] xl:text-base"
           >
             Edit Details
-          </button>
+          </button> */}
 
           {/* <button
             type="button"

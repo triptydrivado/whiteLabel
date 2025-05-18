@@ -4,6 +4,9 @@ const OnewayLocation = () => {
   // const pickupLocation = localStorage.getItem("pickupLocation");
   // const dropoffLocation = localStorage.getItem("dropoffLocation");
 
+  const bookngForm = localStorage.getItem("bookingSearchForm");
+  const bookingData = JSON.parse(bookngForm || "{}");
+
   return (
     <div className="relative mt-8 md:mt-8 xl:mt-6 2xl:mt-10">
       <div className="absolute left-[5px] top-5 h-[50%] w-0.5 rounded-full bg-[repeating-linear-gradient(to_bottom,white_1px,var(--brand-theme-color)_7px)] sm:left-[5px] sm:top-4 md:left-[5px] md:top-4 xl:left-1.5 3xl:h-[90%]">
@@ -15,8 +18,7 @@ const OnewayLocation = () => {
             <PickupDropoffIcon className="mt-1 size-3 text-[var(--brand-theme-color)] sm:mt-0.5 sm:size-3 md:size-3 xl:mt-1 xl:size-[14px]" />
           </div>
           <h2 className="text-xs font-medium sm:text-[10px] md:font-normal lg:text-sm lg:leading-[22px] xl:font-medium">
-            Park Plaza Westminster Bridge London, 200 Westminster Bridge Rd,
-            London SE1 7UT, United Kingdom
+            {bookingData.from.description}
           </h2>
         </div>
         <div className="relative mt-6 flex items-start space-x-3 xl:space-x-5">
@@ -27,8 +29,7 @@ const OnewayLocation = () => {
             &nbsp;
           </div>
           <h2 className="text-xs font-medium sm:text-[10px] md:font-normal lg:text-sm lg:leading-[22px] xl:font-medium">
-            Park Plaza Westminster Bridge London, 200 Westminster Bridge Rd, 200
-            Westminster Bridge Rd, London SE1 7UT,
+            {bookingData.to.description}
           </h2>
         </div>
       </div>

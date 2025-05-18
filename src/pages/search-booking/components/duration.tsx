@@ -84,9 +84,9 @@ export default function Duration({ name, className }: Props) {
               className={cn(
                 "relative flex items-center gap-[6px] hover:cursor-pointer",
                 // baseStyle,
-                "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1.5 [&_svg]:focus-visible:text-drivado-red",
+                "border border-transparent px-2.5 py-1 focus-visible:border-gray-300 focus-visible:bg-gray-100 xl:h-auto xl:py-1.5 [&_svg]:focus-visible:text-[var(--brand-theme-color)]",
                 desktopClickInside &&
-                  "border-[#FFB1BA] bg-gray-100 [&_svg]:text-drivado-red",
+                  "border-[#FFB1BA] bg-gray-100 [&_svg]:text-[var(--brand-theme-color)]",
                 className,
               )}
             >
@@ -112,7 +112,7 @@ export default function Duration({ name, className }: Props) {
                   aria-haspopup="listbox"
                   aria-controls="combobox-list"
                   className={cn(
-                    "peer w-full truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-base xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
+                    "peer w-full truncate rounded-none border-0 p-0 text-left text-xs font-normal capitalize text-[#757575] shadow-none placeholder:truncate placeholder:text-left placeholder:text-xs placeholder:font-normal placeholder:capitalize placeholder:leading-[1.25rem] placeholder:text-[#757575] hover:cursor-pointer focus-visible:ring-0 xl:h-auto xl:text-sm xl:leading-[normal] xl:placeholder:truncate xl:placeholder:text-base",
                   )}
                 >
                   {value && (
