@@ -8,9 +8,9 @@ const PaymentButton: React.FC = () => {
 
   const [paymentData, setPaymentData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [scriptLoaded, setScriptLoaded] = useState(false); // Track Razorpay script load status
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // Error message state
-  const [showPopup, setShowPopup] = useState(false); // Popup visibility state
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const BASE_URL = import.meta.env.VITE_DRIVADO_API;
   const apiKey = import.meta.env.VITE_DRIVADO_KEY;
@@ -123,111 +123,85 @@ const PaymentButton: React.FC = () => {
     const options = {
       key: "rzp_test_puo1xjdgc63ciU",
       amount: paymentData.amount,
-      currency: "INR", // Fixed, user can't change this
+      currency: paymentData.currency || "INR",
       order_id: paymentData.id,
-      name: `${passengerDetails.firstName} ${passengerDetails.lastName}`,
+      name: `${passengerDetails.salutation || ""} ${passengerDetails.firstName || ""} ${passengerDetails.lastName || ""}`,
       description: "A global chauffeur service",
       handler: async function () {
-        // success logic
+        try {
+          const bookingRes = await fetch(bookingEndpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              apiKey: apiKey,
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!bookingRes.ok) {
+            const errorText = await bookingRes.text();
+            showError(`Booking failed: ${errorText}`);
+            throw new Error(errorText); // Throw an error to stop further execution
+          }
+
+          const bookingData = await bookingRes.json();
+          console.log("Booking Response:", bookingData);
+
+          // Clear all localStorage after booking success
+          clearSession();
+
+          // Navigate to confirmation
+          navigate("/booking-confirmation");
+        } catch (err: unknown) {
+          console.error("Booking API call failed:", err);
+
+          // Type guard to check if 'err' is an instance of Error
+          if (err instanceof Error) {
+            showError(`An error occurred: ${err.message || "Unknown error"}`);
+          } else {
+            // If it's not an instance of 'Error', treat it as an unknown error
+            showError("An unknown error occurred");
+          }
+        }
       },
       prefill: {
-        name: `${passengerDetails.firstName} ${passengerDetails.lastName}`,
+        name: `${passengerDetails.firstName || ""} ${passengerDetails.lastName || ""}`,
         email: passengerDetails.email || "",
         contact: passengerDetails.contactNumber || "",
       },
+      // notes: {
+      //   address: "Passenger address or notes",
+      // },
       theme: {
         color: "#FB4156",
       },
       modal: {
         ondismiss: function () {
+          console.log("Razorpay popup closed by user");
           fetchOrder();
         },
       },
     };
 
-    // const options = {
-    //   key: "rzp_test_puo1xjdgc63ciU",
-    //   amount: paymentData.amount,
-    //   currency: paymentData.currency || "INR",
-    //   order_id: paymentData.id,
-    //   name: `${passengerDetails.salutation || ""} ${passengerDetails.firstName || ""} ${passengerDetails.lastName || ""}`,
-    //   description: "A global chauffeur service",
-    //   handler: async function () {
-    //     try {
-    //       const bookingRes = await fetch(bookingEndpoint, {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //           apiKey: apiKey,
-    //         },
-    //         body: JSON.stringify(payload),
-    //       });
-
-    //       if (!bookingRes.ok) {
-    //         const errorText = await bookingRes.text();
-    //         showError(`Booking failed: ${errorText}`);
-    //         throw new Error(errorText); // Throw an error to stop further execution
-    //       }
-
-    //       const bookingData = await bookingRes.json();
-    //       console.log("Booking Response:", bookingData);
-
-    //       // Clear all localStorage after booking success
-    //       clearSession();
-
-    //       // Navigate to confirmation
-    //       navigate("/booking-confirmation");
-    //     } catch (err: unknown) {
-    //       console.error("Booking API call failed:", err);
-
-    //       // Type guard to check if 'err' is an instance of Error
-    //       if (err instanceof Error) {
-    //         showError(`An error occurred: ${err.message || "Unknown error"}`);
-    //       } else {
-    //         // If it's not an instance of 'Error', treat it as an unknown error
-    //         showError("An unknown error occurred");
-    //       }
-    //     }
-    //   },
-    //   prefill: {
-    //     name: `${passengerDetails.firstName || ""} ${passengerDetails.lastName || ""}`,
-    //     email: passengerDetails.email || "",
-    //     contact: passengerDetails.contactNumber || "",
-    //   },
-    //   // notes: {
-    //   //   address: "Passenger address or notes",
-    //   // },
-    //   theme: {
-    //     color: "#FB4156",
-    //   },
-    //   modal: {
-    //     ondismiss: function () {
-    //       console.log("Razorpay popup closed by user");
-    //       fetchOrder();
-    //     },
-    //   },
-    // };
-
     const razorpay = new (window as any).Razorpay(options);
-    razorpay.open(); // Open the Razorpay modal
+    razorpay.open();
   };
 
   const showError = (message: string) => {
     setErrorMessage(message);
-    setShowPopup(true); // Show the popup with error message
+    setShowPopup(true);
   };
 
   const closePopup = () => {
-    setShowPopup(false); // Close the popup
+    setShowPopup(false);
   };
 
   const clearSession = () => {
-    // Clear all relevant session data to start a fresh session
     localStorage.clear();
-    setPaymentData(null); // Reset payment data
-    setLoading(true); // Reset loading state
-    setErrorMessage(null); // Reset error message
-    setShowPopup(false); // Close any open popup
+    setPaymentData(null);
+    setLoading(true);
+    setErrorMessage(null);
+    setShowPopup(false);
   };
 
   return (
@@ -241,7 +215,6 @@ const PaymentButton: React.FC = () => {
         {loading ? "Preparing Payment..." : "Confirm & Pay"}
       </button>
 
-      {/* Display the Popup if an error message exists */}
       {showPopup && errorMessage && (
         <Popup message={errorMessage} onClose={closePopup} />
       )}
