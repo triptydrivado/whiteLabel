@@ -5,7 +5,6 @@ import { TPassengerDetails } from "../passenger-details-form-schema";
 import { cn } from "@/lib/utils";
 import FlightIcon from "@/assets/svgs/flightIcon";
 
-// Save flight details
 const saveFlightDetails = (flightNumber: string, details: any) => {
   sessionStorage.setItem(`flight_${flightNumber}`, JSON.stringify(details));
 };

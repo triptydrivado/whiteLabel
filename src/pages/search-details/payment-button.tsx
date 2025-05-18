@@ -76,7 +76,7 @@ const PaymentButton: React.FC = () => {
       return;
     }
 
-    const tripType = localStorage.getItem("tripType") || "oneway";
+    const tripType = localStorage.getItem("bookingType");
     const email = import.meta.env.VITE_DRIVADO_EMAIL;
 
     const selectedVehicle = JSON.parse(

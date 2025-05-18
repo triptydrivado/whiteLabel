@@ -1,4 +1,4 @@
-import { CalendarDays, Clock4, Route, Timer, Users } from "lucide-react";
+import { Clock4, Route, Timer, Users } from "lucide-react";
 
 const HourlySettings = () => {
   // const time = localStorage.getItem("time");

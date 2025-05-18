@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { XCircle } from "lucide-react";
 
 interface PopupProps {
   message: string;
