@@ -39,7 +39,7 @@ const OnewaySettings = () => {
       <div className="flex w-full flex-col items-center justify-center gap-y-0.5 rounded-lg bg-[#f6f7f9] px-1.5 py-2 sm:w-full sm:px-1.5 sm:py-1.5 md:w-full md:px-1.5 md:py-1.5 lg:w-full lg:px-2 xl:w-full xl:gap-y-1.5 xl:px-4 xl:py-3 2xl:w-full">
         <RoutingIcon className="size-3 text-[var(--brand-theme-color)] md:size-4 lg:size-4 2xl:size-5" />
         <h2 className="text-[8px] font-medium text-[#282828] sm:text-[8px] lg:text-[10px] xl:text-[10px] 2xl:text-sm">
-          {vehicleData.km}
+          {Math.round(vehicleData.km)}km
         </h2>
       </div>
       {/* <div className="flex w-full flex-col items-center justify-center gap-y-0.5 rounded-lg bg-[#f6f7f9] px-1.5 py-2 sm:w-full sm:px-1.5 sm:py-1.5 md:w-full md:px-1.5 md:py-1.5 lg:w-full lg:px-2 xl:w-full xl:gap-y-1.5 xl:px-4 xl:py-3 2xl:w-full">
